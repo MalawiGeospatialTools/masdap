@@ -1,84 +1,76 @@
 Masdap
 ========================
 
-You should write some docs, it's good for the soul.
+MASDAP (Malawi Spatial Data Platform) is a GeoNode customization based on geonode-project. 
 
 Installation
 ------------
 
-Install geonode with::
+Install the native dependencies for your platform.
 
-    $ sudo add-apt-repository ppa:geonode/release
+Install virtualenv and virtualenvwrapper, Create a local virtual environment for your project and install Django into it.::
 
-    $ sudo apt-get update
-
-    $ sudo apt-get install geonode
+    $ mkvirtualenv geonode
+    $ source geonode/bin/activate
+    $ git clone -b 2.4.x https://github.com/GeoNode/geonode.git
 
 Create a new template based on the geonode example project.::
     
-    $ django-admin startproject my_geonode --template=https://github.com/GeoNode/geonode-project/archive/2.4.zip -epy,rst 
-    $ sudo pip install -e my_geonode
+    $ django-admin.py startproject masdap --template=https://github.com/GeoNode/geonode-project/archive/2.4.zip -epy,rst
 
 .. note:: You should NOT use the name geonode for your project as it will conflict with the default geonode package name.
 
-Usage
------
+Install the dependencies for your geonode project into your local virtual environment::
 
-Rename the local_settings.py.sample to local_settings.py and edit it's content by setting the SITEURL and SITENAME.
+    $ pip install -e masdap
 
-Edit the file /etc/apache2/sites-available/geonode and change the following directive from:
+Install and Configure GeoServer
 
-    WSGIScriptAlias / /var/www/geonode/wsgi/geonode.wsgi
+.. note:: At this point, you should put your project under version control using Git or similar.
 
-to:
+Using ansible for Automated Deploys
+-----------------------------------
 
-    WSGIScriptAlias / /path/to/my_geonode/my_geonode/wsgi.py
-    
-To avoid having to grant apache permissions (i.e. www-data user and group) to your home dir where you likely setup the geonode-project; you may want to instead copy the wsgi.py file next to geonode.wsgi and replace the file name instead of the entire path.
+In order to install for production on a remote machine or to a local VM for development, you will need to install ansible::
 
-    $ cp /path/to/my_geonode/my_geonode/wsgi.py /var/www/geonode/wsgi/wsgi.py
+     $ sudo pip install ansible
 
-Add the "Directory" directive for your folder like the following example:
+Note: It is advisable to install ansible system wide using sudo
 
-    <Directory "/home/vagrant/my_geonode/my_geonode/">
+Next, you will need to install the ansible role for geonode::
 
-       Order allow,deny
+     $ ansible-galaxy install ortelius.geonode
 
-       Options Indexes FollowSymLinks
+Setting up a vagrant box
+-------------------------
 
-       Allow from all
+Setup VirtualBox and install vagrant, then setup your virtual machine with::
 
-       Require all granted
+    $ vagrant up
 
-       IndexOptions FancyIndexing
-       
-    </Directory>
+Note: the vagrant installation uses Ansible, so you will need to follow the steps in the previous section.
 
-Restart apache::
+Usage in production
+-------------------
 
-    $ sudo service apache2 restart
+Update /etc/ansible/hosts to include your webservers host or dns entry::
 
-Edit the templates in my_geonode/templates, the css and images to match your needs.
+    [webservers]
+    ###.###.###.###
 
-In the my_geonode folder run::
+Then you can run the playbook to install the masdap  project::
 
-    $ python manage.py collectstatic
+    $ ansible-playbook playbook.yml
 
-Github Considerations
-------------------------
+Basic Usage
+-----------
 
-While it is helpful to recommit your django project wrapper back to a distributed version control repository. 
-* It is also important to remember that production instances will store security information in the local_settings.py
-* Admin/Devs should always remember to exclude this file in the .gitignore file in the same folder as the .git::
+Setup the database::
 
-    $ nano .gitignore
-    
-    /{project}/local_settings.py
+    $ python manage.py syncdb
 
-save, make sure the file is also removed from git cache::
-    
-    $ git rm -f --cache //local_settings.py
-    
-    $ git status
-    
-confirm the file is no longer staged for the next commit or that if it is as "removed"
+.. note:: You will be asked to provide credentials for the superuser account.
+
+Start the development server::
+
+    $ python manage.py runserver
