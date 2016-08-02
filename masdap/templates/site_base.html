@@ -1,12 +1,17 @@
 {% extends "base.html" %}
-{% block extra_head %}
-{% endblock %}
-{% block extra_tab %}
-{% comment %}
-Add Tab for Third Party Apps
-<li>
- <a href="{{ PROJECT_ROOT }}app">App</a>
-</li>
-{% endcomment %}
-      <link href="{{ STATIC_URL }}css/masdap.css" rel="stylesheet"/>
-{% endblock %}
+
+    {% block head %}
+      {% if DEBUG_STATIC %}
+      <link href="{{ STATIC_URL }}css/jquery.dataTables.css?v={{ VERSION }}" rel="stylesheet" />
+      <link href="{{ STATIC_URL }}css/select2.css?v={{ VERSION }}" rel="stylesheet"/>
+      <link href="{{ STATIC_URL }}css/jquery-ui.css?v={{ VERSION }}" rel="stylesheet"/>
+      <link href="{{ STATIC_URL }}css/bootstrap-datetimepicker.css?v={{ VERSION }}" rel="stylesheet"/>
+      {% else %}
+      <link href="{{ STATIC_URL }}css/assets.min.css?v={{ VERSION }}" rel="stylesheet"/>
+      {% endif %}
+      <link href="{{ STATIC_URL }}css/ext-compatibility.css?v={{ VERSION }}" rel="stylesheet" />
+      <link href="{{ STATIC_URL }}css/masdap.css" rel="stylesheet" />
+      <style type="text/css">[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}</style>
+      {% block extra_head %}
+      {% endblock %}
+    {% endblock %}
