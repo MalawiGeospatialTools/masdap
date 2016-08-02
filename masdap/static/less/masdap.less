@@ -2,19 +2,17 @@
 @import "fonts.less";
 @import "bootstrap.less";
 
+/* ------ General
+------------------------------ */
+
 body {
-    background: #ccc;
-    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    padding-top: 40px
+	/*background: @gray-dark;*/
 }
 
-a {
-    color: #028baf
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 700
+section {
+	background: white;
+	padding-top: 1.5em;
+	padding-bottom: 2em;
 }
 
 select {
@@ -43,12 +41,130 @@ form input {
     padding: 5px
 }
 
-#wrap {
-    background: #fff;
-    padding-bottom: 40px;
-    padding-top: 10px;
-    width: 100%
+/* ------ Header
+------------------------------ */
+
+/* ------ Nav
+------------------------------ */
+.navbar-inverse {
+	background-color: rgba(0,0,0,0.5);
+	border: 0;
+	.navbar-nav > li > a {
+		color: white;
+		font-weight: 600;
+		padding-top: 25px;
+		padding-bottom: 25px;
+		&:hover {
+			background-color: @brand-primary;
+		}
+	}
+	.navbar-nav {
+		.open > a {
+			background-color: @brand-primary;
+			&:hover {
+				background-color: @brand-primary;
+			}
+		}
+	}
 }
+.navbar-brand {
+	background: url(../img/masdap-logo.png) 0 10px no-repeat;
+	background-size: 100%;
+	text-indent: -9999px;
+	height: 65px;
+	width: 200px;
+}
+.navbar-nav {
+	.search {
+	  left: 15px;
+	  position: relative;
+	  color: #444;
+	  top: 20px;
+	  margin-right: 25px;
+	}
+	.search input {
+	  width: 120px;
+	  height: 32px;
+	  border: 1px solid @gray-dark;
+	  border-radius: 5px;
+	  outline-width: 0;
+	  -webkit-transition: width 0.2s;
+	          transition: width 0.2s;
+	  &:focus {
+	  	 width: 240px;
+	  }
+	}
+
+	.search input { text-indent: 32px;}
+	.search .fa-search { 
+	  position: absolute;
+	  top: 8px;
+	  left: 10px;
+	}
+	.avatar img {
+		border-radius: 50%;
+		margin-bottom: -15px;
+		margin-right: 10px;
+		margin-top: -15px;
+		height: 42px;
+		width: 42px;
+	}
+	.fa-angle-down {
+		margin-left: 10px;
+	}
+}
+
+.navbar-collapse {
+    max-height: none
+}
+
+/* ------ Article
+------------------------------ */
+
+
+    /* ------ Jumbotron
+    ------------------------------ */
+	.jumbotron {
+		background: linear-gradient(
+	      rgba(0, 0, 0, 0), 
+	      rgba(0, 0, 0, 0.2)
+	    ), url('../img/lake-malawi.jpg') no-repeat;
+		background-position: center;
+		background-size: cover;
+		color: white;
+		margin-bottom: 0;
+		padding: 6em 0 5em;
+		h1 {
+			font-weight: 700;
+			text-shadow: 4px 4px 4px rgba(0,0,0,0.6);
+		}
+		h2, h3 {
+			font-weight: 600;
+			text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
+		}
+	
+		p {
+			border-bottom: 3px solid white;
+			margin-top: 1em;
+			width: 180px;
+		}
+		.btn-default {
+			background: rgba(0,0,0,0.4);
+			border: 2px solid white;
+			color: white;
+			font-weight: 600;
+			margin-top: 1em;
+			min-width: 320px;
+		}
+	}
+    
+
+
+/* ------ Aside
+------------------------------ */
+
+/* ------ Footer
+------------------------------ */
 
 article.tab-pane {
     padding: 20px 0
@@ -72,34 +188,9 @@ article.tab-pane {
     white-space: nowrap
 }
 
-.navbar {
-    margin-bottom: 0
-}
-
-.navbar-inverse {
-    background-color: #333;
-    border-radius: 0
-}
-
-.navbar-brand {
-    background: url(../img/logo.png) 15px 0 no-repeat;
-    height: 40px;
-    margin-right: 15px;
-    margin-top: 10px;
-    text-indent: -9999em;
-    width: 140px
-}
-
-.navbar-right > li > a {
-    padding: 8px 15px
-}
 
 .nav-pills a {
     cursor: pointer
-}
-
-.navbar-collapse {
-    max-height: none
 }
 
 form#search {
@@ -118,18 +209,10 @@ form#search .fa {
     padding: 8px 15px
 }
 
-.avatar {
-    padding: 3px
-}
-
-.avatar img {
-    border-radius: 3px
-}
-
 .navbar-active {
     color: #fff
 }
-
+/*
 body.layers li#nav_layers a {
     color: #fff
 }
@@ -149,29 +232,13 @@ body.people li#nav_people a {
 body.groups li#nav_groups a {
     color: #fff
 }
-
+*/
 .yourlabs-autocomplete {
     top: 100%
 }
 
 .input-group .yourlabs-autocomplete {
     top: 30px !important
-}
-
-.jumbotron {
-    background: #028baf;
-    color: #fff;
-    padding: 40px 0 60px;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
-    margin-top: -10px
-}
-
-.jumbotron a {
-    color: #9eb343
-}
-
-.jumbotron p {
-    margin-bottom: 0
 }
 
 .home-facets {
