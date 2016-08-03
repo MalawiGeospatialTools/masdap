@@ -95,9 +95,9 @@
 				{% if user.is_authenticated %}
 	            <li><a href="#" class="dropdown-toggle avatar" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% avatar user 42 %} {{ user.username }}<i class="fa fa-angle-down fa-lg"></i></a>
 					<ul class="dropdown-menu">
-					    <li><a href="#">Profile</a></li>
-					    <li><a href="#">Recent Activity</a></li>
-						<li><a href="#">Inbox</a></li>
+					    <li><a href="{{ user.get_absolute_url }}">{% trans "Profile" %}</a></li>
+					    <li><a href="{% url "recent-activity" %}">{% trans "Recent Activity" %}</a></li>
+						<li><a href="{% url "messages_inbox" %}">{% trans "Inbox" %}</a></li>
 					    <li role="separator" class="divider"></li>
 						<li><a href="/admin/">Admin</a></li>
 					    <li><a href="/geoserver/">GeoServer</a></li>
@@ -136,4 +136,29 @@
       </div>
     </nav>
     {% endblock header %}
+	
+    {% block middle %}
+	<article>
+		<header>
+			<div class="container">
+			    <h3>{% block title %}{% endblock %}</h3>
+			</div>
+		</header>
+        <div class="container">
+            {% include "_status_message.html" %}
+            {% include "_announcements.html" %}
+            {% include "_messages.html" %}
+            {% block body_outer %}
+            <div class="row">
+                <div class="col-md-8">
+                {% block body %}{% endblock %}
+                </div>
+                <div class="col-md-4">
+                {% block sidebar %}{% endblock %}
+                </div>
+            </div>
+            {% endblock %}
+        </div>
+	</article>
+    {% endblock middle %}
 	

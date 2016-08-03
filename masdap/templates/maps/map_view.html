@@ -1,0 +1,13 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block title %} {% trans "GeoExplorer" %} - {{ block.super }} {% endblock %}
+
+{% block head %}
+{{ block.super }}
+{% include 'maps/map_geoexplorer.js' %}
+
+{% endblock %}
+
+{% block footer %}{% endblock %}

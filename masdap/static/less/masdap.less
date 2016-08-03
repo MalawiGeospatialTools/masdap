@@ -47,7 +47,8 @@ form input {
 /* ------ Nav
 ------------------------------ */
 .navbar-inverse {
-	background-color: rgba(0,0,0,0.5);
+	/*background-color: rgba(0,0,0,0.5);*/
+	background-color: @gray-dark;
 	border: 0;
 	.navbar-nav > li > a {
 		color: white;
@@ -65,6 +66,11 @@ form input {
 				background-color: @brand-primary;
 			}
 		}
+	}
+}
+.home {
+	.navbar-inverse {
+		background-color: rgba(0,0,0,0.5);
 	}
 }
 .navbar-brand {
@@ -120,7 +126,17 @@ form input {
 
 /* ------ Article
 ------------------------------ */
-
+article {
+	header {
+		background: @brand-primary;
+		color: white;
+		margin-bottom: 2em;
+		padding: 1em;
+		h3 {
+			font-size: 1.5em;
+		}
+	}
+}
 
     /* ------ Jumbotron
     ------------------------------ */
@@ -157,7 +173,135 @@ form input {
 			min-width: 320px;
 		}
 	}
+	
+	article {
+		margin-top: 4em;
+	}
+	body.home {
+		article {
+			margin-top:0;
+		}
+	}
+	
+    /* ------ Big Search
+    ------------------------------ */
+	
+	.big-search {
+		background: @gray-dark;
+		color: white;
+		h1, p {text-align: center}
+		padding-bottom: 3em;
+		padding-top: 1em;
+		a {
+			color: @brand-primary;
+		}
+		.search {
+		  left: 0;
+		  position: relative;
+		  color: #444;
+		  top: 20px;
+		  padding-bottom: 2em;
+		  margin: auto;
+		  width: 50%;
+		}
+		.search input {
+		  width: 100%;
+		  height: 56px;
+		  border: 1px solid @gray-dark;
+		  border-radius: 5px;
+		  outline-width: 0;
+		  font-size: 1.5em;
+		}
+
+		.search input { text-indent: 64px;}
+		.search .fa-search { 
+		  position: absolute;
+		  top: 10px;
+		  left: 15px;
+		}
+	}
+	
+    /* ------ Datasets
+    ------------------------------ */
     
+	#datasets h4 {
+		text-transform: uppercase;
+		font-size: 14px;
+	}
+	#datasets p {
+		font-size: 14px;
+	}
+	#datasets {
+	    background: @brand-primary;
+		color: white;
+		padding: 1em 0;
+		a {
+			color: white;
+			&:hover {
+				text-decoration: none;
+			}
+			.category {
+				background: @brand-primary;
+				border-radius: 4px;
+				margin: 0 -15px;
+				padding: 2em 0;
+				&:hover {
+					background: @link-hover-color;
+				}
+			}
+			span {
+				font-size: 4em;
+			}
+		}
+	}
+	#showcase {
+		text-align: center;
+		.col-md-3 {
+			padding: 2em 1em;
+			img {
+				height: 180px;
+				width: 100%;
+			}
+		}
+		p {
+			font-size: 18px;
+		}
+	}
+	#resiliance {
+		background: @gray-lighter;
+		text-align: center;
+		.col-xs-4 {
+			padding: 2em 0;
+			}
+		span {
+			font-size: 6em;
+		}
+	}
+	#osm {
+	  	background: linear-gradient(
+			to right,
+	        rgba(0, 0, 0, 0) 0%, 
+	        rgba(0, 0, 0, 0) 50%,
+		    @brand-primary 50%,
+		    @brand-primary 100%
+	      ), url(../img/map01.png) no-repeat;
+		background-size: cover;
+		min-height: 320px;
+		padding: 0;
+		.col-md-8 {
+			background: @brand-primary;
+			color: white;
+			min-height: 320px;
+			padding: 1em 2em;
+			.btn-primary {
+				border-color: white;
+				width: 160px;
+			}
+		}
+		p {
+			font-size: 18px;
+		}
+	}
 
 
 /* ------ Aside

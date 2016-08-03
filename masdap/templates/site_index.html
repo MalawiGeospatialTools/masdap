@@ -1,9 +1,7 @@
 {% extends 'index.html' %}
 {% load i18n %}
-{% comment %}
-This is where you can override the hero area block. You can simply modify the content below or replace it wholesale to meet your own needs. 
-{% endcomment %}
-  {% block hero %}
+
+  {% block middle %}
   <div class="jumbotron">
       <div class="container">
 	      <h1>Malawi<br />Spatial Data Platform</h1>
@@ -12,4 +10,204 @@ This is where you can override the hero area block. You can simply modify the co
          <a class="btn btn-default btn-lg" href="#" role="button">{% blocktrans %}Get Started &raquo;{% endblocktrans %}</a>
       </div>
   </div>
+  
+  <div class="big-search">
+    <div class="container">
+	<h1>Search for Malawi Data.</h1>
+	<div class="search">
+	  <span class="fa fa-search fa-2x"></span>
+	  <input placeholder="Search...">
+	</div>
+	<p><a href="#">Advanced Search</a></p>
+    </div>
+  </div>
+
+<section id="datasets">
+	<div class="container">
+		<div class="row">
+			<div class="container text-center">
+				<h1>Discover the available datasets.</h1>
+				<div class="col-xs-4 col-sm-2">
+					<a href="#" data-toggle="tooltip" data-placement="auto" 
+						title="Political and administrative boundaries, land use maps, zoning maps, cadastral surveys, land ownership.">
+						<div class="category">
+							<i class="fa fa-flag fa-4x"></i>
+							<h4>Boundaries</h4>
+							<p>13 datasets</p>
+						</div>
+					</a>
+				</div>
+				<div class="col-xs-4 col-sm-2">
+					<a href="#" data-toggle="tooltip" data-placement="auto" 
+						title="Buildings, museums, churches, factories, housing, monuments, shops, towers. Energy, water and waste systems and communications infrastructure and services. Military bases, structures, activities." >
+						<div class="category">
+							<i class="fa fa-home fa-4x"></i>
+							<h4>Buildings</h4>
+							<p>20 datasets</p>
+						</div>
+					</a>
+				</div>
+				<div class="col-xs-4 col-sm-2">
+					<a href="#" data-toggle="tooltip" data-placement="auto" 
+						title="Cloud cover, weather, climate, atmospheric conditions, climate change, precipitation" >
+						<div class="category">
+							<i class="fa fa-umbrella fa-4x"></i>
+							<h4>Climate</h4>
+							<p>4 datasets</p>
+						</div>
+					</a>
+				</div>
+				<div class="col-xs-4 col-sm-2">
+					<a href="#" data-toggle="tooltip" data-placement="auto" 
+						title="Altitude, bathymetry, digital elevation models, slope, derived products" >
+						<div class="category">
+							<i class="fa fa-level-up fa-4x"></i>
+							<h4>Elevation</h4>
+							<p>4 datasets</p>
+						</div>
+					</a>
+				</div>
+				<div class="col-xs-4 col-sm-2">
+					<a href="#" data-toggle="tooltip" data-placement="auto" 
+						title="Geophysical features and processes, geology, minerals, sciences dealing with the composition, structure and origin of the earth s rocks, risks of earthquakes, volcanic activity, landslides, gravity information, soils, permafrost, hydrogeology, erosion." >
+						<div class="category">
+							<i class="fa fa-globe fa-4x"></i>
+							<h4>Geology</h4>
+							<p>6 datasets</p>
+						</div>
+					</a>
+				</div>
+				<div class="col-xs-4 col-sm-2">
+					<a href="#" data-toggle="tooltip" data-placement="auto" 
+						title="Health, health services, human ecology, and safety." >
+						<div class="category">
+							<i class="fa fa-medkit fa-4x"></i>
+							<h4>Health</h4>
+							<p>8 datasets</p>
+						</div>
+					</a>
+				</div>
+				<div class="col-xs-4 col-sm-2">
+					<a href="#" data-toggle="tooltip" data-placement="auto" 
+						title="Land cover, topographic maps, imagery, unclassified images, annotations." >
+						<div class="category">
+							<i class="fa fa-tree fa-4x"></i>
+							<h4>Land Cover</h4>
+							<p>21 datasets</p>
+						</div>
+					</a>
+				</div>
+				<div class="col-xs-4 col-sm-2">
+					<a href="#" data-toggle="tooltip" data-placement="auto" 
+						title="Wildlife, vegetation, biological sciences, ecology, wilderness, sealife, wetlands, habitat. Environmental resources, protection and conservation. Agriculture, irrigation, aquaculture, plantations, herding, pests and diseases affecting crops and livestock" >
+						<div class="category">
+							<i class="fa fa-leaf fa-4x"></i>
+							<h4>Nature</h4>
+							<p>18 datasets</p>
+						</div>
+					</a>
+				</div>
+				<div class="col-xs-4 col-sm-2">
+					<a href="#" data-toggle="tooltip" data-placement="auto" 
+						title="Addresses, geodetic networks, control points, postal zones and services, place names" >
+						<div class="category">
+							<i class="fa fa-map-marker fa-4x"></i>
+							<h4>Places</h4>
+							<p>53 datasets</p>
+						</div>
+					</a>
+				</div>
+				<div class="col-xs-4 col-sm-2">
+					<a href="#" data-toggle="tooltip" data-placement="auto" 
+						title="Settlements, anthropology, archaeology, education, traditional beliefs, manners and customs, demographic data, recreational areas and activities, social impact assessments, crime and justice, census information. Economic activities, conditions and employment." >
+						<div class="category">
+							<i class="fa fa-male fa-4x"></i>
+							<h4>Population</h4>
+							<p>8 datasets</p>
+						</div>
+					</a>
+				</div>
+				<div class="col-xs-4 col-sm-2">
+					<a href="#" data-toggle="tooltip" data-placement="auto" 
+						title="Roads, airports/airstrips, shipping routes, tunnels, nautical charts, vehicle or vessel location, aeronautical charts, railways." >
+						<div class="category">
+							<i class="fa fa-road fa-4x"></i>
+							<h4>Transportation</h4>
+							<p>12 datasets</p>
+						</div>
+					</a>
+				</div>
+				<div class="col-xs-4 col-sm-2">
+					<a href="#" data-toggle="tooltip" data-placement="auto" 
+						title="Rivers and glaciers, salt lakes, water utilization plans, dams, currents, floods, water quality, hydrographic charts, tides, tidal waves, coastal information, reefs." >
+						<div class="category">
+							<i class="fa fa-tint fa-4x"></i>
+							<h4>Water</h4>
+							<p>164 datasets</p>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>		
+	</div>
+</section>
+
+<section id="resiliance">
+	<div class="container">
+		<div class="row">
+			<h2>Malawi Risk and Hazards</h2>
+			<div class="col-xs-4">
+				<span class="icon-disaster_drought"></span>
+				<h4>Drought monitoring</h4>
+			</div>
+			<div class="col-xs-4">
+				<span class="icon-disaster_flood"></span>
+				<h4>Flood and heavy rain</h4>
+			</div>
+			<div class="col-xs-4">
+				<span class="icon-cluster_food_security"></span>
+				<h4>Food security</h4>
+			</div>	
+		</div>
+	</div>	
+</section>
+
+<section id="showcase">
+	<div class="container">
+		<div class="row">
+			<h2>Malawi Featured Datasets</h2>
+			<div class="col-md-3">
+				<img src="static/img/map01.png" />
+				<h4>Featured Dataset 1</h4>
+			</div>
+			<div class="col-md-3">
+				<img src="static/img/map02.jpg" />
+				<h4>Featured Dataset 2</h4>
+			</div>
+			<div class="col-md-3">
+				<img src="static/img/map01.png" />
+				<h4>Featured Dataset 3</h4>
+			</div>
+			<div class="col-md-3">
+				<img src="static/img/map02.jpg" />
+				<h4>Featured Dataset 4</h4>
+			</div>
+			<p><a href="#">Explore all datasets</a></p>
+		</div>
+	</div>	
+</section>
+
+<section id="osm">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+			</div>
+			<div class="col-md-8">
+				<h2>Daily OpenStreetMap Extracts</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et turpis lorem. Aenean quis suscipit odio. Donec mollis lacus enim, ultricies mollis eros fermentum sit amet. Cras dignissim gravida finibus. Nunc sed sapien nisl. Donec venenatis mauris non sem pretium, in blandit massa commodo.</p>
+				<a class="btn btn-primary btn-lg" href="#" role="button">Explore</a>
+			</div>
+		</div>
+	</div>
+</section>
   {% endblock %}
