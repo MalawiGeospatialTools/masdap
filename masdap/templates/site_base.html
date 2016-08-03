@@ -33,13 +33,15 @@
 			            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% trans "Data" %}<i class="fa fa-angle-down fa-lg"></i></a>
 			            <ul class="dropdown-menu">
 				            <li><a href="{% url "layer_browse" %}">{% trans "Layers" %}</a></li>
-				            <li><a href="#">OpenStreetMap</a></li>
+				            <li><a href="/layers/?limit=100&offset=0&keywords__slug__in=osm">OpenStreetMap</a></li>
 				            <li><a href="{% url "document_browse" %}">{% trans "Documents" %}</a></li>
-				            <li><a href="#">Remote Services</a></li>
+							{% if user.is_authenticated %}
+				            <li><a href="{% url "services" %}">{% trans "Remote Services" %}</a></li>
 			                <li role="separator" class="divider"></li>
-				            <li><a href="#">Upload Layer</a></li>
-				            <li><a href="#">Upload Document</a></li>
-				            <li><a href="#">Add Remote Service</a></li>
+				            <li><a href="/layers/upload/">Upload Layer</a></li>
+				            <li><a href="/documents/upload/">Upload Document</a></li>
+				            <li><a href="/services/register/">{% trans "Add Remote Services" %}</a></li>
+							{% endif %}
 			            </ul>
                     </li>
                     <li id="nav_maps">
@@ -50,11 +52,15 @@
 						<ul class="dropdown-menu">
 							<li><a href="{% url "profile_browse" %}">{% trans "People" %}</a></li>
 							<li><a href="{% url "group_list" %}">{% trans "Groups" %}</a></li>
-							<li><a href="#">Announcements</a></li>
+			                {% if perms.announcements.can_manage %}
+			                <li><a href="{% url "announcements_list" %}">{% trans "Announcements" %}</a></li>
+			                {% endif %}
+							{% if user.is_superuser %}
 						    <li role="separator" class="divider"></li>
-							<li><a href="#">Add User</a></li>
-							<li><a href="#">Invite User</a></li>
-							<li><a href="#">Create a Group</a></li>
+							<li><a href="/admin/people/profile/add/">{% trans "Add User" %}</a></li>
+							<li><a href="{% url "account_invite_user" %}">{% trans "Invite User" %}</a></li>
+							<li><a href="/groups/create/">{% trans "Create Group" %}</a></li>
+							{% endif %}
 						</ul>
 					</li>
            	 		{% block extra_tab %}
