@@ -85,8 +85,15 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <div class="search">
-                        <span class="fa fa-search"></span>
-                        <input placeholder="Search...">
+						<form id="search" action="{% url "search" %}" >
+                            <span class="fa fa-search"></span>
+                            <!-- <input placeholder="Search..."> -->
+		                    {% if HAYSTACK_SEARCH %}
+		                    <input id="search_input" type="text" placeholder="Search" name="q">
+		                    {% else %}
+		                    <input id="search_input" type="text" placeholder="Search" name="title__icontains">
+		                    {% endif %}
+						</form>
                     </div>
                 </li>
 				{% if not user.is_authenticated and REGISTRATION_OPEN %}
@@ -144,6 +151,7 @@
 			    <h3>{% block title %}{% endblock %}</h3>
 			</div>
 		</header>
+		{% block subheader %}{% endblock %}
         <div class="container">
             {% include "_status_message.html" %}
             {% include "_announcements.html" %}

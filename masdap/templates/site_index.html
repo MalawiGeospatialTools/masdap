@@ -12,14 +12,21 @@
   </div>
   
   <div class="big-search">
-    <div class="container">
-	<h1>Search for Malawi Data.</h1>
-	<div class="search">
-	  <span class="fa fa-search fa-2x"></span>
-	  <input placeholder="Search...">
-	</div>
-	<p><a href="#">Advanced Search</a></p>
-    </div>
+      <div class="container">
+	      <h1>Search for Malawi Data.</h1>
+	      <div class="search">
+			  <form id="search" action="{% url "search" %}" >
+	              <span class="fa fa-search fa-2x"></span>
+	              <!-- <input placeholder="Search..."> -->
+                  {% if HAYSTACK_SEARCH %}
+                  <input id="search_input" type="text" placeholder="Search" class="form-control" name="q">
+                  {% else %}
+                  <input id="search_input" type="text" placeholder="Search" class="form-control" name="title__icontains">
+                  {% endif %}
+		      </form>
+	      </div>
+	      <p><a href="/search/">Advanced Search</a></p>
+      </div>
   </div>
 
 <section id="datasets">
@@ -192,8 +199,15 @@
 				<img src="static/img/map02.jpg" />
 				<h4>Featured Dataset 4</h4>
 			</div>
+			{% for map in featured_maps %}
+			<div class="col-md-3">
+				<img src="{{ MEDIA_URL }}{{ map.thumbnail.thumb_file.name }}" />
+				<h4>{{ map.title }}</h4>
+			</div>
+			{% endfor %}
 			<p><a href="#">Explore all datasets</a></p>
 		</div>
+		
 	</div>	
 </section>
 
@@ -211,3 +225,13 @@
 	</div>
 </section>
   {% endblock %}
+  
+  
+
+{% block extra_script %}
+
+<script>
+	$('[data-toggle="tooltip"]').tooltip();
+</script>
+
+{% endblock extra_script %}
