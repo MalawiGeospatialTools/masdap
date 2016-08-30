@@ -6,7 +6,7 @@
 {% load base_tags %}
 {% load guardian_tags %}
 
-{% block title %}{{ resource.title }} — {{ block.super }}{% endblock %}
+{% block title %}Explore Maps{% endblock %}
 
 {% block head %}
   {% if TWITTER_CARD %}
@@ -21,12 +21,38 @@
 
 {% block body_class %}maps{% endblock %}
 
+{% block subheader %}
+<section id="subheader">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>{{ resource.title }}</h2>
+                <p>
+				    Map
+				    {% if resource.category %}
+					{% trans "in" %} <a href="{% url "search" %}?category__identifier__in={{ resource.category.identifier }}">{{ resource.category }}</a> | 
+				    {% endif %} 
+					{% if resource.date %}
+					    {% if resource.date_type == 'creation' %} {% trans "Created on" %} {{ resource.date }}
+					    {% elif resource.date_type == 'publication' %} {% trans "Published on" %} {{ resource.date }}
+					    {% else %} {% trans "Updated on" %} {{ resource.date }}
+						{% endif %}
+					{% endif %}
+				</p>
+                <div class="btn-group pull-right" role="group" aria-label="social-network">
+                    <button type="button" class="btn btn-default"><i class="fa fa-paper-plane-o fa-lg"></i></button>
+                    <button type="button" class="btn btn-default"><i class="fa fa-facebook fa-lg"></i></button>
+                    <button type="button" class="btn btn-default"><i class="fa fa-twitter fa-lg"></i></button>
+                    <button type="button" class="btn btn-default"><i class="fa fa-google-plus fa-lg"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
 {% block body_outer %}
   {% overall_rating resource "map" as map_rating %}
-
-<div class="page-header">
-  <h2 class="page-title">{{ resource.title }}</h2>
-</div>
 
   <div class="row">
     <div class="col-md-8">

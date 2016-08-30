@@ -56,187 +56,61 @@
 {% block body_outer %}
 
 <div class="row">
-    <div class="col-md-2 options">
-        <div class="list-group">
-            <button type="button" class="list-group-item" role="button" data-toggle="collapse" href="#download" aria-expanded="false" aria-controls="download">
-                <i class="fa fa-download fa-lg"></i> Download</button>
-            <div class="collapse" id="download">
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        {% if "download_resourcebase" in perms_list %}
-                        {% if resource.doc_file %}
-                        <a href="{% url "document_download" resource.id %}" target="_blank"><span class="label label-default">.{{ resource.extension }}</span></a>
-                        {% elif  resource.doc_url %}
-                        <a href="{{ resource.doc_url }}" target="_blank"><span class="label label-default">URL</span></a>
-                        {%  endif %}
-                        {%  endif %}
-                    </li>
-                    <li class="list-group-item">
-                        {% for link in metadata %}
-                        <a href="{{ link.url }}"><span class="label label-default">{{ link.name }}</span></a>
-                        {% endfor %}
-                    </li>
-                </ul>
-            </div>
-            <button type="button" class="list-group-item" role="button" data-toggle="collapse" href="#edit" aria-expanded="false" aria-controls="edit">
-                <i class="fa fa-pencil fa-lg"></i> Edit</button>
-            <div class="collapse" id="edit">
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        {% if "change_resourcebase_metadata" in perms_list %}
-                        <a href="{% url "document_metadata" resource.id %}">{% trans "Metadata" %}</a>
-                        {% endif %}  
-                    </li>
-                </ul>
-            </div>
-				
-				
-                <!-- {% if "change_resourcebase_metadata" in perms_list %}
-                <div class="col-sm-3">
-                  <i class="fa fa-list-alt fa-3x"></i>
-                  <h4>{% trans "Metadata" %}</h4>
-                  <a class="btn btn-default btn-block btn-xs" href="{% url "document_metadata" resource.id %}">{% trans "Edit" %}</a>
-                </div>
-                {% endif %}
-                {% if "change_resourcebase" in perms_list or "delete_resourcebase" in perms_list %}
-                <div class="col-sm-3">
-                  <i class="fa fa-file-text-o fa-3x"></i>
-                  <h4>{% trans "Document" %}</h4>
-                  {% if "change_resourcebase" in perms_list %}
-                  <a class="btn btn-default btn-block btn-xs" href="{% url "document_replace" resource.id %}">{% trans "Replace" %}</a>
-                  {% endif %}
-                  {% if "delete_resourcebase" in perms_list %}
-                  <a class="btn btn-danger btn-block btn-xs" href="{% url "document_remove" resource.id %}">{% trans "Remove" %}</a>
-                  {% endif %}
-                </div>
-                {% endif %} -->
-				
-				
-				
-				<button type="button" class="list-group-item"><i class="fa fa-unlock-alt fa-lg"></i> Permissions</button>
-			</div>
-	    </div>
-		
-	    <div class="col-md-7 main">
-			<ul class="list-group">
-				<li class="list-group-item">
-				    {% if "download_resourcebase" in perms_list %}
-				        {% if resource.extension|lower in imgtypes and resource.doc_file %}
-				        <div id="embedded_map">
-							<img src="{% url "document_download" resource.id %}" width='650' class="img-responsive" />
-				        </div>
-				        {% elif resource.doc_file %}
-				        <p><a href="{% url "document_download" resource.id %}" target="_blank">Download the {{ resource }} document</a></p>
-				        {% elif  resource.doc_url %}
-				        <p><a href="{{ resource.doc_url }}" target="_blank">Download the {{ resource }} document.</a> <small>({% trans 'External Resource' %})</small></p>
-				        {%  endif %}
-				    {%  endif %}
-				</li>
-			   	<li class="list-group-item">
-				    {% if resource.abstract %}
-				    <h5>{% trans "Abstract" %}</h5>
-				    <p itemprop="description">{{ resource.abstract|escape|urlize|linebreaks|safe }}</p>
-				    {% endif %}
-			   	</li>
-			</ul>
-		</div>
-		<div class="col-md-3 meta">
-		    <ul class="list-group">
-			   	<li class="list-group-item">
-			        <h5>{% trans "Resource using this document" %}</h5>
-			        {% if layer.maps %}
-			        <p>{% trans "List of resources using this document:" %}</p>
-			        {% endif %}
-			        <ul class="list-unstyled">
-			            {% if related.title %}
-			            <p>{% trans "This document is related to a " %} {{ resource.content_type.name }}</p>
-			            <li><a href='{{ related.get_absolute_url }}'>{{ related.title }}</a></li>
-			            {% else %}
-			            <p>{% trans "This document is not related to any maps or layers" %}</p>
-			            {% endif %}
-			        </ul>
-			    </li>
-                {% if resource.regions.all %}
-			   	<li class="list-group-item">
-			   	 	<h5>{% trans "Regions" %}</h5>
-					{% for region in resource.regions.all %}
-					<a itemscope itemtype="http://schema.org/Text" href="{% url "search" %}?regions__name__in={{ region.name }}">
-					    <span class="label label-default">{{ region.name }}</span>
-					</a>
-					{% endfor %}
-			   	</li>
-				{% endif %}
-				{% if resource.keywords.count > 0 %}
-			   	<li class="list-group-item">
-			   	 	<h5>{% trans "Keywords" %}</h5>
-					{% for keyword in resource.keywords.all %}
-					<a itemscope itemtype="http://schema.org/Text" href="{% url "search" %}?keywords__slug__in={{ keyword.slug }}" >
-			   		    <span class="label label-default">{{ keyword.name }}</span>
-					</a>
-					{% if not forloop.last %} {% endif %}
-					{% endfor %}
-			   	</li>
-				{% endif %}
-			   	<li class="list-group-item">
-			   		{% include "base/_resourcebase_contact_snippet.html" %}
-			   	</li>
-			</ul>
-	    </div>
-	</div>
-				
+    <div class="col-md-8 main">
+        <ul class="list-group">
+            <li class="list-group-item">
+		    {% if "download_resourcebase" in perms_list %}
+		        {% if resource.extension|lower in imgtypes and resource.doc_file %}
+		        <div id="embedded_map">
+					<img src="{% url "document_download" resource.id %}" class="img-responsive" />
+		        </div>
+		        {% elif resource.doc_file %}
+		        <p><a href="{% url "document_download" resource.id %}" target="_blank">Download the {{ resource }} document</a></p>
+		        {% elif  resource.doc_url %}
+				<p>Docuement preview is not available.</p>
+		        <p><a href="{{ resource.doc_url }}" target="_blank">Download the {{ resource }} document.</a> <small>({% trans 'External Resource' %})</small></p>
+		        {%  endif %}
+		    {%  endif %}
+            </li>
+            <li class="list-group-item">
+			{% include "base/resourcebase_info_panel.html" %}
+            </li>
+            <li class="list-group-item">
+			{% include "_comments.html" %}
+            </li>
+        </ul>
+	    <div class="tab-content">
 
-<div class="row">
-  <div class="col-md-8">
-  <!--  {% if "download_resourcebase" in perms_list %}
-      {% if resource.extension|lower in imgtypes and resource.doc_file %}
-      <div id="embedded_map">
+	      {% block social_links %}
+	        {% include "social_links.html" %}
+	      {% endblock %}
         
-          <img src="{% url "document_download" resource.id %}" width='500' class="img-responsive" />
-
-      </div>
-      {% elif resource.doc_file %}
-      <p><a href="{% url "document_download" resource.id %}" target="_blank">Download the {{ resource }} document</a></p>
-      {% elif  resource.doc_url %}
-      <p><a href="{{ resource.doc_url }}" target="_blank">Download the {{ resource }} document.</a> <small>({% trans 'External Resource' %})</small></p>
-      {%  endif %}
-    {%  endif %} -->
-       
-    <div class="documents-actions">
-      {% include "_actions.html" %}
-    </div>
-
-    <div class="tab-content">
-      {% include "base/resourcebase_info_panel.html" %}
-
-      {% block social_links %}
-        {% include "social_links.html" %}
-      {% endblock %}
+	      <article id="comments" class="tab-pane">
+	      {% include "_comments.html" %}
+	      </article>
         
-      <article id="comments" class="tab-pane">
-      {% include "_comments.html" %}
-      </article>
-        
-      <article id="rate" class="tab-pane">
-        <!-- TODO: Move this to a reusable template snippet -->
-        {% if request.user.is_authenticated %}
-        <h4>{% trans "Rate this document" %}</h4>
-        {% user_rating request.user resource "document" as user_document_rating %}
-        <div id="user_rating" class="category-layer" data-score="{{user_document_rating}}"></div>
-        {% endif %}
-        <h4>{% trans 'Average Rating' %}</h4>
-        {% overall_rating resource "document" as document_rating %}
-        {% num_ratings resource as num_votes %}
-        <div class="overall_rating" style="float:left" data-score="{{ document_rating }}"></div> ({{num_votes}})
-        <!-- TODO: Add display of who gave what rating based -->
-      </article>
+	      <article id="rate" class="tab-pane">
+	        <!-- TODO: Move this to a reusable template snippet -->
+	        {% if request.user.is_authenticated %}
+	        <h4>{% trans "Rate this document" %}</h4>
+	        {% user_rating request.user resource "document" as user_document_rating %}
+	        <div id="user_rating" class="category-layer" data-score="{{user_document_rating}}"></div>
+	        {% endif %}
+	        <h4>{% trans 'Average Rating' %}</h4>
+	        {% overall_rating resource "document" as document_rating %}
+	        {% num_ratings resource as num_votes %}
+	        <div class="overall_rating" style="float:left" data-score="{{ document_rating }}"></div> ({{num_votes}})
+	        <!-- TODO: Add display of who gave what rating based -->
+	      </article>
 
-      {% if EXIF_ENABLED and exif_data %}
-        {% with "exif/_exif_document_detail.html" as exif_template %}
-            {% include exif_template %}
-        {% endwith %}
-      {% endif %}
-    </div>
-  </div>
+	      {% if EXIF_ENABLED and exif_data %}
+	        {% with "exif/_exif_document_detail.html" as exif_template %}
+	            {% include exif_template %}
+	        {% endwith %}
+	      {% endif %}
+
+		</div> <!-- /tab -->
+     </div> <!-- /main -->
 
   <div class="col-md-4">
 
