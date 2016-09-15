@@ -124,7 +124,6 @@ form {
 ------------------------------ */
 #wrap {
   background: @body-bg;
-  padding-bottom: 40px;
   margin-top: 60px;
   width: 100%;
 }
@@ -346,58 +345,31 @@ article.tab-pane {
 			font-size: 18px;
 		}
 	}
-	
-	/* Contact Section
-	------------------------- */
+}
 
-	section#contact {
-		background: darken(@brand-info, 20%);
-		color: white;
-		h3 {
-			font-weight: 400;
-		}
-		.form-group {
-			margin-bottom: 2em;
-			margin-top: 2em;
-			input,
-			textarea {
-				padding: 10px;
-			}
-			input.form-control {
-				background: rgba(0,0,0,0.4);
-				border: 0;
-				color: white;
-				height: auto;
-			}
-			textarea.form-control {
-				background: rgba(0,0,0,0.4);
-				border: 0;
-				color: white;
-				height: 236px;
-			}
-		}
-		.form-control:focus {
-			border-color: @brand-primary;
-			box-shadow: none;
-		}
-		::-webkit-input-placeholder {
-		   font-weight: 600;
-		}
-		:-moz-placeholder { /* Firefox 18- */
-		   font-weight: 600;
-		}
-		::-moz-placeholder {  /* Firefox 19+ */
-		   font-weight: 600;
-		}
-		:-ms-input-placeholder {  
-		   font-weight: 600;
-		}
-		.text-danger {
-			color: @brand-danger;
-		}
-		#contactForm {
-			margin: 2em 0;
-		}
+/* ------ Footer
+------------------------------ */
+
+section#contact {
+	background: darken(@brand-info, 20%);
+	color: white;
+	padding-bottom: 3em;
+	padding-top: 1em;
+	h3 {
+		font-weight: 400;
+	}
+}
+footer {
+	background: @gray-dark;
+	color: white;
+	padding-bottom: 3em;
+	padding-top: 2em;
+	a {
+		color: @brand-primary;
+	}
+	img {
+		margin-right: -10px;
+		width: 50%;
 	}
 }
 
@@ -913,13 +885,6 @@ nav.filter {
     #timehelp code {
         background: @gray-light;
     }*/
-
-/* Footer
------------------------ */
-footer {
-  border-top: 1px solid @gray-light;
-  padding: 20px;
-}
 
 /* Etc
 ----------------------- */
