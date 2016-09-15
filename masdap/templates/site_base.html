@@ -67,21 +67,6 @@
            	 		{% endblock %}
           		  {% endblock %}
                 </ul>
-          <!--
-			  <form class="navbar-form" id="search" action="{% url "search" %}" >
-            <div class="col-md-3">
-              <div class="input-group">
-                {% if HAYSTACK_SEARCH %}
-                <input id="search_input" type="text" placeholder="Search" class="form-control" name="q">
-                {% else %}
-                <input id="search_input" type="text" placeholder="Search" class="form-control" name="title__icontains">
-                {% endif %}
-                <span class="input-group-btn">
-                  <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
-                </span>
-              </div>
-            </div>
-          </form> -->
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <div class="search">
@@ -118,27 +103,6 @@
 	            <li><a href="#" data-toggle="modal" data-target="#SigninModal" role="button" >{% trans "Sign in" %} </a></li>
 				{% endif %}
 	      </ul>
-		  
-		  
-		  <!-- 
-          <ul class="nav navbar-nav navbar-right">
-            {% if not user.is_authenticated and REGISTRATION_OPEN %}
-            <li><a href="{% url "account_signup" %}">{% trans "Register" %}</a></li>
-            {% endif %}
-            {% if user.is_authenticated %}
-            <li>
-              <a href="#" data-toggle="modal" data-target="#UserModal" role="button" aria-expanded="false">
-                {% avatar user 30 %} {{ user.username }}
-              </a>
-            </li>
-            {% else %}
-            <li>
-              <a href="#" data-toggle="modal" data-target="#SigninModal" role="button" >
-                {% trans "Sign in" %} 
-              </a>
-            </li>
-            {% endif %}
-          </ul> -->
         </div><!--/.nav-collapse -->
       </div>
     </nav>
