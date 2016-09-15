@@ -38,7 +38,7 @@
 							{% if user.is_authenticated %}
 				            <li><a href="{% url "services" %}">{% trans "Remote Services" %}</a></li>
 			                <li role="separator" class="divider"></li>
-				            <li><a href="/layers/upload/">Upload Layer</a></li>
+				            <li><a href="/layers/upload">Upload Layer</a></li>
 				            <li><a href="/documents/upload/">Upload Document</a></li>
 				            <li><a href="/services/register/">{% trans "Add Remote Services" %}</a></li>
 							{% endif %}
@@ -111,7 +111,7 @@
 					    <li role="separator" class="divider"></li>
 						<li><a href="#">Help</a></li>
 					    <li role="separator" class="divider"></li>
-						<li><a href="#">Logout</a></li>
+						<li><a href="/account/logout/">Logout</a></li>
 					</ul>
 				</li>
 	            {% else %}

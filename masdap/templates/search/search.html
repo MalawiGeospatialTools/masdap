@@ -8,9 +8,6 @@
 {% block body_class %}search{% endblock %}
 
 {% block body_outer %}
-  <!-- <div class="page-header">
-    <h2>{% trans "Search" %} <span ng-if="text_query != ''">:</span> <span ng-bind="text_query"></span></h2>
-  </div> -->
   {% with include_type_filter='true' %}
   {% with header='Type' %}
   {% with filter='type__in' %}

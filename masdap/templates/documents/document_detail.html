@@ -29,8 +29,8 @@
         <div class="row">
             <div class="col-md-12">
                 <h2>{{ resource.title }}</h2>
-                <p style="text-transform: capitalize;">
-				    {{ resource.doc_type }}
+                <p>
+				    <span  style="text-transform: capitalize;">{{ resource.doc_type }}</span>
 				    {% if resource.category %}
 					{% trans "in" %} <a href="{% url "search" %}?category__identifier__in={{ resource.category.identifier }}">{{ resource.category }}</a> | 
 				    {% endif %} 
@@ -65,9 +65,9 @@
 					<img src="{% url "document_download" resource.id %}" class="img-responsive" />
 		        </div>
 		        {% elif resource.doc_file %}
+				<p>{% trans 'Document preview is not available' %}</p>
 		        <p><a href="{% url "document_download" resource.id %}" target="_blank">Download the {{ resource }} document</a></p>
 		        {% elif  resource.doc_url %}
-				<p>Docuement preview is not available.</p>
 		        <p><a href="{{ resource.doc_url }}" target="_blank">Download the {{ resource }} document.</a> <small>({% trans 'External Resource' %})</small></p>
 		        {%  endif %}
 		    {%  endif %}
