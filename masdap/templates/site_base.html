@@ -159,40 +159,51 @@
 	<footer>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-8">
-					<p>Malawi Spatial Data Platform</p>
-				</div>
-				<div class="col-md-4 text-right">
-					<p><img src="/static/img/masdap-logo.png"></p>
-				</div>
-			</div>
-			<div class="row">
 			<div class="col-md-2">
-				<p>Data</p>
-				<p><a href="#">Explore</a>
-				<p><a href="#">Upload</a>
-				<p><a href="#">Remotes</a>
-			</div>
-			<div class="col-md-2">
-				<p>Maps</p>
-				<p><a href="#">Explore</a>
-				<p><a href="#">Create</a>
+				<ul class="list-unstyled">
+				    <li>Data</li>
+	                <li><a href="{% url "layer_browse" %}">{% trans "Layers" %}</a></li>
+	                <li><a href="/layers/?limit=100&offset=0&keywords__slug__in=osm">OpenStreetMap</a></li>
+	                <li><a href="{% url "document_browse" %}">{% trans "Documents" %}</a></li>
+				    {% if user.is_authenticated %}
+	                <li><a href="{% url "services" %}">{% trans "Remote Services" %}</a></li>
+	                <li><a href="/layers/upload">Upload Layer</a></li>
+	                <li><a href="/documents/upload/">Upload Document</a></li>
+	                <li><a href="/services/register/">{% trans "Add Remote Services" %}</a></li>
+				    {% endif %}
+			    </ul>
 			</div>
 			<div class="col-md-2">
-				<p>Documents</p>
-				<p><a href="#">Explore</a>
-				<p><a href="#">Upload</a>
+				<ul class="list-unstyled">
+				    <li>Maps</li>
+                    <li><a href="{% url "maps_browse" %}">{% trans "Explore" %}</a></li>
+					{% if user.is_authenticated %}
+					<li><a href="#">{% trans "Create Map" %}</a></li>
+					{% endif %}
+				</ul>
 			</div>
 			<div class="col-md-2">
-				<p>About</p>
-				<p><a href="#">Users</a>
-				<p><a href="#">Groups</a>
+				<ul class="list-unstyled">
+				    <li>About</li>
+					<li><a href="{% url "profile_browse" %}">{% trans "People" %}</a></li>
+					<li><a href="{% url "group_list" %}">{% trans "Groups" %}</a></li>
+	                {% if perms.announcements.can_manage %}
+	                <li><a href="{% url "announcements_list" %}">{% trans "Announcements" %}</a></li>
+	                {% endif %}
+					{% if user.is_superuser %}
+				    <li role="separator" class="divider"></li>
+					<li><a href="/admin/people/profile/add/">{% trans "Add User" %}</a></li>
+					<li><a href="{% url "account_invite_user" %}">{% trans "Invite User" %}</a></li>
+					<li><a href="/groups/create/">{% trans "Create Group" %}</a></li>
+					{% endif %}
+					<li><a href="/contact/">Contact</a></li>
+				</ul>
 			</div>
+			<div class="col-md-2"></div>
 			<div class="col-md-4 text-right">
+				<p><img src="/static/img/masdap-logo.png"></p>
+				<p>Malawi Spatial Data Platform</p>
 				<p>Powered by GeoNode</p>
-				<p><a href="#">About</a></p>
-				<p><a href="/contact/">Contact</a></p>
-				<p><a href="#">Language</a></p>
 			</div>
 			</div>
 		</div>
