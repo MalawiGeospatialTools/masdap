@@ -52,43 +52,36 @@
 {% endblock %}
 
 {% block body_outer %}
-  {% overall_rating resource "map" as map_rating %}
+{% overall_rating resource "map" as map_rating %}
 
-  <div class="row">
+<div class="row">
     <div class="col-md-8">
 
-      <div id="embedded_map">
-        <div id="the_map"></div>
-      </div>
+        <div id="embedded_map">
+            <div id="the_map"></div>
+        </div>
 
-      <div class="map-actions">
-        {% include "_actions.html" %}
-      </div>
-
-      <div class="tab-content">
-        {% include "base/resourcebase_info_panel.html" %}
-        <article class="tab-pane" id="comments">
-        {% include "_comments.html" %}
-        </article>
-        <article class="tab-pane" id="rate">
-        <!-- TODO: Move this to a reusable template snippet -->
-          {% if request.user.is_authenticated %}
-          <h3>{% trans "Rate this Map" %}</h3>
-          {% user_rating request.user resource "map" as user_map_rating %}
-          <div id="user_rating" class="category-map" data-score="{{ user_map_rating }}"></div>
-          {% endif %}
-          <h3>{% trans 'Average Rating' %}</h3>
-          {% overall_rating resource "map" as map_rating %}
-          {% num_ratings resource as num_votes %}
-          <div class="overall_rating" style="float:left" data-score="{{ map_rating }}"></div> ({{num_votes}})
-        </article>
-        {% block social_links %}
-            {% if SOCIAL_BUTTONS %}
-                {% include "social_links.html" %}
+        <ul class="list-group">
+            <li class="list-group-item">
+                {% include "base/resourcebase_info_panel.html" %}
+			</li>
+			{% if request.user.is_authenticated %}
+			<li class="list-group-item">
+                {% include "_comments.html" %}
+			</li>
+			<li class="list-group-item">
+            <h3>{% trans "Rate this Map" %}</h3>
+            {% user_rating request.user resource "map" as user_map_rating %}
+            <div id="user_rating" class="category-map" data-score="{{ user_map_rating }}"></div>
             {% endif %}
-        {% endblock %}
-      </div>
-
+			</li>
+			<li class="list-group-item">
+            <h3>{% trans 'Average Rating' %}</h3>
+            {% overall_rating resource "map" as map_rating %}
+            {% num_ratings resource as num_votes %}
+            <div class="overall_rating" style="float:left" data-score="{{ map_rating }}"></div> ({{num_votes}})
+            </li>
+		</ul>
     </div>
 
     <div class="col-md-4">
