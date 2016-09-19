@@ -1,25 +1,44 @@
 {% extends "groups/group_base.html" %}
 {% load i18n %}
 
-{% block title %}{{ group.title }} — {{ block.super }}{% endblock %}
+{% block title %}{% trans "Remove Group" %}{% endblock %}
 {% block body_class %}groups remove{% endblock %}
+
+{% block subheader %}
+<section id="subheader">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>{{ group.title }}</h2>
+	            {% if can_view %}
+	            <p><a href="{% url "group_activity" object.slug %}">{% trans "Group Activities" %}</a></p>
+	            {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
 
 {% block body %}
 <div class="row">
-  <div class="col-md-8">
-    <form action="{% url "group_remove" group.slug %}" method="POST">
-      <h2>
-        {% blocktrans with group.title as group_title %}
-          Are you sure you want to remove the group: {{ group_title }}?
-        {% endblocktrans %}
-      </h2>
-      {% csrf_token %}
-      <input type="hidden" value="{{ group.slug }}" />
-      <div class="form-actions">
-        <input type="submit" value="{% trans "Yes, I am sure" %}" class="btn btn-danger" />
-        <a href="{% url "group_detail" group.slug %}" class="btn btn-info">{% trans "No, don't remove it" %}</a>
-      </div>
-    </form>
-  </div>
+    <div class="col-md-8">
+	  	<ul class="list-group">
+	  		<li class="list-group-item">
+                <form action="{% url "group_remove" group.slug %}" method="POST">
+                    <p class="lead">
+                        {% blocktrans with group.title as group_title %}
+                        Are you sure you want to remove the group {{ group_title }}?
+                        {% endblocktrans %}
+                    </p>
+                    {% csrf_token %}
+                    <input type="hidden" value="{{ group.slug }}" />
+                    <div class="form-actions">
+                        <input type="submit" value="{% trans "Yes, I am sure" %}" class="btn btn-danger" />
+                        <a href="{% url "group_detail" group.slug %}" class="btn btn-info">{% trans "No, don't remove it" %}</a>
+                    </div>
+                </form>
+			</li>
+		</ul>
+    </div>
 </div>
 {% endblock %}

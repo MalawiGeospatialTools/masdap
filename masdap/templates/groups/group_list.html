@@ -7,12 +7,6 @@
 {% block body_class %}groups explore{% endblock %}
 
 {% block body %}
-  <div class="page-header">
-    {% if user.is_authenticated %}
-    <a href="{% url "group_create" %}" class="btn btn-primary pull-right">{% trans "Create a New Group" %}</a>
-    {% endif %}
-  </div>
-
   <div class="btn-group pull-right" role="group" aria-label="sort">
     <div class="btn-group pull-right" role="group">
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -28,17 +22,18 @@
       </ul>
     </div>
   </div>
-
+  
 <div class="row">
-  <div class="col-md-12">
-    <div class="row">
-      <div class="tab-content col-sm-12" id="search-content">
-        {% include "groups/_group_list_item.html" %}
-      </div>
+    <div class="col-md-12">
+        <div class="row">
+            <div class="tab-content col-sm-12" id="search-content">
+                <div class="row">
+                    {% include "groups/_group_list_item.html" %}
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
-
 {% include 'search/_pagination.html' %}
 {% endblock %}
 

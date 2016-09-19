@@ -3,7 +3,7 @@
 @import "bootstrap.less";
 
 /* Basics
------------------------ */
+------------------------------ */
 html {
 	-webkit-font-smoothing: antialiased !important;
 }
@@ -42,6 +42,12 @@ form {
     border: 1px solid @gray-lighter;
     padding: 5px;
   }
+}
+/* Bootstrap Elements
+------------------------------ */
+.nav-tabs>li.active>a {
+	background-color: white;
+	font-weight: 700;
 }
 
 
@@ -136,6 +142,13 @@ article {
 		padding: 1em;
 		h3 {
 			font-size: 1.5em;
+		}
+		a {
+			color: white;
+			&:hover {
+				color: white;
+				text-decoration: underline;
+			}
 		}
 	}
 }
@@ -373,6 +386,152 @@ footer {
 	}
 }
 
+/* ------ Contact
+------------------------------ */
+
+
+/* ------ Groups
+------------------------------ */
+.group-container {
+    padding: 1em;
+	.group-avatar {
+	    background: white;
+        border: 1px solid @gray-lighter;
+		box-shadow: 0 2px 2px rgba(0, 0, 0, 0.175);
+        padding: 0;
+        h5 a {
+            color: @text-color;
+            display: block;
+            margin-bottom: -0.5em;
+            margin-top: 1em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            &:hover {
+                color: @brand-danger;
+                text-decoration: none;
+            }
+            i {
+                margin-left: 0.75em;
+                &:hover {
+                color: @brand-danger;
+                text-decoration: none;
+                };
+            }
+        }
+    }
+}
+  .group-items {
+    border-top: 1px solid @gray-lighter;
+    color: @gray;
+    i {
+      margin-left: 0;
+      margin-right: 0.125em;
+      a {
+        &:hover {
+        color: @brand-danger;
+        text-decoration: none;
+      };
+    }
+  }
+  .list-inline {
+    margin: 0.5em 0;
+  }
+}
+.group-image {
+  height: 120px;
+  overflow: hidden;
+}
+.group-container {
+  .group-logo {
+    padding: 1em 0;
+    width: 100%;
+  }
+}
+.group-details {
+  .group-logo img {
+    width: 100%;
+  }
+}
+
+/* ------ People
+------------------------------ */
+.profile-container {
+  padding: 1em;
+}
+.profile-avatar {
+    background: white;
+	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.175);
+  padding: 0;
+  h5 a {
+    color: @text-color;
+    display: block;
+    margin-bottom: -0.5em;
+    margin-top: 1em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    &:hover {
+      color: @brand-danger;
+      text-decoration: none;
+    }
+    i {
+      margin-left: 0.75em;
+      &:hover {
+        color: @brand-danger;
+        text-decoration: none;
+      };
+    }
+  }
+  .profile-items {
+    border-top: 1px solid @gray-lighter;
+    color: @gray;
+    i {
+      margin-left: 0;
+      margin-right: 0.125em;
+      a {
+        &:hover {
+        color: @brand-danger;
+        text-decoration: none;
+      };
+    }
+  }
+  .list-inline {
+    margin: 0.5em 0;
+  }
+}
+  li a { 
+    color: @gray;
+    margin-right: 0.5em;
+    &:hover {
+      color: @brand-danger;
+      text-decoration: none;
+    };
+  }
+  img {
+    margin: 0;
+    width: 100%;
+  }
+}
+
+.profile-image {
+  padding-left: 0;
+  padding-right: 0;
+  img {
+    width: 100%;
+  }
+}
+.profile-details {
+  background: white;
+  color: @text-color;
+  .group-logo {
+    margin: 0.5em;
+    padding: 0;
+    img {
+      width: 60px;
+    }
+  }
+}
 /* autocomplete 
 ------------------------*/
 
@@ -472,34 +631,6 @@ footer {
 .item-container {
   padding: 1em;
 }
-.profile-avatar {
-  background: white;
-  border: 1px solid @gray-light;
-  padding: 0;
-  h5 a {
-    color: @text-color;
-    display: block;
-    margin-bottom: -0.5em;
-    margin-top: 1em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    &:hover {
-      color: @brand-danger;
-      text-decoration: none;
-    }
-    i {
-      margin-left: 0.75em;
-      &:hover {
-        color: @brand-danger;
-        text-decoration: none;
-      };
-    }
-  }
-  .list-inline {
-    margin: 0.5em 0;
-  }
-}
 
 .item-thumb {
   padding-left: 0;
@@ -582,84 +713,7 @@ footer {
 /* Documents
 ----------------------- */
 
-/* People
------------------------ */
-.profile-container {
-  padding: 1em;
-}
-.profile-avatar {
-  background: white;
-  border: 1px solid @gray-lighter;
-  padding: 0;
-  h5 a {
-    color: @text-color;
-    display: block;
-    margin-bottom: -0.5em;
-    margin-top: 1em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    &:hover {
-      color: @brand-danger;
-      text-decoration: none;
-    }
-    i {
-      margin-left: 0.75em;
-      &:hover {
-        color: @brand-danger;
-        text-decoration: none;
-      };
-    }
-  }
-  .profile-items {
-    border-top: 1px solid @gray-lighter;
-    color: @gray;
-    i {
-      margin-left: 0;
-      margin-right: 0.125em;
-      a {
-        &:hover {
-        color: @brand-danger;
-        text-decoration: none;
-      };
-    }
-  }
-  .list-inline {
-    margin: 0.5em 0;
-  }
-}
-  li a { 
-    color: @gray;
-    margin-right: 0.5em;
-    &:hover {
-      color: @brand-danger;
-      text-decoration: none;
-    };
-  }
-  img {
-    margin: 0;
-    width: 100%;
-  }
-}
 
-.profile-image {
-  padding-left: 0;
-  padding-right: 0;
-  img {
-    width: 100%;
-  }
-}
-.profile-details {
-  background: white;
-  color: @text-color;
-  .group-logo {
-    margin: 0.5em;
-    padding: 0;
-    img {
-      width: 60px;
-    }
-  }
-}
 nav.filter {
   h4 {
     background: @gray;
@@ -710,67 +764,6 @@ nav.filter {
   }
   .selected{
     color: @brand-info;
-  }
-}
-/* Groups
------------------------ */
-.group-container {
-  padding: 1em;
-}
-.group-avatar {
-  border: 1px solid @gray-lighter;
-  padding: 0;
-  h5 a {
-    color: @text-color;
-    display: block;
-    margin-bottom: -0.5em;
-    margin-top: 1em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    &:hover {
-      color: @brand-danger;
-      text-decoration: none;
-    }
-    i {
-      margin-left: 0.75em;
-      &:hover {
-        color: @brand-danger;
-        text-decoration: none;
-      };
-    }
-  }
-}
-  .group-items {
-    border-top: 1px solid @gray-lighter;
-    color: @gray;
-    i {
-      margin-left: 0;
-      margin-right: 0.125em;
-      a {
-        &:hover {
-        color: @brand-danger;
-        text-decoration: none;
-      };
-    }
-  }
-  .list-inline {
-    margin: 0.5em 0;
-  }
-}
-.group-image {
-  height: 120px;
-  overflow: hidden;
-}
-.group-container {
-  .group-logo {
-    padding: 1em 0;
-    width: 100%;
-  }
-}
-.group-details {
-  .group-logo img {
-    width: 100%;
   }
 }
 
