@@ -1,67 +1,96 @@
 {% extends "layers/layer_base.html" %}
 {% load i18n %}
 
-{% block title %}{{ layer.typename }} — {{ block.super }}{% endblock %}
+{% block title %}{% trans "Manage Styles" %}{% endblock %}
 
 {% block body_class %}layers{% endblock %}
 
-{% block body_outer %}
+{% block subheader %}
+<section id="subheader">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>{{ layer.title|default:layer.typename }}</h2>
+                <p>
+				    {{ layer.service_type }}
+				    {% if layer.category %}
+					{% trans "in" %} <a href="{% url "search" %}?category__identifier__in={{ layer.category.identifier }}">{{ layer.category }}</a> | 
+				    {% endif %} 
+					{% if layer.date %}
+					    {% if layer.date_type == 'creation' %} {% trans "Created on" %} {{ layer.date }}
+					    {% elif layer.date_type == 'publication' %} {% trans "Published on" %} {{ layer.date }}
+					    {% else %} {% trans "Updated on" %} {{ layer.date }}
+						{% endif %}
+					{% endif %}
+				</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+<div class="col-md-10">
+	
 {% if error %}
 <div class="alert alert-error">{{ error }}</div>
 {% endif %}
 
-<div class="page-header">
-  <h2>{% trans "Manage Styles" %}</h2>
+<ul class="list-group">
+    <li class="list-group-item">
+        <p class="lead">{% blocktrans with layer.typename as layer_title %}
+            Manage Available Styles for <a href="/layers/{{ layer_title }}">{{ layer_title }}</a>
+            {% endblocktrans %}</p>
+	</li>
+	<li class="list-group-item">
+        <form action="{% url "layer_style_manage" layer.service_typename %}" method="POST">
+        <fieldset>
+            <div class="col-md-6">
+                <h4>{% trans "Layer Default Style" %}</h4>
+            </div>
+            <div class="col-md-6">
+                <select id='default_style' name='default_style' required='required'>
+                {% for style in layer_styles %}
+                {% if style = layer.default_style %}
+                <option value="{{ style.0 }}" selected>{{ style.1 }}</option>
+                {% else %}
+                <option value="{{ style.0 }}">{{ style.1 }}</option>
+                {% endif %}
+                {% endfor %}
+                </select>
+            </div>
+        </fieldset>
+		</li>
+		<li class="list-group-item">
+        <fieldset>
+            <div class="col-md-6">
+                <h4>{% trans "Available styles" %}</h4>
+                <p>{% trans "Click on an available style in the upper box to assign it to this layer. Selected styles appear in the lower box." %}</p>
+            </div>
+            <div class="col-md-6">
+                <select multiple="multiple" id="style-select" name="style-select">
+                {% for style in gs_styles %}
+                {% if style in layer_styles %}
+                <option value='{{ style.0 }}' selected>{{ style.1 }}</option>
+                {% else %}
+                <option value='{{ style.0 }}'>{{ style.1 }}</option>
+                {% endif %}
+                {% endfor %}
+                </select>
+                {% csrf_token %}
+                <input type="hidden" value="{{ layer.service_typename }}" />
+            </div>
+        </fieldset>
+		</li>
+		<li class="list-group-item">
+            <input type="submit" value="{% trans "Update Available Styles" %}" class="btn btn-danger" />
+    	</form>
+	</li>
+</ul>
+
 </div>
-<h4>{% blocktrans with layer.typename as layer_title %}
-      Manage Available Styles for <a href="/layers/{{ layer_title }}">{{ layer_title }}</a>
-    {% endblocktrans %}</h4>
-<form action="{% url "layer_style_manage" layer.service_typename %}" method="POST">
-  <div class="row grid-spacer">
-    <fieldset>
-      <div class="col-md-3">
-        <h4>{% trans "Layer Default Style" %}</h4>
-      </div>
-      <div class="col-md-6">
-        <select id='default_style' name='default_style' required='required'>
-          {% for style in layer_styles %}
-            {% if style = layer.default_style %}
-            <option value="{{ style.0 }}" selected>{{ style.1 }}</option>
-            {% else %}
-            <option value="{{ style.0 }}">{{ style.1 }}</option>
-            {% endif %}
-          {% endfor %}
-        </select>
-      </div>
-    </fieldset>
-  </div>
-  <div class="row grid-spacer">
-    <fieldset>
-      <div class="col-md-3">
-        <h4>{% trans "Available styles" %}</h4>
-        <p>{% trans "Click on an available style in the upper box to assign it to this layer. Selected styles appear in the lower box." %}</p>
-      </div>
-      <div class="col-md-9">
-        <select multiple="multiple" id="style-select" name="style-select">
-          {% for style in gs_styles %}
-            {% if style in layer_styles %}
-            <option value='{{ style.0 }}' selected>{{ style.1 }}</option>
-            {% else %}
-            <option value='{{ style.0 }}'>{{ style.1 }}</option>
-            {% endif %}
-          {% endfor %}
-        </select>
-        {% csrf_token %}
-        <input type="hidden" value="{{ layer.service_typename }}" />
-      </div>
-    </fieldset>
-  </div>
-  <div class="row grid-spacer">
-    <div class="col-md-offset-3 col-md-6 form-actions">
-      <input type="submit" value="{% trans "Update Available Styles" %}" class="btn btn-danger" />
-    </div>
-  </div>
-</form>
+</div>
 
 {% endblock %}
 {% block extra_script %}

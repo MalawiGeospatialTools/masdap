@@ -3,15 +3,11 @@
 {% load staticfiles %}
 {% load url from future %}
 
-{% block title %} {% trans "Explore Layers" %} - {{ block.super }} {% endblock %}
+{% block title %}{% trans "Explore Layers" %}{% endblock %}
 
 {% block body_class %}layers explore{% endblock %}
 
 {% block body %}
-<div class="page-header">
-  <a href="{% url "layer_upload" %}" class="btn btn-primary pull-right">{% trans "Upload Layers" %}</a>
-  <h2 class="page-title">{% trans "Explore Layers" %}</h2>
-</div>
   {% with include_type_filter='true' %}
   {% with facet_type='layers' %}
   {% with header='Type' %}
