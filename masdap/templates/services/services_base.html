@@ -8,14 +8,6 @@
 
 {% comment %}
 {% block body_outer %}
-<div class="row">
-  <div class="col-md-12">
-    <ul class="nav nav-tabs" id="subnav-tabs">
-      <li><a href="{% url "layer_browse" %}" class="explore">{% trans "Explore Layers" %}</a></li>
-      <li><a href="{% url "data_upload" %}" class="upload">{% trans "Upload Layers" %}</a></li>
-    </ul>
-  </div>
-</div>
 {% block body %}{% endblock body %}
 {% block sidebar %}{% endblock sidebar %}
 

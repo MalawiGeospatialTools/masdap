@@ -8,17 +8,25 @@
 
 {% endblock %}
 
-{% block title %} Edit Service - {{ block.super }} {% endblock %}
+{% block title %}Edit Service{% endblock %}
 
-{% block body %}
-<div class="page-header">
-  <h2>{% trans "Edit Service" %}</h2>
+{% block body_outer %}
+<div class="row">
+	<div class="col-md-8">
+		<ul class="list-group">
+			<li class="list-group-item">
+				<p class="lead">{%  trans "Edit the following service." %}
+			</li>
+			<li class="list-group-item">
+				<form method="POST" id="service_edit_form">
+					{% csrf_token %}
+					{{ service_form|as_bootstrap }}
+			</li>
+			<li class="list-group-item">
+				<input type="submit" class="btn btn-primary" value="{% trans "Save" %}"/></p>
+				</form>
+			</li>
+		</ul>
+	</div>
 </div>
-<form method="POST" id="service_edit_form">
-  {% csrf_token %}
-  {{ service_form|as_bootstrap }}
-  <div class="grid-spacer">
-    <p><input type="submit" class="btn btn-primary" value="{% trans "Save" %}"/></p>
-  </div>
-</form>
 {% endblock %}
