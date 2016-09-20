@@ -20,10 +20,6 @@
 
 {% block body %}
 
-<div class="page-header">
-  <h2 class="page-title">{{ profile.name_long }}</h2>
-</div>
-
 <div class="col-xs-3 col-md-2 profile-image">
   {% avatar profile 240 %}
 </div>
@@ -58,7 +54,7 @@
 {% endif %}
 {% endif %}
 
-  <h3>{{ profile.first_name|default:profile.name_long }}</h3>
+  <h3>{{ profile.name_long }}</h3>
   <table class="table table-user-profile">
     <tbody>
       <tr>

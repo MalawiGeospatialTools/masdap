@@ -2,16 +2,11 @@
 {% load i18n avatar_tags %}
 {% load bootstrap_tags %}
 
+{% block title %}{% trans "Edit Profile" %}{% endblock %}
+
 {% block body_class %}edit people{% endblock %}
 
 {% block body %}
-<div class="page-header">
-  {% if user == profile %}
-    <h2 class="page-title">{% trans "Edit Your Profile" %}</h2>
-  {% else %}
-    <h2 class="page-title">{% trans "Edit Profile for" %} {{ profile.username }}</h2>
-  {% endif %}
-</div>
 
 <div class="col-xs-3 col-md-2 profile-image">
   {% avatar profile.username 240 %}
@@ -21,14 +16,25 @@
 </div>
 
 <div class="col-xs-9 col-md-7">
-  <form action="" method="post">
-    {% csrf_token %}
-    <div class="form-controls">
-      {{ form|as_bootstrap }}
-    </div>
-    <div class="form-actions">
-      <input type="submit" class="btn btn-primary" value="{% trans "Update profile" %}" />
-    </div>
-  </form>
+    <ul class="list-group">
+		<li class="list-group-item">
+		    {% if user == profile %}
+		      <p class="lead">{% trans "Edit Your Profile" %}</p>
+		    {% else %}
+		      <p class="lead">{% trans "Edit Profile for" %} {{ profile.username }}</p>
+		    {% endif %}
+		</li>
+        <li class="list-group-item">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-controls">
+                {{ form|as_bootstrap }}
+                </div>
+		</li>
+        <li class="list-group-item">
+				<input type="submit" class="btn btn-primary" value="{% trans "Update profile" %}" />
+            </form>
+		</li>
+	</ul>
 </div>
 {% endblock %}
