@@ -6,17 +6,9 @@ from django.template.loader import get_template
 from django.core.mail import EmailMessage
 from django.template import Context
 
-# Create your views here.
-
-def index(request):
-    return HttpResponse("Ciaone!")
-
-
-# add to your views
 def contact(request):
     form_class = ContactForm
 
-    # new logic!
     if request.method == 'POST':
         form = form_class(data=request.POST)
 
@@ -42,8 +34,8 @@ def contact(request):
             email = EmailMessage(
                 "New contact form submission on MASDAP",
                 content,
-                'costel_snd@yahoo.co.uk',
-                ['costel_snd@yahoo.co.uk'],
+                'masdap.mw@gmail.com',
+                ['masdap.mw@gmail.com'],
                 headers = {'Reply-To': contact_email }
             )
             email.send()
