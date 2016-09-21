@@ -1,14 +1,24 @@
 {% extends 'site_base.html' %}
 {% block title %}Contact{% endblock %}
 
-{% block body %}
-<h1>Contact</h1>
-<form role="form" action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <div class="g-recaptcha" data-sitekey="6LdRASkTAAAAAK8YOn0MymwI5IHTqKeWbgspciEB"></div>
-    <button class="btn btn-primary" type="submit">Submit</button>
-</form>
+{% block body_outer %}
+<div class="row">
+    <div class="col-md-8">
+        <ul class="list-group">
+            <li class="list-group-item">
+				<p class="lead">Leave us a message.</h1>
+			</li>
+            <li class="list-group-item">
+				<form role="form" action="" method="post">
+    				{% csrf_token %}
+    				{{ form.as_p }}
+    				<div class="g-recaptcha" data-sitekey="6LdRASkTAAAAAK8YOn0MymwI5IHTqKeWbgspciEB"></div>
+    				<button class="btn btn-primary" type="submit">Submit</button>
+				</form>
+			</li>
+		</ul>
+	</div>
+</div>
 {% endblock %}
 
 
