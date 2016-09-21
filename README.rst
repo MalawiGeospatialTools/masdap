@@ -10,12 +10,13 @@ Install the native dependencies for your platform.
 
 Install virtualenv and virtualenvwrapper, Create a local virtual environment for your project and install Django into it.::
 
-    $ mkvirtualenv masdap
-    $ pip install Django==1.8.12
+    $ mkvirtualenv geonode
+    $ source geonode/bin/activate
+    $ git clone -b 2.4.x https://github.com/GeoNode/geonode.git
 
 Create a new template based on the geonode example project.::
     
-    $ django-admin.py startproject masdap --template=https://github.com/GeoNode/geonode-project/archive/master.zip -epy,rst,yml -n Vagrantfile
+    $ django-admin.py startproject masdap --template=https://github.com/GeoNode/geonode-project/archive/2.4.zip -epy,rst
 
 .. note:: You should NOT use the name geonode for your project as it will conflict with the default geonode package name.
 

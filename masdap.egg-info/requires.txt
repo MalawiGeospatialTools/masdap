@@ -1,2 +1,1 @@
 django-tastypie==0.11.0
-geonode==2.4

@@ -1,0 +1,16 @@
+{% extends "site_base.html" %}
+{% load i18n %}
+{% load bootstrap_tags %}
+
+{% block title %}{% trans 'Registration' %}{% endblock %}
+
+{% block body_outer %}
+<h2>{% trans "Invite User" %}</h2>
+<div class="col-md-4">
+    <form action="" class="form-horizontal" method="post">
+        {% csrf_token %}
+        {{ form|as_bootstrap }}
+        <input type="submit" value="{% trans "Invite User" %}" class="btn btn-primary"/>
+    </form>
+</div>
+{% endblock %}

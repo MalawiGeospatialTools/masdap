@@ -1,0 +1,158 @@
+{% load i18n %}
+
+<section itemscope itemtype="http://schema.org/Dataset" id="info">
+	
+    {% if resource.title %}
+    <p><strong>{% trans "Title" %}</strong> <span itemprop="name">{{ resource.title }}</span></p>
+    {% endif %}
+	
+    {% if resource.date %}
+    <p><strong>{% trans resource.date_type|title %} {% trans "Date" %}</strong> 
+      {% if resource.date_type == 'creation' %}
+        <span itemprop="dateCreated" datetime="{{ resource.date|date:"c"}}">{{ resource.date }}</span></p>
+      {% elif resource.date_type == 'publication' %}
+        <span itemprop="datePublished" datetime="{{ resource.date|date:"c"}}">{{ resource.date }}</span></p>
+      {% else %}
+        <span itemprop="dateModified" datetime="{{ resource.date|date:"c"}}">{{ resource.date }}</span></p>
+      {% endif %}
+    {% endif %}
+ 
+    {% if resource.srid and SRID_DETAIL == 'above' %}
+    <p><strong>{% trans "SRID" %}</strong> 
+    <span>{{ resource.srid }}</span></p>
+    {% endif %}
+
+    {% if LICENSES_ENABLED and LICENSES_DETAIL == 'above' and resource.license %}
+    <p><strong>{% trans "License" %}</strong> 
+    <span itemprop="license">{{ resource.license.name_long }} <a href="#license-more-above" data-toggle="collapse" data-target=".license-more-above"><i class="fa fa-info-circle"></i></a></span></p>
+    {% endif %}
+    <span class="license-more-above collapse">
+      {% for bullet in resource.license.description_bullets %}
+        {{ bullet }}<br/><br/>
+      {% endfor %}
+      {% if resource.license.url %}
+        + For more info see <a href="{{ resource.license.url }}">{{ resource.license.url }}</a>.
+      {% endif %}
+    </span></p>
+
+    {% if resource.display_type %}
+    <p><strong>{% trans "Type" %}</strong> 
+    <span>{{ resource.display_type }}</span></p>
+    {% endif %}
+	
+    {% if resource.abstract %}
+    <p><strong>{% trans "Abstract" %}</strong>
+    <span itemprop="description">{{ resource.abstract|escape|urlize|linebreaks|safe }}</span></p>
+    {% endif %}
+	
+    {% if resource.category %}
+    <p><strong>{% trans "Category" %}</strong> 
+    <span><a href="{% url "search" %}?category__identifier__in={{ resource.category.identifier }}">{{ resource.category }}</a> {% if resource.category.description %}<a href="#category-more" data-toggle="collapse" data-target=".category-more"><i class="fa fa-info-circle"></i></a>{% endif %}</span></p>
+      {% if resource.category.description %}
+      <span class="category-more collapse">
+        {{ resource.category.description }}
+      </span></p>
+      {% endif %}
+    {% endif %}
+
+    {% if resource.keywords.count > 0 %}
+    <p><strong>{% trans "Keywords" %}</strong> 
+    <span itemprop="keywords">
+      {% for keyword in resource.keywords.all %}
+	<a itemscope itemtype="http://schema.org/Text" href="{% url "search" %}?keywords__slug__in={{ keyword.slug }}" >
+          {{ keyword.name }}
+        </a>
+        {% if not forloop.last %},{% endif %}
+      {% endfor %}
+    </span></p>
+    {% endif %}
+  
+    {% if resource.regions.all %}
+    <p><strong>{% trans "Regions" %}</strong> 
+    <span itemprop="keywords">
+      {% for region in resource.regions.all %}
+        <a itemscope itemtype="http://schema.org/Text" href="{% url "search" %}?regions__name__in={{ region.name }}">
+          {{ region.name }}
+        </a>
+        {% if not forloop.last %},{% endif %}
+      {% endfor %}
+    </span></p>
+    {% endif %}
+  
+    {% if resource.owner %}
+    <p><strong>{% trans "Owner" %}</strong> 
+    <span><a itemprop="author" href="{{ resource.owner.get_absolute_url }}">{{ resource.owner.username }}</a></span></p>
+    {% endif %}
+
+    {% if resource.poc.user %}
+    <p><strong>{% trans "Point of Contact" %}</strong> 
+    <span><a href="{{ resource.poc.user.get_absolute_url }}">{{ resource.poc.user.username }}</a></span></p>
+    {% endif %}
+  </dl>
+
+    {% if resource.srid and SRID_DETAIL == 'below' %}
+    <p><strong>{% trans "SRID" %}</strong> 
+    <span>{{ resource.srid }}</span></p>
+    {% endif %}
+
+    {% if LICENSES_ENABLED and LICENSES_DETAIL == 'below' and resource.license %}
+    <p><strong>{% trans "License" %}</strong> 
+    <span>{{ resource.license.name_long }} <a href="#license-more-below" data-toggle="collapse" data-target=".license-more-below"><i class="fa fa-info-circle"></i></a></span></p>
+      <span class="license-more-below collapse">
+        {% for bullet in resource.license.description_bullets %}
+          {{ bullet }}<br/><br/>
+        {% endfor %}
+        {% if resource.license.url %}
+          + For more info see <a href="{{ resource.license.url }}">{{ resource.license.url }}</a>.
+        {% endif %}
+      </span></p>
+    {% endif %}
+
+    {% if resource.maintenance_frequency %}
+    <p><strong>{% trans "Maintenance Frequency" %}</strong> 
+    <span>{{ resource.maintenance_frequency_title }}</span></p>
+    {% endif %}
+    
+    {% if resource.restriction_code_type or resource.constraints_other %}
+    <p><strong>{% trans "Restrictions" %}</strong> 
+    <span>{% if resource.constraints_other %}
+            {{ resource.constraints_other }}
+        {% else %}
+            {{ resource.restriction_code_type }}
+        {% endif %}</span></p>
+    {% endif %}
+          
+    {% if resource.edition %}
+    <p><strong>{% trans "Edition" %}</strong> 
+    <span>{{ resource.edition}}</span></p>
+    {% endif %}
+
+    {% if resource.purpose %}
+    <p><strong>{% trans "Purpose" %}</strong> 
+    <span>{{ resource.purpose|escape|urlize|linebreaks|safe }}</span></p>
+    {% endif %}
+
+    {% if resource.language %}
+    <p><strong>{% trans "Language" %}</strong> 
+    <span>{{ resource.language_title }}</span></p>
+    {% endif %}
+
+    {% if resource.temporal_extent_start and resource.temporal_extent_end %}
+    <p><strong>{% trans "Temporal Extent" %}</strong> 
+    <span>{{ resource.temporal_extent_start }} - {{ resource.temporal_extent_end }}</span></p>
+    {% endif %}
+
+    {% if resource.data_quality_statement %}
+    <p><strong>{% trans "Data Quality" %}</strong> 
+    <span>{{ resource.data_quality_statement }}</span></p>
+    {% endif %}
+
+    {% if resource.supplemental_information %}
+    <p><strong>{% trans "Supplemental Information" %}</strong> <span>{{ resource.supplemental_information|truncatechars:160|escape|urlize|linebreaks|safe }}</span></p>
+    {% endif %}
+
+    {% if resource.spatial_representation_type %}
+    <p><strong>{% trans "Spatial Representation Type" %}</strong> <span>{{ resource.spatial_representation_type }}</span></p>
+    {% endif %}
+
+</section>

@@ -1,62 +1,169 @@
 # -*- coding: utf-8 -*-
-#########################################################################
-#
-# Copyright (C) 2012 OpenPlans
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-#########################################################################
-
-# Django settings for the GeoNode project.
 import os
-import geonode
 from geonode.settings import *
-#
-# General Django development settings
-#
 
-SITENAME = '{{ project_name }}'
+SITENAME = 'masdap'
 
-# Defines the directory that contains the settings file as the LOCAL_ROOT
-# It is used for relative settings elsewhere.
-GEONODE_ROOT = os.path.abspath(os.path.abspath(geonode.__file__))
 LOCAL_ROOT = os.path.abspath(os.path.dirname(__file__))
 
-WSGI_APPLICATION = "{{ project_name }}.wsgi.application"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+WSGI_APPLICATION = "masdap.wsgi.application"
+
+GEONODE_APPS = (
+    # GeoNode internal apps
+    'geonode.people',
+    'geonode.base',
+    'geonode.layers',
+    'geonode.maps',
+    'geonode.proxy',
+    'geonode.security',
+    'geonode.social',
+    'geonode.catalogue',
+    'geonode.documents',
+    'geonode.api',
+    'geonode.groups',
+    'geonode.services',
+
+    # GeoServer Apps
+    # Geoserver needs to come last because
+    # it's signals may rely on other apps' signals.
+    'geonode.geoserver',
+    'geonode.upload',
+    'geonode.tasks'
+)
+
+INSTALLED_APPS = (
+
+    # Boostrap admin theme
+    # 'django_admin_bootstrapped.bootstrap3',
+    # 'django_admin_bootstrapped',
+
+    # Apps bundled with Django
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+    'django.contrib.admin',
+    'django.contrib.sitemaps',
+    'django.contrib.staticfiles',
+    'django.contrib.messages',
+    'django.contrib.humanize',
+    'django.contrib.gis',
+
+    # Third party apps
+
+    # Utility
+    'pagination',
+    'taggit',
+    'friendlytagloader',
+    'geoexplorer',
+    'leaflet',
+    'django_extensions',
+    # 'haystack',
+    'autocomplete_light',
+    'mptt',
+    'modeltranslation',
+    'djcelery',
+
+    # Theme
+    "pinax_theme_bootstrap_account",
+    "pinax_theme_bootstrap",
+    'django_forms_bootstrap',
+
+    # Social
+    'account',
+    'avatar',
+    'dialogos',
+    'agon_ratings',
+    #'notification',
+    'announcements',
+    'actstream',
+    'user_messages',
+    'tastypie',
+    'polymorphic',
+    'guardian',
+    
+    #Contact
+    'contact',
+    'nocaptcha_recaptcha',
+
+) + GEONODE_APPS
+
+MIDDLEWARE_CLASSES = (
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'pagination.middleware.PaginationMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+#EMAIL SERVICE
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'your.smtp.server'  
+DEFAULT_FROM_EMAIL = 'your.account@email.com'
+EMAIL_HOST_USER = 'your.account@smtp.com'
+EMAIL_HOST_PASSWORD = 'yourpassword'
+EMAIL_PORT = 587 #check port
+EMAIL_USE_TLS = True #check tls
 
 
-# Load more settings from a file called local_settings.py if it exists
+#RECAPTCHA SERVICE
+
+NORECAPTCHA_SITE_KEY = "norecaptcha_site_key"
+NORECAPTCHA_SECRET_KEY = "norecaptcha_secret_key"
+NORECAPTCHA_VERIFY_URL = "norecaptcha_verify_url"
+
 try:
     from local_settings import *
 except ImportError:
     pass
 
-# Additional directories which hold static files
 STATICFILES_DIRS.append(
     os.path.join(LOCAL_ROOT, "static"),
 )
 
-# Note that Django automatically includes the "templates" dir in all the
-# INSTALLED_APPS, se there is no need to add maps/templates or admin/templates
 TEMPLATE_DIRS = (
     os.path.join(LOCAL_ROOT, "templates"),
 ) + TEMPLATE_DIRS
 
-# Location of url mappings
-ROOT_URLCONF = '{{ project_name }}.urls'
+ROOT_URLCONF = 'masdap.urls'
 
-# Location of locale files
 LOCALE_PATHS = (
     os.path.join(LOCAL_ROOT, 'locale'),
     ) + LOCALE_PATHS
+

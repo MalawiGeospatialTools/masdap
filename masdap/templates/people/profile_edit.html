@@ -1,0 +1,40 @@
+{% extends "people/profile_base.html" %}
+{% load i18n avatar_tags %}
+{% load bootstrap_tags %}
+
+{% block title %}{% trans "Edit Profile" %}{% endblock %}
+
+{% block body_class %}edit people{% endblock %}
+
+{% block body %}
+
+<div class="col-xs-3 col-md-2 profile-image">
+  {% avatar profile.username 240 %}
+  {% if user == profile %}
+  <p><a class="btn btn-primary btn-block" href="{% url 'avatar_change' %}">{% trans "Change your avatar" %}</a></p>
+  {% endif %}
+</div>
+
+<div class="col-xs-9 col-md-7">
+    <ul class="list-group">
+		<li class="list-group-item">
+		    {% if user == profile %}
+		      <p class="lead">{% trans "Edit Your Profile" %}</p>
+		    {% else %}
+		      <p class="lead">{% trans "Edit Profile for" %} {{ profile.username }}</p>
+		    {% endif %}
+		</li>
+        <li class="list-group-item">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-controls">
+                {{ form|as_bootstrap }}
+                </div>
+		</li>
+        <li class="list-group-item">
+				<input type="submit" class="btn btn-primary" value="{% trans "Update profile" %}" />
+            </form>
+		</li>
+	</ul>
+</div>
+{% endblock %}
