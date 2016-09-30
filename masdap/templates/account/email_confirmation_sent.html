@@ -3,12 +3,11 @@
 {% load url from future %}
 {% load i18n %}
 
-{% block head_title %}{% trans "Confirm your email address" %}{% endblock %}
-
-{% block title %}{% trans 'Registration' %}{% endblock %}
+{% block title %}{{ block.super }} {% trans "Registration" %} | {% trans "Email Address Confirmation" %}{% endblock %}
+{% block page-title %}{% trans "Registration" %}{% endblock %}
 
 {% block body %}
-<h2>{% trans "Confirm your email address" %}</h2>
+<h3>{% trans "Confirm your email address" %}</h3>
 <p>{% blocktrans %}We have sent you an email to <b>{{ email }}</b> for verification. Follow the link provided to finalize the signup process.{% endblocktrans %}</p>
 <p><a href="{{ success_url }}">Go back</a></p>
 {% endblock %}

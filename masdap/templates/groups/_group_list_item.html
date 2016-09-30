@@ -7,6 +7,7 @@
       </div>
       <div class="col-xs-8 group-details">
         <h5><a href="{{ group.detail_url }}">{{ group.title }}</a></h5>
+        <!-- <a href="mailto:{{ group.email }}" ng-if="group.email != ''"><i class="fa fa-envelope-o"></i></a> -->
         <p><small>{{ group.description | limitTo: 100 }}{{ group.description.length  > 100 ? '...' : ''}}</small></p>
       </div>
       <div class="col-xs-12 group-items">

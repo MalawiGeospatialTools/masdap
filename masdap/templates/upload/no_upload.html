@@ -2,11 +2,9 @@
 {% load i18n %}
 
 {% block body %}
-<div class="twocol">
-    <p>{% trans "Your upload is either complete or you haven't resumed an earlier one." %}</p>
-    <p>{% blocktrans %}Returning to the upload starting page in <span id="cnt">5</span>seconds {% endblocktrans %}.</p>
-    <p>{% blocktrans %} Or just go {% endblocktrans %}<a href="{% url "layer_upload" %}">{% blocktrans %}now{% endblocktrans %}</a>.</p>
-</div>
+<p>{% trans "Your upload is either complete or you haven't resumed an earlier one." %}</p>
+<p>{% blocktrans %}Returning to the upload starting page in <span id="cnt">5</span>seconds {% endblocktrans %}.</p>
+<p>{% blocktrans %} Or just go {% endblocktrans %}<a href="{% url "layer_upload" %}">{% blocktrans %}now{% endblocktrans %}</a>.</p>
 <script type="text/javascript">
     var cnt = 5;
     window.setInterval(function() {

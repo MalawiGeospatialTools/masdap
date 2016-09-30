@@ -2,7 +2,8 @@
 {% load i18n %}
 {% load bootstrap_tags %}
 
-{% block title %}{% trans "Edit Document Metadata" %}{% endblock %}
+{% block title %}{{ block.super }} {% trans "Edit Document Metadata" %}{% endblock %}
+{% block page-title %}{% trans "Edit Document Metadata" %}{% endblock %}
 
 {% block head %}
   {% include "geonode/ext_header.html" %}

@@ -4,35 +4,31 @@
 {% load i18n %}
 {% load bootstrap_tags %}
 
-{% block head_title %}{% trans "Sign up" %}{% endblock %}
-{% block title %}{% trans "Registration" %}{% endblock %}
+{% block title %}{{ block.super }} {% trans "Sign Up" %}{% endblock %}
+{% block page-title %}{% trans "Sign Up" %}{% endblock %}
 
 {% block body %}
-<p class="lead">{% trans "Sign up" %}</h2>
-<div class="row">
-  <div class="col-md-8">
-  {% if REGISTRATION_OPEN %}
-    <form id="signup_form" method="post" action="{% url "account_signup" %}" autocapitalize="off" class="form-horizontal"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
-      <legend>{% trans "Sign up" %}</legend>
-      <fieldset>
-      {% csrf_token %}
-      {{ form|as_bootstrap }}
-      {% if redirect_field_value %}
-        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-      {% endif %}
-        <div class="form-actions">
-          <button type="submit" class="btn btn-primary">{% trans "Sign up" %}</button>
-        </div>
-      </fieldset>
-    </form>
-    {% else %}
-    <p>{% trans "Sorry, registrations are not open at this time." %}</p>
-    {% endif %}
-  </div>
-  <div class="col-md-4">
-    {% include "account/_signup_sidebar.html" %}
-  </div>
-</div>
+{% if REGISTRATION_OPEN %}
+<form id="signup_form" method="post" action="{% url "account_signup" %}" autocapitalize="off" class="form-horizontal"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+	<legend>{% trans "Sign up" %}</legend>
+	<fieldset>
+		{% csrf_token %}
+		{{ form|as_bootstrap }}
+		{% if redirect_field_value %}
+		<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+		{% endif %}
+		<div class="form-actions">
+			<button type="submit" class="btn btn-primary">{% trans "Sign up" %}</button>
+		</div>
+	</fieldset>
+</form>
+{% else %}
+<p>{% trans "Sorry, registrations are not open at this time." %}</p>
+{% endif %}
+{% endblock %}
+
+{% block sidebar %}
+{% include "account/_signup_sidebar.html" %}
 {% endblock %}
 
 {% block extra_script %}

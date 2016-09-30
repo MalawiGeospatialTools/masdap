@@ -3,9 +3,13 @@
 {% load staticfiles %}
 {% load url from future %}
 
+{% block title %}{{ block.super }} {% trans "Maps" %}{% endblock %}
+{% block page-title %}{% trans "Explore Maps" %}{% endblock %}
+
 {% block body_class %}maps explore{% endblock %}
 
 {% block body %}
+<!-- <a href="{% url "new_map" %}" class="btn btn-primary pull-right">{% trans "Create a New Map" %}</a> -->
   {% include "search/_search_content.html" %}
   {% include "_bulk_permissions_form.html" %}
 {% endblock %}

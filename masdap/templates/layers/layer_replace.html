@@ -2,7 +2,8 @@
 {% load i18n %}
 {% load staticfiles %}
 
-{% block title %}{% trans "Replace Layer"  %}{% endblock %}
+{% block title %}{{ block.super }} {% trans "Replace Layer" %}{% endblock %}
+{% block page-title %}{% trans "Replace Layer" %}{% endblock %}
 
 {% block body_class %}data data-list upload{% endblock %}
 
@@ -14,7 +15,6 @@
 {% endblock %}
 
 {% block body %}
-
   <div class="col-md-8">
     <p class="lead">{% trans "Replace Layer: " %}<a href="{{ layer.get_absolute_url }}">{{ layer.title }}</a></p>
 

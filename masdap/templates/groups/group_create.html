@@ -2,33 +2,26 @@
 {% load bootstrap_tags %}
 {% load i18n %}
 
-{% block head_title %}{% trans "Create Group" %}{% endblock %}
+{% block title %}{{ block.super }} {% trans "Create Group" %}{% endblock %}
+{% block page-title %}{% trans "Create Group" %}{% endblock %}
+
 {% block body_class %}groups create{% endblock %}
 
 {% block body %}
-    <div class="block">
-      <div class="col-md-10">
-        <h2 class="page-title">{% trans "Create a Group" %}</h2>
-        {% if errors %}
-          <div id="errors">
-            {% for error in errors %}
-              <div>{{ error }}</div>
-            {% endfor %}
-          </div>
-        {% endif %}
-        <div>
-        <form class="uniForm" id="form" method="POST" action="" enctype="multipart/form-data">
-        {% csrf_token %}
-        <fieldset>
-            {{ form|as_bootstrap }}
-            <div class="form_block">
-                <input type="hidden" name="action" value="create" />
-                <input type="submit" class="btn btn-primary" value="{% trans 'Create' %}"/>
-            </div>
-        </fieldset>
-    </form>
-            </div>
-        </div>
-    </div>
-    
+{% if errors %}
+<div id="errors">
+	{% for error in errors %}
+	<div>{{ error }}</div>
+	{% endfor %}
+</div>
+{% endif %}
+<form class="uniForm" id="form" method="POST" action="" enctype="multipart/form-data">
+	{% csrf_token %}
+	<fieldset>
+		{{ form|as_bootstrap }}
+            <!-- <div class="form_block"> -->
+		<input type="hidden" name="action" value="create" />
+		<input type="submit" class="btn btn-primary" value="{% trans 'Create' %}"/>
+	</fieldset>
+</form>
 {% endblock %}

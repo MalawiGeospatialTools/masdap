@@ -6,7 +6,8 @@
 {% load base_tags %}
 {% load guardian_tags %}
 
-{% block title %}Explore Maps{% endblock %}
+{% block title %}{{ block.super }} {% trans "Maps" %} | {{ resource.title }}{% endblock %}
+{% block page-title %}{% trans "Explore Maps" %}{% endblock %}
 
 {% block head %}
   {% if TWITTER_CARD %}
@@ -21,67 +22,48 @@
 
 {% block body_class %}maps{% endblock %}
 
-{% block subheader %}
-<section id="subheader">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>{{ resource.title }}</h2>
-                <p>
-				    Map
-				    {% if resource.category %}
-					{% trans "in" %} <a href="{% url "search" %}?category__identifier__in={{ resource.category.identifier }}">{{ resource.category }}</a> | 
-				    {% endif %} 
-					{% if resource.date %}
-					    {% if resource.date_type == 'creation' %} {% trans "Created on" %} {{ resource.date }}
-					    {% elif resource.date_type == 'publication' %} {% trans "Published on" %} {{ resource.date }}
-					    {% else %} {% trans "Updated on" %} {{ resource.date }}
-						{% endif %}
-					{% endif %}
-				</p>
-                <div class="btn-group pull-right" role="group" aria-label="social-network">
-                    <button type="button" class="btn btn-default"><i class="fa fa-paper-plane-o fa-lg"></i></button>
-                    <button type="button" class="btn btn-default"><i class="fa fa-facebook fa-lg"></i></button>
-                    <button type="button" class="btn btn-default"><i class="fa fa-twitter fa-lg"></i></button>
-                    <button type="button" class="btn btn-default"><i class="fa fa-google-plus fa-lg"></i></button>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-{% endblock %}
-
 {% block body_outer %}
-{% overall_rating resource "map" as map_rating %}
+  {% overall_rating resource "map" as map_rating %}
 
-<div class="row">
+<div class="page-header">
+  <h2 class="page-title">{{ resource.title }}</h2>
+</div>
+
+  <div class="row">
     <div class="col-md-8">
 
-        <div id="embedded_map">
-            <div id="the_map"></div>
-        </div>
+      <div id="embedded_map">
+        <div id="the_map"></div>
+      </div>
 
-        <ul class="list-group">
-            <li class="list-group-item">
-                {% include "base/resourcebase_info_panel.html" %}
-			</li>
-			{% if request.user.is_authenticated %}
-			<li class="list-group-item">
-                {% include "_comments.html" %}
-			</li>
-			<li class="list-group-item">
-            <h3>{% trans "Rate this Map" %}</h3>
-            {% user_rating request.user resource "map" as user_map_rating %}
-            <div id="user_rating" class="category-map" data-score="{{ user_map_rating }}"></div>
+      <div class="map-actions">
+        {% include "_actions.html" %}
+      </div>
+
+      <div class="tab-content">
+        {% include "base/resourcebase_info_panel.html" %}
+        <article class="tab-pane" id="comments">
+        {% include "_comments.html" %}
+        </article>
+        <article class="tab-pane" id="rate">
+        <!-- TODO: Move this to a reusable template snippet -->
+          {% if request.user.is_authenticated %}
+          <h3>{% trans "Rate this Map" %}</h3>
+          {% user_rating request.user resource "map" as user_map_rating %}
+          <div id="user_rating" class="category-map" data-score="{{ user_map_rating }}"></div>
+          {% endif %}
+          <h3>{% trans 'Average Rating' %}</h3>
+          {% overall_rating resource "map" as map_rating %}
+          {% num_ratings resource as num_votes %}
+          <div class="overall_rating" style="float:left" data-score="{{ map_rating }}"></div> ({{num_votes}})
+        </article>
+        {% block social_links %}
+            {% if SOCIAL_BUTTONS %}
+                {% include "social_links.html" %}
             {% endif %}
-			</li>
-			<li class="list-group-item">
-            <h3>{% trans 'Average Rating' %}</h3>
-            {% overall_rating resource "map" as map_rating %}
-            {% num_ratings resource as num_votes %}
-            <div class="overall_rating" style="float:left" data-score="{{ map_rating }}"></div> ({{num_votes}})
-            </li>
-		</ul>
+        {% endblock %}
+      </div>
+
     </div>
 
     <div class="col-md-4">

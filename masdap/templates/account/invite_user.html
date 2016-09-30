@@ -2,15 +2,17 @@
 {% load i18n %}
 {% load bootstrap_tags %}
 
-{% block title %}{% trans 'Registration' %}{% endblock %}
+{% block title %}{{ block.super }} {% trans "Invite User" %}{% endblock %}
+{% block page-title %}{% trans "Invite User" %}{% endblock %}
 
-{% block body_outer %}
-<h2>{% trans "Invite User" %}</h2>
-<div class="col-md-4">
-    <form action="" class="form-horizontal" method="post">
-        {% csrf_token %}
-        {{ form|as_bootstrap }}
-        <input type="submit" value="{% trans "Invite User" %}" class="btn btn-primary"/>
-    </form>
+{% block body %}
+<form action="" class="form-horizontal" method="post">
+<div class="col-md-6">
+	{% csrf_token %}
+	{{ form|as_bootstrap }}
 </div>
+<div class="clearfix"></div>
+<input type="submit" value="{% trans "Invite User" %}" class="btn btn-primary"/>
+</div>
+</form>
 {% endblock %}
