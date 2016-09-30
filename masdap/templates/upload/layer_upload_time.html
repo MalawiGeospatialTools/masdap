@@ -4,14 +4,15 @@
 
 {% block body_class %}data data-list upload{% endblock %}
 
-{% block title %} {% trans "Upload Layer Step 2" %} - {{ block.super }} {% endblock %}
+{% block title %}{{ block.super }} {% trans "Layer Upload" %}{% endblock %}
+{% block page-title %}{% trans "Layer Upload" %}{% endblock %}
 
 {% block head %}
 {{ block.super }}
 {% endblock %}
 
 {% block body %}
-<div class="span7">
+
   <h2> {% trans "Editing details for " %} {{ layer_name }} </h2>
 
   <form method="POST" id="timeForm" role="form">
@@ -103,8 +104,8 @@
     </button>
     <div id="upload-status"></div>
   </form>
-</div>
-<div id="timehelp" class="span5">
+<hr/>
+<div id="timehelp">
     <h3>{% trans "Need Help?" %}</h3>
     <h4>{% trans "Enabling Time" %}</h4>
     <p>{% blocktrans %}A feature can currently support one or two time attributes. If a single

@@ -2,7 +2,8 @@
 {% load bootstrap_tags %}
 {% load i18n %}
 
-{% block title %} {% trans "Upload Document" %} {% endblock %}
+{% block title %}{{ block.super }} {% trans "Upload Document" %}{% endblock %}
+{% block page-title %}{% trans "Upload Document" %}{% endblock %}
 
 {% block body_class %}documents upload{% endblock body_class %}
 
@@ -12,29 +13,30 @@
     {{ block.super }}
 {% endblock %}
 
-{% block body_outer %}
-<div class="row">
-    <div class="col-md-8">
-		<div class="panel panel-default">
-			<div class="panel-body">
-	            {% include "_status_message.html" %}
-	            {% include "_announcements.html" %}
-	            {% include "_messages.html" %}
-				<form id="upload_form"  method="post" enctype="multipart/form-data" action="{% url "document_upload" %}">
-	    			<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
-	   			 	{{ form.as_p }}
-	    			<button type="submit" id="upload-button" class="btn btn-danger">Upload</button>
-				</form>
-			</div>
-		</div>
-    </div>
-    <div class="col-md-4">
-    <h4>{% trans "Permissions"  %}</h4>
-    <form id="permission_form">
-      {% include "_permissions.html" %}
-    </form>
-    </div>
+{% block body %}
+<div class="col-md-8">
+	<p class="lead">Allowed document types:</p>
+	<p>
+	{% for doc in ALLOWED_DOC_TYPES %}
+		<span class="label label-default">.{{ doc }}</span>
+	{% endfor %}
+	<form id="upload_form"  method="post" enctype="multipart/form-data" action="{% url "document_upload" %}">
+		<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
+		{{ form.as_p }}
+		<button type="submit" id="upload-button" class="btn btn-danger">Upload</button>
+	</form>
 </div>
+{% endblock %}
+
+{% block sidebar %}
+
+<div class="col-md-4">
+  <h3>{% trans "Permissions"  %}</h3>
+  <form id="permission_form">
+    {% include "_permissions.html" %}
+  </form>
+</div>
+
 {% endblock %}
 
 {% block extra_script %}

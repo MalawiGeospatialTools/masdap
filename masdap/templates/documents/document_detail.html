@@ -7,7 +7,8 @@
 {% load base_tags %}
 {% load guardian_tags %}
 
-{% block title %}{% trans 'Explore Documents' %}{% endblock %}
+{% block title %}{{ block.super }} {% trans "Expore Documents" %} | {{ resource.title }}{% endblock %}
+{% block page-title %}{% trans "Expore Documents" %}{% endblock %}
 
 {% block head %}
 
@@ -23,94 +24,58 @@
 
 {% block body_class %}documents{% endblock %}
 
-{% block subheader %}
-<section id="subheader">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>{{ resource.title }}</h2>
-                <p>
-				    <span  style="text-transform: capitalize;">{{ resource.doc_type }}</span>
-				    {% if resource.category %}
-					{% trans "in" %} <a href="{% url "search" %}?category__identifier__in={{ resource.category.identifier }}">{{ resource.category }}</a> | 
-				    {% endif %} 
-					{% if resource.date %}
-					    {% if resource.date_type == 'creation' %} {% trans "Created on" %} {{ resource.date }}
-					    {% elif resource.date_type == 'publication' %} {% trans "Published on" %} {{ resource.date }}
-					    {% else %} {% trans "Updated on" %} {{ resource.date }}
-						{% endif %}
-					{% endif %}
-				</p>
-                <div class="btn-group pull-right" role="group" aria-label="social-network">
-                    <button type="button" class="btn btn-default"><i class="fa fa-paper-plane-o fa-lg"></i></button>
-                    <button type="button" class="btn btn-default"><i class="fa fa-facebook fa-lg"></i></button>
-                    <button type="button" class="btn btn-default"><i class="fa fa-twitter fa-lg"></i></button>
-                    <button type="button" class="btn btn-default"><i class="fa fa-google-plus fa-lg"></i></button>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-{% endblock %}
-
-{% block body_outer %}
-
+{% block body %}
+<h2>{{ resource.title }}</h2>
 <div class="row">
-    <div class="col-md-8 main">
-        <ul class="list-group">
-            <li class="list-group-item">
-		    {% if "download_resourcebase" in perms_list %}
-		        {% if resource.extension|lower in imgtypes and resource.doc_file %}
-		        <div id="embedded_map">
-					<img src="{% url "document_download" resource.id %}" class="img-responsive" />
-		        </div>
-		        {% elif resource.doc_file %}
-				<p>{% trans 'Document preview is not available' %}</p>
-		        <p><a href="{% url "document_download" resource.id %}" target="_blank">Download the {{ resource }} document</a></p>
-		        {% elif  resource.doc_url %}
-		        <p><a href="{{ resource.doc_url }}" target="_blank">Download the {{ resource }} document.</a> <small>({% trans 'External Resource' %})</small></p>
-		        {%  endif %}
-		    {%  endif %}
-            </li>
-            <li class="list-group-item">
-			{% include "base/resourcebase_info_panel.html" %}
-            </li>
-            <li class="list-group-item">
-			{% include "_comments.html" %}
-            </li>
-        </ul>
-	    <div class="tab-content">
+  <div class="col-md-8">
+    {% if "download_resourcebase" in perms_list %}
+      {% if resource.extension|lower in imgtypes and resource.doc_file %}
+      <div id="embedded_map">
+          <img src="{% url "document_download" resource.id %}" class="img-responsive" />
+      </div>
+      {% elif resource.doc_file %}
+      <p><a href="{% url "document_download" resource.id %}" target="_blank">Download the {{ resource }} document</a></p>
+      {% elif  resource.doc_url %}
+      <p><a href="{{ resource.doc_url }}" target="_blank">Download the {{ resource }} document.</a> <small>({% trans 'External Resource' %})</small></p>
+      {%  endif %}
+    {%  endif %}
+       
+    <div class="documents-actions">
+      {% include "_actions.html" %}
+    </div>
 
-	      {% block social_links %}
-	        {% include "social_links.html" %}
-	      {% endblock %}
+    <div class="tab-content">
+      {% include "base/resourcebase_info_panel.html" %}
+
+      {% block social_links %}
+        {% include "social_links.html" %}
+      {% endblock %}
         
-	      <article id="comments" class="tab-pane">
-	      {% include "_comments.html" %}
-	      </article>
+      <article id="comments" class="tab-pane">
+      {% include "_comments.html" %}
+      </article>
         
-	      <article id="rate" class="tab-pane">
-	        <!-- TODO: Move this to a reusable template snippet -->
-	        {% if request.user.is_authenticated %}
-	        <h4>{% trans "Rate this document" %}</h4>
-	        {% user_rating request.user resource "document" as user_document_rating %}
-	        <div id="user_rating" class="category-layer" data-score="{{user_document_rating}}"></div>
-	        {% endif %}
-	        <h4>{% trans 'Average Rating' %}</h4>
-	        {% overall_rating resource "document" as document_rating %}
-	        {% num_ratings resource as num_votes %}
-	        <div class="overall_rating" style="float:left" data-score="{{ document_rating }}"></div> ({{num_votes}})
-	        <!-- TODO: Add display of who gave what rating based -->
-	      </article>
+      <article id="rate" class="tab-pane">
+        <!-- TODO: Move this to a reusable template snippet -->
+        {% if request.user.is_authenticated %}
+        <h4>{% trans "Rate this document" %}</h4>
+        {% user_rating request.user resource "document" as user_document_rating %}
+        <div id="user_rating" class="category-layer" data-score="{{user_document_rating}}"></div>
+        {% endif %}
+        <h4>{% trans 'Average Rating' %}</h4>
+        {% overall_rating resource "document" as document_rating %}
+        {% num_ratings resource as num_votes %}
+        <div class="overall_rating" style="float:left" data-score="{{ document_rating }}"></div> ({{num_votes}})
+        <!-- TODO: Add display of who gave what rating based -->
+      </article>
 
-	      {% if EXIF_ENABLED and exif_data %}
-	        {% with "exif/_exif_document_detail.html" as exif_template %}
-	            {% include exif_template %}
-	        {% endwith %}
-	      {% endif %}
-
-		</div> <!-- /tab -->
-     </div> <!-- /main -->
+      {% if EXIF_ENABLED and exif_data %}
+        {% with "exif/_exif_document_detail.html" as exif_template %}
+            {% include exif_template %}
+        {% endwith %}
+      {% endif %}
+    </div>
+  </div>
 
   <div class="col-md-4">
 

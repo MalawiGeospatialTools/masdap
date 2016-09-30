@@ -3,7 +3,8 @@
 {% load staticfiles %}
 {% load url from future %}
 
-{% block title %} {% trans "Search" %} {% endblock %}
+{% block title %}{{ block.super }} {% trans "Search" %}{% endblock %}
+{% block page-title %}{% trans "Search" %}<span ng-if="text_query != ''">:</span> <span ng-bind="text_query"></span>{% endblock %}
 
 {% block body_class %}search{% endblock %}
 

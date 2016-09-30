@@ -3,7 +3,8 @@
 {% load staticfiles %}
 {% load url from future %}
 
-{% block title %} {% trans "Explore Documents" %} {% endblock %}
+{% block title %}{{ block.super }} {% trans "Explore Documents" %}{% endblock %}
+{% block page-title %}{% trans "Explore Documents" %}{% endblock %}
 
 {% block body_class %}documents documents-list explore{% endblock %}
 

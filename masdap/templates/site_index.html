@@ -1,33 +1,39 @@
 {% extends 'index.html' %}
 {% load i18n %}
-
-  {% block middle %}
-  <div class="jumbotron">
-      <div class="container">
-	      <h1>Malawi<br />Spatial Data Platform</h1>
-	      <p></p>
-          <h3>{% blocktrans %}A public platform for GIS Data <br/>to support development in Malawi{% endblocktrans %}</h3>
-         <a class="btn btn-default btn-lg" href="#" role="button">{% blocktrans %}Get Started &raquo;{% endblocktrans %}</a>
-      </div>
-  </div>
+{% load staticfiles %}
+{% load base_tags %}
   
-  <div class="big-search">
-      <div class="container">
-	      <h1>Search for Malawi Data.</h1>
-	      <div class="search">
-			  <form id="search" action="{% url "search" %}" >
-	              <span class="fa fa-search fa-2x"></span>
-	              <!-- <input placeholder="Search..."> -->
-                  {% if HAYSTACK_SEARCH %}
-                  <input id="search_input" type="text" placeholder="Search" class="form-control" name="q">
-                  {% else %}
-                  <input id="search_input" type="text" placeholder="Search" class="form-control" name="title__icontains">
-                  {% endif %}
-		      </form>
-	      </div>
-	      <p><a href="/search/">Advanced Search</a></p>
-      </div>
-  </div>
+{% block middle %}
+
+{% block hero %}
+<div class="jumbotron">
+	<div class="container">
+		<h1>Malawi<br />Spatial Data Platform</h1>
+		<p></p>
+		<h3>{% blocktrans %}A public platform for GIS Data <br/>to support development in Malawi{% endblocktrans %}</h3>
+		<a class="btn btn-default btn-lg" href="#" role="button">{% blocktrans %}Get Started &raquo;{% endblocktrans %}</a>
+	</div>
+</div>
+{% endblock %}
+
+{% block mainbody %}
+<div class="big-search">
+	<div class="container">
+		<h1>Search for Malawi Data.</h1>
+		<div class="search">
+			<form id="search" action="{% url "search" %}" >
+				<span class="fa fa-search fa-2x"></span>
+				<!-- <input placeholder="Search..."> -->
+				{% if HAYSTACK_SEARCH %}
+				<input id="search_input" type="text" placeholder="Search" class="form-control" name="q">
+				{% else %}
+				<input id="search_input" type="text" placeholder="Search" class="form-control" name="title__icontains">
+				{% endif %}
+			</form>
+		</div>
+		<p><a href="/search/">Advanced Search</a></p>
+	</div>
+</div>
 
 <section id="datasets">
 	<div class="container">
@@ -151,17 +157,13 @@
 	<div class="container">
 		<div class="row">
 			<h2>Malawi Risk and Hazards</h2>
-			<div class="col-xs-4">
+			<div class="col-sm-4 col-sm-offset-2">
 				<span class="icon-disaster_drought"></span>
 				<h4>Drought monitoring</h4>
 			</div>
-			<div class="col-xs-4">
+			<div class="col-sm-4">
 				<span class="icon-disaster_flood"></span>
 				<h4>Flood and heavy rain</h4>
-			</div>
-			<div class="col-xs-4">
-				<span class="icon-cluster_food_security"></span>
-				<h4>Food security</h4>
 			</div>	
 		</div>
 	</div>	
@@ -201,11 +203,10 @@
 </section>
 {% endblock %}
   
-  
+{% endblock %}
 
 {% block extra_script %}
 {{ block.super }}
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
 	$('[data-toggle="tooltip"]').tooltip();
 </script>

@@ -4,14 +4,13 @@
 {% load i18n %}
 {% load bootstrap_tags %}
 
-{% block head_title %}{% trans "Log in" %}{% endblock %}
+{% block title %}{{ block.super }} {% trans "Log in" %}{% endblock %}
+{% block page-title %}{% trans "Log in" %}{% endblock %}
 
-{% block title %}{% trans 'Log in' %}{% endblock %}
-
-{% block body_outer %}
-<p>{% trans "Log in to an existing account" %}.</p>
+{% block body %}
+<p class="lead">{% trans "Log in to an existing account" %}</p>
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-8">
     <form role="form" method="POST" action="{% url "account_login" %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
       {% csrf_token %}
       {{ form|as_bootstrap }}

@@ -3,8 +3,9 @@
 {% load i18n %}
 	
 {% block breadcrumbs %}<div class="breadcrumbs"><a href="/">{% trans "Home" %}</a> &rsaquo; {% trans "Change point of contact" %}</div>{% endblock %}
-	
-{% block title %}{% trans 'Change point of contact' %}{% endblock %}
+
+{% block title %}{{ block.super }} {% trans "Change point of contact" %}{% endblock %}
+{% block page-title %}{% trans "Change point of contact" %}{% endblock %}
 
 {% block content %}
 <h3>{% trans "Assign a new point of contact to the layers below:" %}</h3>

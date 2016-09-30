@@ -6,38 +6,29 @@
 {{ block.super }}
 {% endblock %}
 
-{% block title %}{%  trans "Service Registration" %}{% endblock %}
+{% block title %}{{ block.super }} {% trans "Register Service" %}{% endblock %}
+{% block page-title %}{% trans "Register New Service" %}{% endblock %}
 
-{% block body_outer %}
-<div class="row">
-	<div class="col-md-8">
-		<ul class="list-group">
-			<li class="list-group-item">
-				<p class="lead">{%  trans "Register a new Service" %}
-			</li>
-			<li class="list-group-item">
-			    <form method="POST" id="service_register_form">
-			    	{% csrf_token %}
-			    	{{ create_service_form|as_bootstrap }}
-			</li>
-			<li class="list-group-item">
-			    	<input type="submit" class="btn btn-primary" id="submit_button" value="{% trans "Create" %}" />
-			    	</form>
-			</li>
-			<li class="list-group-item" id="responseDiv" style="display:none;">
-				<h4>{%  trans "Service has been created:" %}</h4>
-			    <div class="error" style="display:none;"></div>
-			</li>
-			<li class="list-group-item" id="tableDiv" style="display:none;">
-				<h4>{%  trans "Service has been created:" %}</h4>
-		        <p>{%  trans "The following layers will be imported" %}</p>
-		        <table class="table table-striped" id="dataTable"></table>
-			</li>
-		</ul>
-	</div>
-</div>
+{% block body %}
+    <form method="POST" id="service_register_form">
+    {% csrf_token %}
+    {{ create_service_form|as_bootstrap }}
+
+    <div align="center"><p><input type="submit" class="btn btn-primary pull-left" id="submit_button" value="{% trans "Create" %}" /></p></div>
+    </form>
+
+    <div id="responseDiv" style="display:none;">
+        <h4>{%  trans "Service has been created:" %}</h4>
+    </div>
+
+    <div class="error" style="display:none;">
+    </div>
+
+    <div id="tableDiv" style="display:none;">
+        <p>{%  trans "The following layers will be imported" %}</p>
+        <table id="dataTable"></table>
+    </div>
 {% endblock %}
-
 {% block extra_script %}
 <script type="text/javascript">
     $( document ).ready(function() {

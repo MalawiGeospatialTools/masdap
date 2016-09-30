@@ -1,24 +1,24 @@
 {% extends 'site_base.html' %}
-{% block title %}Contact{% endblock %}
+{% load i18n %}
 
-{% block body_outer %}
-<div class="row">
-    <div class="col-md-8">
-        <ul class="list-group">
-            <li class="list-group-item">
-				<p class="lead">Leave us a message.</h1>
-			</li>
-            <li class="list-group-item">
-				<form role="form" action="" method="post">
-    				{% csrf_token %}
-    				{{ form.as_p }}
-    				<div class="g-recaptcha" data-sitekey="6LdRASkTAAAAAK8YOn0MymwI5IHTqKeWbgspciEB"></div>
-    				<button class="btn btn-primary" type="submit">Submit</button>
-				</form>
-			</li>
-		</ul>
+{% block title %}{{ block.super }} {% trans "Contact Us" %}{% endblock %}
+{% block page-title %}{% trans "Contact Us" %}{% endblock %}
+
+{% block body %}
+<p class="lead">Please fill in the form below.</p>
+<form role="form" action="" class="form-horizontal" method="post">
+	<div class="row">
+		<div class="col-md-6">
+			{% csrf_token %}
+			{{ form.as_p }}
+		</div>
+		<div class="clearfix"></div>
+		<div class="col-md-6">
+			<div class="g-recaptcha" data-sitekey="6LdRASkTAAAAAK8YOn0MymwI5IHTqKeWbgspciEB"></div>
+			<button type="submit" class="btn btn-primary btn-block">{% trans "Submit" %}</button>
+		</div>
 	</div>
-</div>
+</form>
 {% endblock %}
 
 

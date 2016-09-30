@@ -4,7 +4,8 @@
 {% friendly_load i18n avatar_tags relationship_tags activity_tags %}
 {% load pagination_tags %}
 
-{% block title %} {% trans "Profile of " %}{{ profile.first_name|default:profile.username }}{% endblock %}
+{% block title %}{{ block.super }} {% trans "Profile of " %}{{ profile.first_name|default:profile.username }}{% endblock %}
+{% block page-title %}{% trans "User Profiles" %}{% endblock %}
 
 {% block head %}
   {% if TWITTER_CARD %}
@@ -19,7 +20,6 @@
 {% block body_class %}people explore{% endblock %}
 
 {% block body %}
-
 <div class="col-xs-3 col-md-2 profile-image">
   {% avatar profile 240 %}
 </div>

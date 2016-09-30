@@ -4,7 +4,8 @@
 
 {% block body_class %}data data-list upload{% endblock %}
 
-{% block title %} {% trans "Upload Layer" %} - {{ block.super }} {% endblock %}
+{% block title %}{{ block.super }} {% trans "Layer Upload" %}{% endblock %}
+{% block page-title %}{% trans "Layer Upload" %}{% endblock %}
 
 {% block body %}
   <h2> {% trans "Provide CRS for " %} "{{ layer_name }}" </h2>

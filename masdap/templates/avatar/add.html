@@ -1,0 +1,42 @@
+{% extends "site_base.html" %}
+{% load i18n avatar_tags %}
+{% load bootstrap_tags %}
+
+{% block title %}{{ block.super }} {% trans "Add Avatar" %}{% endblock %}
+{% block page-title %}{% trans "Add Avatar" %}{% endblock %}
+
+{% block body_outer %}
+<div class="row">
+	<div class="col-md-4">
+		{% avatar user 240 %}
+	</div>
+	<div class="col-md-6">
+    	{% if not avatars %}
+        <p>{% trans "You haven't uploaded an avatar yet. Please upload one now." %}</p>
+    	{% else %}
+        <form enctype="multipart/form-data" method="POST" action="{% url 'avatar_add' %}">
+           {{ upload_avatar_form.as_p }}
+			<div class="row">
+				<div class="col-md-5">
+            		{% csrf_token %}
+					<p><input type="submit" class="btn btn-primary btn-block" value="{% trans "Upload New Image" %}" /></p>
+				</div>
+			</div>	
+        </form>
+    	{% endif %}
+		<div class="row">
+			<div class="col-md-5">
+				<a class="btn btn-default btn-block" href="{% url "profile_edit" user.username %}">{% trans "Cancel" %}</a>
+			</div>
+		</div>
+	</div>
+</div>		
+{% endblock %}
+
+{% block extra_head %}
+<style>
+	ul.errorlist {color: red; font-weight:700; list-style: none; margin-left: -40px;}
+	input#id_avatar {width: 360px;}
+	.btn {margin-top: 0.5em; margin-bottom: 0.5em;}
+</style>
+{% endblock %}

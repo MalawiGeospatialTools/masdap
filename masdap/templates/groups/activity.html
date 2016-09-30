@@ -4,8 +4,8 @@
 {% block extra_head %}
 {{ block.super }}{% endblock %}
 
-{% block title %}{%  trans "Activity Feed"  %}{% endblock %}
-{% block content_title %}{%  trans "Activity Feed for"  %} {{ group.title }}{% endblock %}
+{% block title %}{{ block.super }} {% trans "Group Activity" %} | {{ group.title }}{% endblock %}
+{% block page-title %}{% trans "Group Activity" %}{% endblock %}
 
 {% comment %}
 {% block navlinks %}
@@ -14,24 +14,10 @@
 {% endblock %}
 {% endcomment %}
 
-{% block subheader %}
-<section id="subheader">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>{{ group.title }}</h2>
-				<p><a href="{% url "group_detail" group.slug %}">Group info</a></p>
-            </div>
-        </div>
-    </div>
-</section>
-{% endblock %}
-
 {% block body_outer %}
+<p class="lead">{%  trans "Activity Feed for"  %} <a href="{% url "group_detail" group.slug %}">{{ group.title }}</a></p>
 <div class="row">
   <div class="col-md-8">
-  	<ul class="list-group">
-  		<li class="list-group-item">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#all" data-toggle="tab"><i class=""></i>{% trans "All" %}</a></li>
       <li><a href="#layers" data-toggle="tab"><i class="fa fa-square-o rotate-45"></i> {% trans "Layers" %}</a></li>
@@ -76,9 +62,6 @@
         </ul>
       </article>
     </div>
-	</li>
-	</ul>
   </div>
-
 </div>
 {% endblock %}

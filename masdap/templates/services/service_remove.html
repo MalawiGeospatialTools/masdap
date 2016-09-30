@@ -1,12 +1,10 @@
 {% extends "services/services_base.html" %}
 {% load i18n %}
 
-{% block title %} {{ service.name }} - {{ block.super }} {% endblock %}
+{% block title %}{{ block.super }} {% trans "Remove Service" %} | {{ service.name }}{% endblock %}
+{% block page-title %}{% trans "Remove Service" %}{% endblock %}
 
 {% block body %}
-<div class="page-header">
-  <h2>{% trans "Remove Remote Service" %}</h2>
-</div>
 <div class="row">
   <div class="col-md-12">
     <p class="lead">{% trans "Are you sure you want to remove"  %} <strong>{{ service.name }}</strong>?</p>
