@@ -42,12 +42,11 @@
 						{% endif %}
 					{% endif %}
 				</p>
-                <div class="btn-group pull-right" role="group" aria-label="social-network">
-                    <button type="button" class="btn btn-default"><i class="fa fa-paper-plane-o fa-lg"></i></button>
-                    <button type="button" class="btn btn-default"><i class="fa fa-facebook fa-lg"></i></button>
-                    <button type="button" class="btn btn-default"><i class="fa fa-twitter fa-lg"></i></button>
-                    <button type="button" class="btn btn-default"><i class="fa fa-google-plus fa-lg"></i></button>
-                </div>
+				{% block social_links %}
+				{% if SOCIAL_BUTTONS %}
+				{% include "social_links.html" %}
+				{% endif %}
+				{% endblock %}
             </div>
         </div>
     </div>
@@ -75,10 +74,6 @@
 
     <div class="tab-content">
       {% include "base/resourcebase_info_panel.html" %}
-
-      {% block social_links %}
-        {% include "social_links.html" %}
-      {% endblock %}
         
       <article id="comments" class="tab-pane">
       {% include "_comments.html" %}
