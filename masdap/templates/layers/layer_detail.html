@@ -49,12 +49,11 @@
 						{% endif %}
 					{% endif %}
 				</p>
-                <div class="btn-group pull-right" role="group" aria-label="social-network">
-                    <button type="button" class="btn btn-default"><i class="fa fa-paper-plane-o fa-lg"></i></button>
-                    <button type="button" class="btn btn-default"><i class="fa fa-facebook fa-lg"></i></button>
-                    <button type="button" class="btn btn-default"><i class="fa fa-twitter fa-lg"></i></button>
-                    <button type="button" class="btn btn-default"><i class="fa fa-google-plus fa-lg"></i></button>
-                </div>
+				{% block social_links %}
+				{% if SOCIAL_BUTTONS %}
+				{% include "social_links.html" %}
+				{% endif %}
+				{% endblock %}
             </div>
         </div>
     </div>
@@ -121,12 +120,6 @@
             </table>
         {% endif %}
       </article>
-
-      {% block social_links %}
-      {% if SOCIAL_BUTTONS %}
-        {% include "social_links.html" %}
-      {% endif %}
-      {% endblock %}
 
       <article id="comments" class="tab-pane">
         {% with resource as obj %}

@@ -4,20 +4,11 @@
 {% endblock %}
 
 {% block social_links %}
-	<article class="tab-pane" id="share">
-        <!-- TODO: Move this to a reusable template snippet -->
-        <header>
-            <h3>{% trans "Share This" %} {% trans resource.class_name %} </h3>
-        </header>
-        <div>
-              <ul class="social">
-                  {% for social_link in social_links %}
-                      {% if social_link.url %}
-                      <li><a href="{{ social_link.url }}" class="{{ social_link.css_class }}">{{ social_link.label }}</a></li>
-                      {% endif %}
-                  {% endfor %}
-              </ul>
-         </div>
-        <!-- TODO: Add more sharing options -->
-    </article>
+<div class="btn-group pull-right" role="group" aria-label="social-network">
+	{% for social_link in social_links %}
+	{% if social_link.url %}
+	<a href="{{ social_link.url }}" class="btn btn-default"><i class="fa fa-{{ social_link.label }} fa-lg"></i></a>
+	{% endif %}
+	{% endfor %}
+</div>
 {% endblock %}

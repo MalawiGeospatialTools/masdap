@@ -132,7 +132,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-#EMAIL SERVICE
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'your.smtp.server'  
 DEFAULT_FROM_EMAIL = 'your.account@email.com'
@@ -141,12 +140,28 @@ EMAIL_HOST_PASSWORD = 'yourpassword'
 EMAIL_PORT = 587 #check port
 EMAIL_USE_TLS = True #check tls
 
-
-#RECAPTCHA SERVICE
-
 NORECAPTCHA_SITE_KEY = "norecaptcha_site_key"
 NORECAPTCHA_SECRET_KEY = "norecaptcha_secret_key"
 NORECAPTCHA_VERIFY_URL = "norecaptcha_verify_url"
+
+SOCIAL_ORIGINS = [{
+    "label":"paper-plane-o",
+    "url":"mailto:?subject={name}&body={url}",
+    "css_class":"email"
+}, {
+    "label":"facebook",
+    "url":"http://www.facebook.com/sharer.php?u={url}",
+    "css_class":"fb"
+}, {
+    "label":"twitter",
+    "url":"https://twitter.com/share?url={url}&hashtags={hashtags}",
+    "css_class":"tw"
+}, {
+    "label":"google-plus",
+    "url":"https://plus.google.com/share?url={url}",
+    "css_class":"gp"
+}]
+
 
 try:
     from local_settings import *
