@@ -23,7 +23,6 @@
 		<div class="search">
 			<form id="search" action="{% url "search" %}" >
 				<span class="fa fa-search fa-2x"></span>
-				<!-- <input placeholder="Search..."> -->
 				{% if HAYSTACK_SEARCH %}
 				<input id="search_input" type="text" placeholder="Search" class="form-control" name="q">
 				{% else %}
@@ -31,7 +30,7 @@
 				{% endif %}
 			</form>
 		</div>
-		<p><a href="/search/">Advanced Search</a></p>
+		<p><a class="btn btn-default btn-lg" href="/search/">Advanced Search</a></p>
 	</div>
 </div>
 
