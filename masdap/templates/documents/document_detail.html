@@ -7,8 +7,8 @@
 {% load base_tags %}
 {% load guardian_tags %}
 
-{% block title %}{{ block.super }} {% trans "Expore Documents" %} | {{ resource.title }}{% endblock %}
-{% block page-title %}{% trans "Expore Documents" %}{% endblock %}
+{% block title %}{{ block.super }} {% trans "Explore Documents" %} | {{ resource.title }}{% endblock %}
+{% block page-title %}{% trans "Explore Documents" %}{% endblock %}
 
 {% block head %}
 
@@ -24,8 +24,37 @@
 
 {% block body_class %}documents{% endblock %}
 
+{% block subheader %}
+<section id="subheader">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>{{ resource.title }}</h2>
+                <p>
+				    <span  style="text-transform: capitalize;">{{ resource.doc_type }}</span>
+				    {% if resource.category %}
+					{% trans "in" %} <a href="{% url "search" %}?category__identifier__in={{ resource.category.identifier }}">{{ resource.category }}</a> | 
+				    {% endif %} 
+					{% if resource.date %}
+					    {% if resource.date_type == 'creation' %} {% trans "Created on" %} {{ resource.date }}
+					    {% elif resource.date_type == 'publication' %} {% trans "Published on" %} {{ resource.date }}
+					    {% else %} {% trans "Updated on" %} {{ resource.date }}
+						{% endif %}
+					{% endif %}
+				</p>
+                <div class="btn-group pull-right" role="group" aria-label="social-network">
+                    <button type="button" class="btn btn-default"><i class="fa fa-paper-plane-o fa-lg"></i></button>
+                    <button type="button" class="btn btn-default"><i class="fa fa-facebook fa-lg"></i></button>
+                    <button type="button" class="btn btn-default"><i class="fa fa-twitter fa-lg"></i></button>
+                    <button type="button" class="btn btn-default"><i class="fa fa-google-plus fa-lg"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
 {% block body %}
-<h2>{{ resource.title }}</h2>
 <div class="row">
   <div class="col-md-8">
     {% if "download_resourcebase" in perms_list %}
