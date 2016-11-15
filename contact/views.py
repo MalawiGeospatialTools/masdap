@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
 from django.template import Context
+from django.contrib import messages
 
 def contact(request):
     form_class = ContactForm
@@ -40,8 +41,10 @@ def contact(request):
                 headers = {'Reply-To': contact_email }
             )
             email.send()
+            messages.success(request, 'Contact email sent')
             return redirect('contact')
-
+        else:
+            messages.error(request, 'The form is not valid. Please fill it in correctly and send it again.')
     return render(request, 'contact.html', {
         'form': form_class,
     })
