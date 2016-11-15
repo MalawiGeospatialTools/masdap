@@ -4,13 +4,16 @@
 {% load i18n %}
 {% load bootstrap_tags %}
 
-{% block title %}{{ block.super }} {% trans "Sign Up" %}{% endblock %}
-{% block page-title %}{% trans "Sign Up" %}{% endblock %}
+{% block title %}{{ block.super }} {% trans "Sign up" %}{% endblock %}
+{% block extra_head %}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{% endblock %}
+
+{% block page-title %}{% trans "Sign up" %}{% endblock %}
 
 {% block body %}
 {% if REGISTRATION_OPEN %}
 <form id="signup_form" method="post" action="{% url "account_signup" %}" autocapitalize="off" class="form-horizontal"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
-	<legend>{% trans "Sign up" %}</legend>
 	<fieldset>
 		{% csrf_token %}
 		{{ form|as_bootstrap }}

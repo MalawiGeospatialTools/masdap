@@ -88,6 +88,9 @@ INSTALLED_APPS = (
     'contact',
     'nocaptcha_recaptcha',
 
+    # recaptcha on registration
+    'account_captcha'
+
 ) + GEONODE_APPS
 
 MIDDLEWARE_CLASSES = (

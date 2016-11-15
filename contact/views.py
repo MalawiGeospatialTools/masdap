@@ -36,6 +36,7 @@ def contact(request):
                 content,
                 'masdap.mw@gmail.com',
                 ['masdap.mw@gmail.com'],
+                cc=(contact_email,),
                 headers = {'Reply-To': contact_email }
             )
             email.send()
