@@ -209,7 +209,7 @@
 	            {% get_current_language as LANGUAGE %}
 	            <form class="form-inline" action="/i18n/setlang/" method="post">
 	            {% csrf_token %}
-	              <select class="pull-right" name="language" onchange="javascript:form.submit()">
+	              <select class="select-language" name="language" onchange="javascript:form.submit()">
 	                {% for lang in LANGUAGES %}
 	                <option value="{{ lang.0 }}" {% ifequal LANGUAGE_CODE lang.0 %} selected="selected"{% endifequal %}>
 	                  {{ lang.1 }}
@@ -223,3 +223,10 @@
 	</div>
 </footer>
 {% endblock footer %}
+{% block extra_script %}
+	<script type="text/javascript">
+		$(document).ready(function() {
+		  $(".select-language").select2();
+		});
+	</script>
+{% endblock extra_script %}
