@@ -200,10 +200,34 @@
 			<div class="col-md-2"></div>
 			<div class="col-md-4 text-right">
 				<p><img src="/static/img/logo.png"></p>
-				<p>Malawi Spatial Data Platform</p>
-				<p>Powered by GeoNode</p>
+				<ul class="list-unstyled">
+					<li>Malawi Spatial Data Platform</li>
+					<li>Powered by GeoNode</li>
+				</ul>
+	            <label class="hidden">{% trans "Language" %}</label>
+	            {% if csrf_token != "NOTPROVIDED" %}
+	            {% get_current_language as LANGUAGE %}
+	            <form class="form-inline" action="/i18n/setlang/" method="post">
+	            {% csrf_token %}
+	              <select class="select-language" name="language" onchange="javascript:form.submit()">
+	                {% for lang in LANGUAGES %}
+	                <option value="{{ lang.0 }}" {% ifequal LANGUAGE_CODE lang.0 %} selected="selected"{% endifequal %}>
+	                  {{ lang.1 }}
+	                </option>
+	                {% endfor %}
+	              </select>
+	            </form>
+	            {% endif %}
 			</div>
 		</div>
 	</div>
 </footer>
 {% endblock footer %}
+
+{% block extra_script %}
+	<script type="text/javascript">
+		$(document).ready(function() {
+		  $(".select-language").select2();
+		});
+	</script>
+{% endblock extra_script %}
