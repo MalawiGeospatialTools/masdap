@@ -1,187 +1,390 @@
 # -*- coding: utf-8 -*-
+#########################################################################
+#
+# Copyright (C) 2017 OSGeo
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+#########################################################################
+
+# Django settings for the GeoNode project.
+import ast
 import os
-from geonode.settings import *
+from urlparse import urlparse, urlunparse
+# Load more settings from a file called local_settings.py if it exists
+try:
+    from geonode.local_settings import *
+#    from masdap.local_settings import *
+except ImportError:
+    from geonode.settings import *
 
-SITENAME = 'masdap'
+DEBUG = os.environ.get('DEBUG', True)
 
+#
+# General Django development settings
+#
+PROJECT_NAME = 'masdap'
+
+# we need hostname for deployed 
+surl = urlparse(SITEURL)
+hostname = surl.hostname
+
+# add trailing slash to site url. geoserver url will be relative to this
+if not SITEURL.endswith('/'):
+    SITEURL = '{}/'.format(SITEURL)
+
+SITENAME = os.getenv("SITENAME", 'masdap')
+
+# Defines the directory that contains the settings file as the LOCAL_ROOT
+# It is used for relative settings elsewhere.
 LOCAL_ROOT = os.path.abspath(os.path.dirname(__file__))
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-WSGI_APPLICATION = "masdap.wsgi.application"
-
-GEONODE_APPS = (
-    # GeoNode internal apps
-    'geonode.people',
-    'geonode.base',
-    'geonode.layers',
-    'geonode.maps',
-    'geonode.proxy',
-    'geonode.security',
-    'geonode.social',
-    'geonode.catalogue',
-    'geonode.documents',
-    'geonode.api',
-    'geonode.groups',
-    'geonode.services',
-
-    # GeoServer Apps
-    # Geoserver needs to come last because
-    # it's signals may rely on other apps' signals.
-    'geonode.geoserver',
-    'geonode.upload',
-    'geonode.tasks'
-)
-
-INSTALLED_APPS = (
-
-    # Boostrap admin theme
-    # 'django_admin_bootstrapped.bootstrap3',
-    # 'django_admin_bootstrapped',
-
-    # Apps bundled with Django
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.admin',
-    'django.contrib.sitemaps',
-    'django.contrib.staticfiles',
-    'django.contrib.messages',
-    'django.contrib.humanize',
-    'django.contrib.gis',
-
-    # Third party apps
-
-    # Utility
-    'pagination',
-    'taggit',
-    'friendlytagloader',
-    'geoexplorer',
-    'leaflet',
-    'django_extensions',
-    # 'haystack',
-    'autocomplete_light',
-    'mptt',
-    'modeltranslation',
-    'djcelery',
-
-    # Theme
-    "pinax_theme_bootstrap_account",
-    "pinax_theme_bootstrap",
-    'django_forms_bootstrap',
-
-    # Social
-    'account',
-    'avatar',
-    'dialogos',
-    'agon_ratings',
-    'notification',
-    'announcements',
-    'actstream',
-    'user_messages',
-    'tastypie',
-    'polymorphic',
-    'guardian',
-    
-    #Contact
-    'contact',
-    'nocaptcha_recaptcha',
-
-    # recaptcha on registration
-    'account_captcha'
-
-) + GEONODE_APPS
-
-MIDDLEWARE_CLASSES = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'pagination.middleware.PaginationMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
-
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
-
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'your.smtp.server'  
-DEFAULT_FROM_EMAIL = 'your.account@email.com'
-EMAIL_HOST_USER = 'your.account@smtp.com'
-EMAIL_HOST_PASSWORD = 'yourpassword'
-EMAIL_PORT = 587 #check port
-EMAIL_USE_TLS = True #check tls
-
-NORECAPTCHA_SITE_KEY = "norecaptcha_site_key"
-NORECAPTCHA_SECRET_KEY = "norecaptcha_secret_key"
-NORECAPTCHA_VERIFY_URL = "norecaptcha_verify_url"
-
-SOCIAL_ORIGINS = [{
-    "label":"paper-plane-o",
-    "url":"mailto:?subject={name}&body={url}",
-    "css_class":"email"
-}, {
-    "label":"facebook",
-    "url":"http://www.facebook.com/sharer.php?u={url}",
-    "css_class":"fb"
-}, {
-    "label":"twitter",
-    "url":"https://twitter.com/share?url={url}&hashtags={hashtags}",
-    "css_class":"tw"
-}, {
-    "label":"google-plus",
-    "url":"https://plus.google.com/share?url={url}",
-    "css_class":"gp"
-}]
-
+WSGI_APPLICATION = "{}.wsgi.application".format(PROJECT_NAME)
 
 try:
-    from local_settings import *
-except ImportError:
-    pass
+    # try to parse python notation, default in dockerized env
+    ALLOWED_HOSTS = ast.literal_eval(os.getenv('ALLOWED_HOSTS'))
+except ValueError:
+    # fallback to regular list of values separated with misc chars
+    ALLOWED_HOSTS = ['localhost', 'django', 'geonode'] if os.getenv('ALLOWED_HOSTS') is None \
+        else re.split(r' *[,|:|;] *', os.getenv('ALLOWED_HOSTS'))
 
+PROXY_ALLOWED_HOSTS += ('nominatim.openstreetmap.org',)
+
+# AUTH_IP_WHITELIST property limits access to users/groups REST endpoints
+# to only whitelisted IP addresses.
+#
+# Empty list means 'allow all'
+#
+# If you need to limit 'api' REST calls to only some specific IPs
+# fill the list like below:
+#
+# AUTH_IP_WHITELIST = ['192.168.1.158', '192.168.1.159']
+AUTH_IP_WHITELIST = []
+
+MANAGERS = ADMINS = os.getenv('ADMINS', [])
+
+# Local time zone for this installation. Choices can be found here:
+# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
+# although not all choices may be available on all operating systems.
+# If running in a Windows environment this must be set to the same as your
+# system time zone.
+TIME_ZONE = os.getenv('TIME_ZONE', "UTC")
+
+SITE_ID = int(os.getenv('SITE_ID', '1'))
+
+USE_TZ = True
+USE_I18N = strtobool(os.getenv('USE_I18N', 'True'))
+USE_L10N = strtobool(os.getenv('USE_I18N', 'True'))
+
+# Language code for this installation. All choices can be found here:
+# http://www.i18nguy.com/unicode/language-identifiers.html
+LANGUAGE_CODE = os.getenv('LANGUAGE_CODE', "en")
+
+if PROJECT_NAME not in INSTALLED_APPS:
+    INSTALLED_APPS += (PROJECT_NAME,)
+
+# Location of url mappings
+ROOT_URLCONF = os.getenv('ROOT_URLCONF', '{}.urls'.format(PROJECT_NAME))
+
+MEDIA_ROOT = os.getenv('MEDIA_ROOT', os.path.join(LOCAL_ROOT, "uploaded"))
+
+STATIC_ROOT = os.getenv('STATIC_ROOT',
+                        os.path.join(LOCAL_ROOT, "static_root")
+                        )
+
+# Additional directories which hold static files
 STATICFILES_DIRS.append(
     os.path.join(LOCAL_ROOT, "static"),
 )
 
-TEMPLATE_DIRS = (
-    os.path.join(LOCAL_ROOT, "templates"),
-) + TEMPLATE_DIRS
-
-ROOT_URLCONF = 'masdap.urls'
-
+# Location of locale files
 LOCALE_PATHS = (
     os.path.join(LOCAL_ROOT, 'locale'),
     ) + LOCALE_PATHS
 
+TEMPLATES[0]['DIRS'].insert(0, os.path.join(LOCAL_ROOT, "templates"))
+loaders = TEMPLATES[0]['OPTIONS'].get('loaders') or ['django.template.loaders.filesystem.Loader','django.template.loaders.app_directories.Loader']
+# loaders.insert(0, 'apptemplates.Loader')
+TEMPLATES[0]['OPTIONS']['loaders'] = loaders
+TEMPLATES[0].pop('APP_DIRS', None)
+
+UNOCONV_ENABLE = strtobool(os.getenv('UNOCONV_ENABLE', 'True'))
+
+if UNOCONV_ENABLE:
+    UNOCONV_EXECUTABLE = os.getenv('UNOCONV_EXECUTABLE', '/usr/bin/unoconv')
+    UNOCONV_TIMEOUT = os.getenv('UNOCONV_TIMEOUT', 30)  # seconds
+
+CLIENT_RESULTS_LIMIT = 20
+API_LIMIT_PER_PAGE = 1000
+FREETEXT_KEYWORDS_READONLY = False
+RESOURCE_PUBLISHING = False
+ADMIN_MODERATE_UPLOADS = False
+GROUP_PRIVATE_RESOURCES = False
+GROUP_MANDATORY_RESOURCES = False
+MODIFY_TOPICCATEGORY = True
+SHOW_PROFILE_EMAIL = False
+USER_MESSAGES_ALLOW_MULTIPLE_RECIPIENTS = True
+DISPLAY_WMS_LINKS = True
+
+# prevent signing up by default
+ACCOUNT_OPEN_SIGNUP = True
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
+ACCOUNT_EMAIL_CONFIRMATION_EMAIL = True
+ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_APPROVAL_REQUIRED = True
+
+SOCIALACCOUNT_ADAPTER = 'geonode.people.adapters.SocialAccountAdapter'
+
+SOCIALACCOUNT_AUTO_SIGNUP = False
+
+# Uncomment this to enable Linkedin and Facebook login
+# INSTALLED_APPS += (
+#    'allauth.socialaccount.providers.linkedin_oauth2',
+#    'allauth.socialaccount.providers.facebook',
+# )
+
+SOCIALACCOUNT_PROVIDERS = {
+    'linkedin_oauth2': {
+        'SCOPE': [
+            'r_emailaddress',
+            'r_basicprofile',
+        ],
+        'PROFILE_FIELDS': [
+            'emailAddress',
+            'firstName',
+            'headline',
+            'id',
+            'industry',
+            'lastName',
+            'pictureUrl',
+            'positions',
+            'publicProfileUrl',
+            'location',
+            'specialties',
+            'summary',
+        ]
+    },
+    'facebook': {
+        'METHOD': 'oauth2',
+        'SCOPE': [
+            'email',
+            'public_profile',
+        ],
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'verified',
+            'locale',
+            'timezone',
+            'link',
+            'gender',
+        ]
+    },
+}
+
+SOCIALACCOUNT_PROFILE_EXTRACTORS = {
+    "facebook": "geonode.people.profileextractors.FacebookExtractor",
+    "linkedin_oauth2": "geonode.people.profileextractors.LinkedInExtractor",
+}
+
+# default map projection
+# Note: If set to EPSG:4326, then only EPSG:4326 basemaps will work.
+DEFAULT_MAP_CRS = "EPSG:3857"
+
+# Where should newly created maps be focused?
+DEFAULT_MAP_CENTER = (0, 0)
+
+# How tightly zoomed should newly created maps be?
+# 0 = entire world;
+# maximum zoom is between 12 and 15 (for Google Maps, coverage varies by area)
+DEFAULT_MAP_ZOOM = 0
+
+ALT_OSM_BASEMAPS = os.environ.get('ALT_OSM_BASEMAPS', False)
+CARTODB_BASEMAPS = os.environ.get('CARTODB_BASEMAPS', False)
+STAMEN_BASEMAPS = os.environ.get('STAMEN_BASEMAPS', False)
+THUNDERFOREST_BASEMAPS = os.environ.get('THUNDERFOREST_BASEMAPS', False)
+MAPBOX_ACCESS_TOKEN = os.environ.get('MAPBOX_ACCESS_TOKEN', '')
+BING_API_KEY = os.environ.get('BING_API_KEY', None)
+
+MAP_BASELAYERS = [{
+    "source": {"ptype": "gxp_olsource"},
+    "type": "OpenLayers.Layer",
+    "args": ["No background"],
+    "name": "background",
+    "visibility": False,
+    "fixed": True,
+    "group":"background"
+}, {
+    "source": {"ptype": "gxp_olsource"},
+    "type": "OpenLayers.Layer.XYZ",
+    "title": "UNESCO",
+    "args": ["UNESCO", "http://en.unesco.org/tiles/${z}/${x}/${y}.png"],
+    "wrapDateLine": True,
+    "name": "background",
+    "attribution": "&copy; UNESCO",
+    "visibility": False,
+    "fixed": True,
+    "group":"background"
+}, {
+    "source": {"ptype": "gxp_olsource"},
+    "type": "OpenLayers.Layer.XYZ",
+    "title": "UNESCO GEODATA",
+    "args": ["UNESCO GEODATA", "http://en.unesco.org/tiles/geodata/${z}/${x}/${y}.png"],
+    "name": "background",
+    "attribution": "&copy; UNESCO",
+    "visibility": False,
+    "wrapDateLine": True,
+    "fixed": True,
+    "group":"background"
+}, {
+    "source": {"ptype": "gxp_olsource"},
+    "type": "OpenLayers.Layer.XYZ",
+    "title": "Humanitarian OpenStreetMap",
+    "args": ["Humanitarian OpenStreetMap", "http://a.tile.openstreetmap.fr/hot/${z}/${x}/${y}.png"],
+    "name": "background",
+    "attribution": "&copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>, Tiles courtesy of <a href='http://hot.openstreetmap.org/' target='_blank'>Humanitarian OpenStreetMap Team</a>",
+    "visibility": False,
+    "wrapDateLine": True,
+    "fixed": True,
+    "group":"background"
+# }, {
+#     "source": {"ptype": "gxp_olsource"},
+#     "type": "OpenLayers.Layer.XYZ",
+#     "title": "MapBox Satellite Streets",
+#     "args": ["MapBox Satellite Streets", "http://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/${z}/${x}/${y}?access_token="+MAPBOX_ACCESS_TOKEN],
+#     "name": "background",
+#     "attribution": "&copy; <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> &copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <a href='https://www.mapbox.com/feedback/' target='_blank'>Improve this map</a>",
+#     "visibility": False,
+#     "wrapDateLine": True,
+#     "fixed": True,
+#     "group":"background"
+# }, {
+#     "source": {"ptype": "gxp_olsource"},
+#     "type": "OpenLayers.Layer.XYZ",
+#     "title": "MapBox Streets",
+#     "args": ["MapBox Streets", "http://api.mapbox.com/styles/v1/mapbox/streets-v9/tiles/${z}/${x}/${y}?access_token="+MAPBOX_ACCESS_TOKEN],
+#     "name": "background",
+#     "attribution": "&copy; <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> &copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <a href='https://www.mapbox.com/feedback/' target='_blank'>Improve this map</a>",
+#     "visibility": False,
+#     "wrapDateLine": True,
+#     "fixed": True,
+#     "group":"background"
+}, {
+    "source": {"ptype": "gxp_osmsource"},
+    "type": "OpenLayers.Layer.OSM",
+    "title": "OpenStreetMap",
+    "name": "mapnik",
+    "attribution": "&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors",
+    "visibility": True,
+    "wrapDateLine": True,
+    "fixed": True,
+    "group": "background"
+}]
+
+if 'geonode.geoserver' in INSTALLED_APPS:
+    LOCAL_GEOSERVER = {
+        "source": {
+            "ptype": "gxp_wmscsource",
+            "url": OGC_SERVER['default']['PUBLIC_LOCATION'] + "wms",
+            "restUrl": "/gs/rest"
+        }
+    }
+    baselayers = MAP_BASELAYERS
+    MAP_BASELAYERS = [LOCAL_GEOSERVER]
+    MAP_BASELAYERS.extend(baselayers)
+
+# notification settings
+NOTIFICATION_ENABLED = True
+
+# notifications backends
+_EMAIL_BACKEND = "pinax.notifications.backends.email.EmailBackend"
+PINAX_NOTIFICATIONS_BACKENDS = [
+    ("email", _EMAIL_BACKEND),
+]
+
+# Queue non-blocking notifications.
+PINAX_NOTIFICATIONS_QUEUE_ALL = False
+PINAX_NOTIFICATIONS_LOCK_WAIT_TIMEOUT = -1
+
+# pinax.notifications
+# or notification
+NOTIFICATIONS_MODULE = 'pinax.notifications'
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+# add following lines to your local settings to enable monitoring
+if MONITORING_ENABLED:
+    if 'geonode.contrib.ows_api' not in INSTALLED_APPS:
+        INSTALLED_APPS += ('geonode.contrib.ows_api',)
+    if 'geonode.contrib.monitoring' not in INSTALLED_APPS:
+        INSTALLED_APPS += ('geonode.contrib.monitoring',)
+    if 'geonode.contrib.monitoring.middleware.MonitoringMiddleware' not in MIDDLEWARE_CLASSES:
+        MIDDLEWARE_CLASSES += ('geonode.contrib.monitoring.middleware.MonitoringMiddleware',)
+
+    MONITORING_CONFIG = None
+    MONITORING_HOST_NAME = os.getenv("MONITORING_HOST_NAME", hostname)
+    MONITORING_SERVICE_NAME = 'geonode'
+    MONITORING_HOST_NAME = SITE_HOST_NAME
+
+GEOIP_PATH = os.path.join(os.path.dirname(__file__), '..', 'GeoLiteCity.dat')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d '
+                      '%(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(message)s',
+        },
+    },
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'console': {
+            'level': "INFO",
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'mail_admins': {
+            'level': 'INFO', 'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler',
+        }
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console"], "level": "INFO", },
+        "geonode": {
+            "handlers": ["console"], "level": "INFO", },
+        "gsconfig.catalog": {
+            "handlers": ["console"], "level": "INFO", },
+        "owslib": {
+            "handlers": ["console"], "level": "INFO", },
+        "pycsw": {
+            "handlers": ["console"], "level": "INFO", },
+        "masdap": {
+            "handlers": ["console"], "level": "INFO", },
+        },
+    }
