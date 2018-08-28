@@ -144,6 +144,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - statics:/mnt/volumes/statics
       - geoserver-data-dir:/geoserver_data/data
+      - ./masdap:/usr/src/masdap/masdap
     environment:
        DJANGO_SETTINGS_MODULE: masdap.settings
        GEONODE_INSTANCE_NAME: geonode

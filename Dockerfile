@@ -50,4 +50,6 @@ RUN chmod +x /usr/src/masdap/tasks.py \
 RUN pip install --upgrade --no-cache-dir --src /usr/src -r requirements.txt
 RUN pip install --upgrade -e .
 
+VOLUME /usr/src/masdap/masdap
+
 ENTRYPOINT ["/usr/src/masdap/entrypoint.sh"]
