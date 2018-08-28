@@ -1,76 +1,66 @@
 Masdap
 ========================
 
-MASDAP (Malawi Spatial Data Platform) is a GeoNode customization based on geonode-project. 
+Start your server
+-----------------
 
-Installation
-------------
+You need Docker 1.12 or higher.
 
-Install the native dependencies for your platform.
+1. Run `docker-compose` to start it up
 
-Install virtualenv and virtualenvwrapper, Create a local virtual environment for your project and install Django into it.::
+   .. code:: bash
 
-    $ mkvirtualenv geonode
-    $ source geonode/bin/activate
-    $ git clone -b 2.4.x https://github.com/GeoNode/geonode.git
+     docker-compose build --no-cache
+     docker-compose up -d
+     
+   **NOTE for Windows users**: In case you're using the native Docker for Windows (on Hyper-V) you will probably be affected by an error related to mounting the /var/run/docker.sock volume. It's due to a `problem with the current version of Docker Compose <https://github.com/docker/for-win/issues/1829>`_ for Windows.
+   In this case you need to set the **COMPOSE_CONVERT_WINDOWS_PATHS** environmental variable:
+   
+   .. code-block:: none
+   
+      set COMPOSE_CONVERT_WINDOWS_PATHS=1 
+   
+   before running docker-compose up
 
-Create a new template based on the geonode example project.::
-    
-    $ django-admin.py startproject masdap --template=https://github.com/GeoNode/geonode-project/archive/2.4.zip -epy,rst
+2. Access the site on http://localhost/
 
-.. note:: You should NOT use the name geonode for your project as it will conflict with the default geonode package name.
 
-Install the dependencies for your geonode project into your local virtual environment::
+If you want to run the instance on a public site
+------------------------------------------------
 
-    $ pip install -e masdap
+Preparation of the image (First time only)
+++++++++++++++++++++++++++++++++++++++++++
 
-Install and Configure GeoServer
+.. note:: In this example we are going to publish to the public IP http://123.456.789.111
 
-.. note:: At this point, you should put your project under version control using Git or similar.
+.. code:: bash
 
-Using ansible for Automated Deploys
------------------------------------
+  vim docker-compose.override.yml
+    --> replace localhost with 123.456.789.111 everywhere
 
-In order to install for production on a remote machine or to a local VM for development, you will need to install ansible::
+Startup the image
++++++++++++++++++
 
-     $ sudo pip install ansible
+.. code:: bash
 
-Note: It is advisable to install ansible system wide using sudo
+  docker-compose up --build -d
 
-Next, you will need to install the ansible role for geonode::
 
-     $ ansible-galaxy install ortelius.geonode
-
-Setting up a vagrant box
+To Stop the Docker Images
 -------------------------
 
-Setup VirtualBox and install vagrant, then setup your virtual machine with::
+.. code:: bash
 
-    $ vagrant up
+  docker-compose stop
 
-Note: the vagrant installation uses Ansible, so you will need to follow the steps in the previous section.
 
-Usage in production
--------------------
+To Fully Wipe-out the Docker Images
+-----------------------------------
 
-Update /etc/ansible/hosts to include your webservers host or dns entry::
+.. warning:: This will wipe out all the repositories created until now.
 
-    [webservers]
-    ###.###.###.###
+.. note:: The images must be stopped first
 
-Then you can run the playbook to install the masdap  project::
+.. code:: bash
 
-    $ ansible-playbook playbook.yml
-
-Basic Usage
------------
-
-Setup the database::
-
-    $ python manage.py syncdb
-
-.. note:: You will be asked to provide credentials for the superuser account.
-
-Start the development server::
-
-    $ python manage.py runserver
+  docker system prune -a
