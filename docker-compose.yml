@@ -52,7 +52,7 @@ services:
       - db
       - elasticsearch
       - rabbitmq
-    # command: celery worker --app=masdap.celeryapp:app -B -l INFO
+    entrypoint: celery worker --app=masdap.celeryapp:app --broker=amqp://guest:guest@rabbitmq:5672/ -B -l INFO
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - statics:/mnt/volumes/statics
@@ -139,7 +139,7 @@ services:
       - elasticsearch
       - rabbitmq
       - data-dir-conf
-    # command: paver start_django -b 0.0.0.0:8000
+#    entrypoint: tail -f /dev/null
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - statics:/mnt/volumes/statics
