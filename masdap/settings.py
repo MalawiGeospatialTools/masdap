@@ -126,6 +126,10 @@ LANGUAGE_CODE = os.getenv('LANGUAGE_CODE', "en")
 
 if PROJECT_NAME not in INSTALLED_APPS:
     INSTALLED_APPS += (PROJECT_NAME,)
+INSTALLED_APPS += ('contact', 'nocaptcha_recaptcha', 'account_captcha')
+
+NORECAPTCHA_SITE_KEY = 'add_it_in_local_settings_file'
+NORECAPTCHA_SECRET_KEY = 'add_it_in_local_settings_file'
 
 # Location of url mappings
 ROOT_URLCONF = os.getenv('ROOT_URLCONF', '{}.urls'.format(PROJECT_NAME))
@@ -420,3 +424,8 @@ LOGGING = {
             "handlers": ["console"], "level": "INFO", },
         },
     }
+
+try:
+    import local_settings
+except ImportError:
+    pass

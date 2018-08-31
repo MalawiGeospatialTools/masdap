@@ -140,6 +140,7 @@ services:
       - rabbitmq
       - data-dir-conf
 #    entrypoint: tail -f /dev/null
+#    entrypoint: python manage.py runserver 0.0.0.0:8000 --settings=masdap.settings
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - statics:/mnt/volumes/statics
