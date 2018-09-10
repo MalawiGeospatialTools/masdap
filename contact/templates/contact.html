@@ -1,0 +1,27 @@
+{% extends 'site_base.html' %}
+{% load i18n %}
+
+{% block title %}{{ block.super }} {% trans "Contact Us" %}{% endblock %}
+{% block page-title %}{% trans "Contact Us" %}{% endblock %}
+
+{% block body %}
+<p class="lead">Please fill in the form below.</p>
+<form role="form" action="" class="form-horizontal" method="post">
+	<div class="row">
+		<div class="col-md-6">
+			{% csrf_token %}
+			{{ form.as_p }}
+		</div>
+		<div class="clearfix"></div>
+		<div class="col-md-6">
+			<div class="g-recaptcha" data-sitekey="6LdRASkTAAAAAK8YOn0MymwI5IHTqKeWbgspciEB"></div>
+			<button type="submit" class="btn btn-primary btn-block">{% trans "Submit" %}</button>
+		</div>
+	</div>
+</form>
+{% endblock %}
+
+
+{% block extra_script %}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{% endblock extra_script %}

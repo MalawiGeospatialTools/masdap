@@ -29,7 +29,9 @@ urlpatterns += [
 ]
 
 urlpatterns = [
-   url(r'^/?$',
+    url(r'^/?$',
        TemplateView.as_view(template_name='site_index.html'),
        name='home'),
+    url(r'^account/signup/', include('account_captcha.urls')),
+    url(r'^contact/', include('contact.urls'))
  ] + urlpatterns

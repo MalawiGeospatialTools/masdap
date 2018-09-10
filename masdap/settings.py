@@ -22,12 +22,8 @@
 import ast
 import os
 from urlparse import urlparse, urlunparse
-# Load more settings from a file called local_settings.py if it exists
-try:
-    from geonode.local_settings import *
-#    from masdap.local_settings import *
-except ImportError:
-    from geonode.settings import *
+
+from geonode.settings import *
 
 DEBUG = os.environ.get('DEBUG', True)
 
@@ -62,6 +58,42 @@ except ValueError:
 
 PROXY_ALLOWED_HOSTS += ('nominatim.openstreetmap.org',)
 
+DATABASES = {
+    'datastore': {
+        'ATOMIC_REQUESTS': False,
+        'AUTOCOMMIT': True,
+        'CONN_MAX_AGE': 600,
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'HOST': 'db',
+        'NAME': 'geonode_data',
+        'OPTIONS': {},
+        'PASSWORD': os.getenv('GEONODE_GEODATABASE_PASSWORD'),
+        'PORT': 5432,
+        'TEST': {
+            'CHARSET': None,
+            'COLLATION': None,
+            'MIRROR': None,
+            'NAME': None},
+        'TIME_ZONE': 'UTC',
+        'USER': 'geonode_data'},
+    'default': {
+        'ATOMIC_REQUESTS': False,
+        'AUTOCOMMIT': True,
+        'CONN_MAX_AGE': 600,
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': 'db',
+        'NAME': 'geonode',
+        'OPTIONS': {},
+        'PASSWORD': os.getenv('GEONODE_DATABASE_PASSWORD'),
+        'PORT': 5432,
+        'TEST': {
+            'CHARSET': None,
+            'COLLATION': None,
+            'MIRROR': None,
+            'NAME': None},
+        'TIME_ZONE': 'UTC',
+        'USER': 'geonode'}}
+
 # AUTH_IP_WHITELIST property limits access to users/groups REST endpoints
 # to only whitelisted IP addresses.
 #
@@ -94,6 +126,10 @@ LANGUAGE_CODE = os.getenv('LANGUAGE_CODE', "en")
 
 if PROJECT_NAME not in INSTALLED_APPS:
     INSTALLED_APPS += (PROJECT_NAME,)
+INSTALLED_APPS += ('contact', 'nocaptcha_recaptcha', 'account_captcha')
+
+NORECAPTCHA_SITE_KEY = 'add_it_in_local_settings_file'
+NORECAPTCHA_SECRET_KEY = 'add_it_in_local_settings_file'
 
 # Location of url mappings
 ROOT_URLCONF = os.getenv('ROOT_URLCONF', '{}.urls'.format(PROJECT_NAME))
@@ -388,3 +424,8 @@ LOGGING = {
             "handlers": ["console"], "level": "INFO", },
         },
     }
+
+try:
+    import local_settings
+except ImportError:
+    pass
