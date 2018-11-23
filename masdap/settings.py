@@ -131,6 +131,41 @@ INSTALLED_APPS += ('contact', 'nocaptcha_recaptcha', 'account_captcha')
 NORECAPTCHA_SITE_KEY = 'add_it_in_local_settings_file'
 NORECAPTCHA_SECRET_KEY = 'add_it_in_local_settings_file'
 
+# include wagtail
+INSTALLED_APPS += (
+    'compressor',
+    'wagtail.wagtailforms',
+    'wagtail.wagtailredirects',
+    'wagtail.wagtailembeds',
+    'wagtail.wagtailsites',
+    'wagtail.wagtailusers',
+    'wagtail.wagtailsnippets',
+    'wagtail.wagtaildocs',
+    'wagtail.wagtailimages',
+    'wagtail.wagtailsearch',
+    'wagtail.wagtailadmin',
+    'wagtail.wagtailcore',
+    'wagtail.contrib.wagtailsitemaps',
+    'wagtail.contrib.wagtailroutablepage',
+    'django_social_share',
+
+    'modelcluster',
+#    'taggit' is already present in the installed apps
+    )
+
+# include puput
+INSTALLED_APPS += (
+    'blog',
+    'puput',
+    )
+
+MIDDLEWARE_CLASSES += (
+    'wagtail.wagtailcore.middleware.SiteMiddleware',
+    'wagtail.wagtailredirects.middleware.RedirectMiddleware',
+    )
+
+WAGTAIL_SITE_NAME = 'MASDAP Blog'
+
 # Location of url mappings
 ROOT_URLCONF = os.getenv('ROOT_URLCONF', '{}.urls'.format(PROJECT_NAME))
 
@@ -155,6 +190,10 @@ loaders = TEMPLATES[0]['OPTIONS'].get('loaders') or ['django.template.loaders.fi
 # loaders.insert(0, 'apptemplates.Loader')
 TEMPLATES[0]['OPTIONS']['loaders'] = loaders
 TEMPLATES[0].pop('APP_DIRS', None)
+
+# puput settings
+PUPUT_AS_PLUGIN = True
+MIGRATION_MODULES = {'puput': 'masdap.puput_migrations'}
 
 UNOCONV_ENABLE = strtobool(os.getenv('UNOCONV_ENABLE', 'True'))
 

@@ -1,0 +1,10 @@
+{% load wagtailimages_tags wagtailadmin_tags %}
+{% load i18n %}
+
+
+{{ page.maps.center_x }}-{{ page.maps.center_y }}
+
+<div class="col-xs-4 item-thumb">
+    <a href="{{ page.maps.detail_url }}"><img src="{{ page.maps.thumbnail_url }}" /></a>
+</div>
+<div id="the_map"></div>
