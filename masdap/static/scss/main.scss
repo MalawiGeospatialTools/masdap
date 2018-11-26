@@ -53,7 +53,7 @@ form {
 /* ------ Nav
 ------------------------------ */
 .navbar-inverse {
-	background-color: $gray-dark;
+	background-color: $gray-darker;
 	border: 0;
 
 	.navbar-nav > li > a {
@@ -112,7 +112,7 @@ form {
 	.search input {
 		width: 120px;
 		height: 32px;
-		border: 1px solid $gray-dark;
+		border: 1px solid $gray-darker;
 		border-radius: 5px;
 		outline-width: 0;
 		text-indent: 32px;
@@ -249,7 +249,7 @@ section#contact {
 }
 
 footer {
-	background: $gray-dark;
+	background: $gray-darker;
 	color: white;
 	padding-bottom: 3em;
 	padding-top: 2em;
@@ -317,7 +317,7 @@ footer {
 	}
 
 	.big-search {
-		background: $gray-dark;
+		background: $gray-darker;
 		color: white;
 
 		h1,
@@ -344,7 +344,7 @@ footer {
 		.search input {
 			width: 100%;
 			height: 56px;
-			border: 1px solid $gray-dark;
+			border: 1px solid $gray-darker;
 			border-radius: 5px;
 			outline-width: 0;
 			font-size: 1.5em;
@@ -783,7 +783,7 @@ footer {
 ------------------------------ */
 nav.filter {
 	h4 {
-		background: $gray-dark;
+		background: $gray-darker;
 		font-size: 14px;
 		font-weight: 600;
 		padding: 10px 0;
@@ -1332,7 +1332,7 @@ nav.filter {
 	}
 
 	.home .navbar-inverse {
-		background-color: $gray-dark;
+		background-color: $gray-darker;
 	}
 
 	.navbar-inverse {
