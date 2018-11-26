@@ -8207,40 +8207,37 @@ body {
 a {
   color: #ff3c31; }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-weight: 700; }
 
+/*
 select {
-  background: white;
-  border: 1px solid #777777;
-  height: 30px;
-  line-height: 30px; }
+	background: white;
+	border: 1px solid $gray-light;
+	height: 30px;
+	line-height: 30px;
+}
 
 code {
-  background-color: #eeeeee;
-  color: #1fa0a0;
-  white-space: pre-wrap;
-  /* css-3 */
-  white-space: -moz-pre-wrap;
-  /* Mozilla, since 1999 */
-  white-space: -pre-wrap;
-  /* Opera 4-6 */
-  white-space: -o-pre-wrap;
-  /* Opera 7 */
-  word-wrap: break-word;
-  /* Internet Explorer 5.5+ */ }
+	background-color: $gray-lighter;
+	color: $brand-info;
+	white-space: pre-wrap;
+	white-space: -moz-pre-wrap;
+	white-space: -pre-wrap;
+	white-space: -o-pre-wrap;
+	word-wrap: break-word;
+}
 
-form label {
-  margin-right: 2.5em; }
-form input {
-  /*border: 1px solid $gray;*/
-  padding: 5px; }
+form {
+	label {
+		margin-right: 2.5em;
+	}
 
+	input {
+		padding: 5px;
+	}
+}
+*/
 /* ------ Nav
 ------------------------------ */
 .navbar-inverse {
@@ -8322,7 +8319,6 @@ form input {
 header {
   background: #ff3c31;
   color: white;
-  margin-top: 60px;
   margin-bottom: 2em;
   padding-top: 1em;
   padding-bottom: 1em; }
@@ -8364,7 +8360,6 @@ article.tab-pane {
 
 section#subheader {
   background: white;
-  /*box-shadow: 1px 1px 2px rgba(0,0,0,0.1);*/
   border-bottom: 1px solid #eeeeee;
   margin-bottom: 1em;
   margin-top: -2em;
@@ -8390,36 +8385,36 @@ footer {
   background: #333333;
   color: white;
   padding-bottom: 3em;
-  padding-top: 2em; }
+  padding-top: 2em;
+  /*select {
+  	-webkit-appearance: none;
+  	-moz-appearance: none;
+  	appearance: none;
+  	border-radius: 0;
+  	border-radius: 2px;
+  	border: 1px solid white;
+  	padding: 0 0.5em;
+  }*/ }
   footer a {
     color: #ff3c31; }
   footer img {
     margin-right: -10px;
     width: 50%; }
-  footer select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background: #333333;
-    border-radius: 0;
-    border-radius: 2px;
-    border: 1px solid white;
-    padding: 0 0.5em; }
 
 /* ------ Home
 ------------------------------ */
 .home .navbar-inverse {
   background-color: rgba(0, 0, 0, 0.5); }
 .home #wrap {
-  margin-top: 0;
-  padding-bottom: 0; }
+  padding-bottom: 0;
+  padding-top: 0; }
 .home .jumbotron {
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2)), url("../img/lake-malawi.jpg") no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2)), url("../img/hero.jpg") no-repeat;
   background-position: center;
   background-size: cover;
   color: white;
   margin-bottom: 0;
-  padding: 7.5em 0 3.75em;
+  padding: 10em 0 5em;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4); }
   .home .jumbotron a {
     color: #ff8f31; }
@@ -8463,7 +8458,7 @@ footer {
     text-indent: 64px; }
   .home .big-search .search .fa-search {
     position: absolute;
-    top: 10px;
+    top: 12px;
     left: 15px; }
   .home .big-search .btn-default {
     background: transparent;
@@ -8509,7 +8504,6 @@ footer {
     font-size: 18px; }
 .home #osm {
   background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 50%, #ff3c31 50%, #ff3c31 100%), url("../img/osm-02.jpg") no-repeat;
-  /*background-size: cover;*/
   min-height: 320px;
   padding: 0; }
   .home #osm .col-md-8 {
@@ -9148,13 +9142,6 @@ nav.filter li a {
 
 /* Blog
    ----------------------------- */
-body.blog h1 {
-  margin-top: -0.5em; }
-
-.page-content p {
-  font-size: 1.125em;
-  line-height: 1.5em; }
-
 ul.links {
   margin: 0 0 1.5em;
   padding: 5px 0; }

@@ -18,15 +18,11 @@ a {
 	color: $brand-primary;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
 	font-weight: $headings-font-weight;
 }
 
+/*
 select {
 	background: white;
 	border: 1px solid $gray-light;
@@ -38,15 +34,10 @@ code {
 	background-color: $gray-lighter;
 	color: $brand-info;
 	white-space: pre-wrap;
-	/* css-3 */
 	white-space: -moz-pre-wrap;
-	/* Mozilla, since 1999 */
 	white-space: -pre-wrap;
-	/* Opera 4-6 */
 	white-space: -o-pre-wrap;
-	/* Opera 7 */
 	word-wrap: break-word;
-	/* Internet Explorer 5.5+ */
 }
 
 form {
@@ -55,10 +46,10 @@ form {
 	}
 
 	input {
-		/*border: 1px solid $gray;*/
 		padding: 5px;
 	}
 }
+*/
 /* ------ Nav
 ------------------------------ */
 .navbar-inverse {
@@ -175,7 +166,6 @@ form {
 header {
 	background: $brand-primary;
 	color: white;
-	margin-top: 60px;
 	margin-bottom: 2em;
 	padding-top: 1em;
 	padding-bottom: 1em;
@@ -230,7 +220,6 @@ article.tab-pane {
 
 section#subheader {
 	background: white;
-	/*box-shadow: 1px 1px 2px rgba(0,0,0,0.1);*/
 	border-bottom: 1px solid $gray-lighter;
 	margin-bottom: 1em;
 	margin-top: -2em;
@@ -274,16 +263,15 @@ footer {
 		width: 50%;
 	}
 
-	select {
+	/*select {
 		-webkit-appearance: none;
 		-moz-appearance: none;
 		appearance: none;
-		background: $gray-dark;
 		border-radius: 0;
 		border-radius: 2px;
 		border: 1px solid white;
 		padding: 0 0.5em;
-	}
+	}*/
 }
 /* ------ Home
 ------------------------------ */
@@ -293,17 +281,17 @@ footer {
 	}
 
 	#wrap {
-		margin-top: 0;
 		padding-bottom: 0;
+    padding-top: 0;
 	}
 
 	.jumbotron {
-		background: linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2) ), url('../img/lake-malawi.jpg') no-repeat;
+		background: linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2) ), url('../img/hero.jpg') no-repeat;
 		background-position: center;
 		background-size: cover;
 		color: white;
 		margin-bottom: 0;
-		padding: 7.5em 0 3.75em;
+		padding: 10em 0 5em;
 		text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
 
 		a {
@@ -368,7 +356,7 @@ footer {
 
 		.search .fa-search {
 			position: absolute;
-			top: 10px;
+			top: 12px;
 			left: 15px;
 		}
 
@@ -449,7 +437,6 @@ footer {
 
 	#osm {
 		background: linear-gradient( to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 50%, $brand-primary 50%, $brand-primary 100% ), url("../img/osm-02.jpg") no-repeat;
-		/*background-size: cover;*/
 		min-height: 320px;
 		padding: 0;
 
@@ -558,7 +545,7 @@ footer {
 			&:hover {
 				color: $gray;
 				text-decoration: none;
-			};
+			}
 		}
 	}
 }
@@ -1369,18 +1356,6 @@ nav.filter {
 }
 /* Blog
    ----------------------------- */
-body.blog {
-	h1 {
-		margin-top: -0.5em;
-	}
-
-	article.box {}
-}
-
-.page-content p {
-	font-size: 1.125em;
-	line-height: 1.5em;
-}
 
 ul.links {
 	margin: 0 0 1.5em;
