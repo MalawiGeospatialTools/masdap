@@ -31,12 +31,14 @@
             <article class="box page-content blog_grid">
                 {% include 'masdap/entry_page_header.html' %}
                 {% if entry.header_image %}
+                <a href="{% entry_url entry blog_page %}">
                     <section>
                         <span class="img-responsive">
                             {% image entry.header_image fill-800x240 as header_image %}
                             <img alt="{{ entry.header_image.title }}" src="{{ header_image.url }}">
                         </span>
                     </section>
+                </a>
                 {% endif %}
                 <section class="article">
                     {% if entry.excerpt %}

@@ -456,6 +456,10 @@ footer {
 		p {
 			font-size: 18px;
 		}
+    a:hover {
+      background: darken($link-hover-color, 10%);
+      color: inherit;
+    }
 	}
 }
 /* autocomplete
@@ -1361,26 +1365,31 @@ nav.filter {
 ul.links {
 	margin: 0 0 1.5em;
 	padding: 5px 0;
-
-	.category {
-		text-transform: uppercase;
-	}
+  li {
+  	color: $gray-light;
+  	font-size: 1em;
+  	margin-right: 0.875em;
+  	display: inline-block;
+  }
+  li.category {
+    text-transform: uppercase;
+    a {
+      color: $gray;
+    }
+  }
 }
-
-ul.links li {
-	color: $gray-light;
-	font-size: 1em;
-	margin-right: 0.875em;
-	display: inline-block;
-}
-
-ul.links li i {}
-
-ul.links li a {}
 
 ul.links li ul {
 	display: inline;
 	padding: 0;
+}
+
+.blog {
+  h1 {
+    a {
+      color: $text-color;
+    }
+  }
 }
 
 ul.sidebar {
