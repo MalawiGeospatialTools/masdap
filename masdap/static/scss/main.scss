@@ -398,7 +398,8 @@ footer {
 				padding: 2em 0;
 
 				&:hover {
-					background: $link-hover-color;
+					background: darken($link-hover-color, 10%);
+          color: inherit;
 				}
 			}
 

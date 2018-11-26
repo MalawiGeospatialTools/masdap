@@ -8484,7 +8484,8 @@ footer {
       margin: 0 -15px;
       padding: 2em 0; }
       .home #datasets a .category:hover {
-        background: #e40c00; }
+        background: #b10900;
+        color: inherit; }
     .home #datasets a span {
       font-size: 4em; }
 .home #resiliance {
