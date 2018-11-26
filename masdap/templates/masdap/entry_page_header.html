@@ -12,13 +12,13 @@
 
         {% if entry.tags.count > 0 %}
             <li>
-                <i class="fas fa-tag"></i>
+                <i class="fa fa-tag" aria-hidden="true"></i>
                 {% tags_list blog_page.num_tags_entry_header entry.tags %}
             </li>
         {% endif %}
         {% if blog_page.disqus_api_secret %}
             <li>
-                <i class="fas fa-comments"></i>
+                <i class="fa fa-comment-o" aria-hidden="true"></i>
                 {{ entry.num_comments }}
             </li>
         {% endif %}
