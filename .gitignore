@@ -1,1 +1,17 @@
+# build artifacts
 *.pyc
+*.egg-info
+build
+target
+pip-log.txt
+MANIFEST
+dist
+.idea/
+.vscode/
+.pytest_cache/
+
+.sass-cache
+
+# OSX specific
+.Python
+.DS_Store

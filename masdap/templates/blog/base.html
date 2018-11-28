@@ -25,14 +25,14 @@
       <div class="blog_sidebar">
         <div class="rss-sitemap">
           <a href="{% feeds_url blog_page %}" target="_blank" title="RSS">
-            <i class="fas fa-rss-square"></i> <span>Feed RSS</span>
+            <i class="fa fa-rss" aria-hidden="true"></i> <span>Feed RSS</span>
           </a>
         </div>
         <form name="search_form" class="search_form" method="get" action="{% routablepageurl blog_page "entries_search" %}">
           <div class="input-group">
             <input type="search" name="q" placeholder="{% trans 'Search' %}">
             <span class="input-group-btn">
-              <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
+              <button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
             </span>
           </div>
         </form>
