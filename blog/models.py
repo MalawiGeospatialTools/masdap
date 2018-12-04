@@ -21,10 +21,12 @@ from puput.utils import import_model, get_image_model_path
 from puput.routes import BlogRoutes
 from puput.managers import TagManager, CategoryManager, BlogManager
 
-from puput.models import BlogPage
+from puput.models import EntryPage, BlogPage
 from geonode.maps.models import Map
 
-class BlogMap(BlogPage):
+register_snippet(Map)
+
+class MapEntryPage(EntryPage):
     map = models.ForeignKey(
         'maps.Map',
         null=True,
@@ -32,9 +34,7 @@ class BlogMap(BlogPage):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-
-    content_panels = BlogPage.content_panels + [
+    content_panels = EntryPage.content_panels + [
         SnippetChooserPanel('map'),
     ]
-
-register_snippet(Map)
+BlogPage.subpage_types.append(MapEntryPage)
