@@ -169,16 +169,13 @@ header {
 	margin-bottom: 2em;
 	padding-top: 1em;
 	padding-bottom: 1em;
-
 	.btn-primary {
 		background: darken($brand-primary, 13.5%);
 		border: 1px solid darken($brand-primary, 13.5%);
-
 		&:hover {
 			background: darken($brand-primary, 13.5%);
 		}
 	}
-
 	.btn-icon {
 		background: darken($brand-primary, 20%);
 		border: 1px solid darken($brand-primary, 20%);
@@ -779,6 +776,21 @@ footer {
 		}
 	}
 }
+/* ------ Contact
+------------------------------ */
+.contact {
+	.form-horizontal {
+		padding-bottom: 6rem;
+	}
+	form input, textarea {
+		border: 1px solid $gray-light;
+		max-height: 8em;
+		padding: 0.5em;
+		width: 100%;
+	}
+}
+
+
 /* ------ Search
 ------------------------------ */
 nav.filter {
@@ -1524,7 +1536,7 @@ span img {
 
 .blog_sidebar form.search_form input[type="search"] {
 	width: 100%;
-	border: 1px solid $gray-lighter;
+	border: 1px solid $gray-light;
 	padding: 6px 10px;
 }
 
