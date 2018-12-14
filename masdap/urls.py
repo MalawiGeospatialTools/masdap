@@ -23,13 +23,16 @@ from django.views.generic import TemplateView
 
 from geonode.urls import urlpatterns
 
+from wagtail.wagtailadmin import urls as wagtailadmin_urls
+from wagtail.wagtaildocs import urls as wagtaildocs_urls
+from wagtail.wagtailcore import urls as wagtail_urls
+
 urlpatterns += [
-## include your urls here
-
+    url(r'^/?$',
+        TemplateView.as_view(template_name='site_index.html'),
+        name='home'),
+    url(r'^cms/', include(wagtailadmin_urls)),
+    url(r'^docs/', include(wagtaildocs_urls)),
+    url(r'^blog/', include('puput.urls')),
+    url(r'^blog/', include(wagtail_urls)),
 ]
-
-urlpatterns = [
-   url(r'^/?$',
-       TemplateView.as_view(template_name='site_index.html'),
-       name='home'),
- ] + urlpatterns

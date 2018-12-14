@@ -77,3 +77,36 @@ UNOCONV_ENABLE = strtobool(os.getenv('UNOCONV_ENABLE', 'True'))
 if UNOCONV_ENABLE:
     UNOCONV_EXECUTABLE = os.getenv('UNOCONV_EXECUTABLE', '/usr/bin/unoconv')
     UNOCONV_TIMEOUT = os.getenv('UNOCONV_TIMEOUT', 30)  # seconds
+
+INSTALLED_APPS += (
+    'compressor',
+    'wagtail.wagtailforms',
+    'wagtail.wagtailredirects',
+    'wagtail.wagtailembeds',
+    'wagtail.wagtailsites',
+    'wagtail.wagtailusers',
+    'wagtail.wagtailsnippets',
+    'wagtail.wagtaildocs',
+    'wagtail.wagtailimages',
+    'wagtail.wagtailsearch',
+    'wagtail.wagtailadmin',
+    'wagtail.wagtailcore',
+    'wagtail.contrib.wagtailsitemaps', #required by puput
+    'wagtail.contrib.wagtailroutablepage', #required by puput
+    'django_social_share', #required by puput
+#   'taggit' is required but it is already present in GN installed apps
+    'modelcluster',
+    'puput',
+    'blog',
+    )
+
+MIDDLEWARE_CLASSES += (
+    'wagtail.wagtailcore.middleware.SiteMiddleware',
+    'wagtail.wagtailredirects.middleware.RedirectMiddleware',
+    )
+
+WAGTAIL_SITE_NAME = 'MASDAP Blog'
+
+PUPUT_AS_PLUGIN = True
+
+MIGRATION_MODULES = {'puput': 'masdap.puput_migrations'}
