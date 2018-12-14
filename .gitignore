@@ -66,3 +66,6 @@ development.db-journal
 local_settings.py
 
 .idea/
+
+# Mac
+.DS_Store
