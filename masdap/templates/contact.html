@@ -1,0 +1,28 @@
+{% extends "site_base.html" %}
+{% load i18n %}
+
+{% block body_class %}contact{% endblock %}
+
+{% block middle %}
+<header>
+  <div class="container">
+		<h3>Contact Us</h3>
+	</div>
+</header>
+<div class="container">
+	{% block body_outer %}
+	<div class="row">
+		<div class="col-md-8">
+      <form method="post" novalidate>
+
+        {% csrf_token %}
+  			{{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+	</div>
+	{% endblock %}
+</div>
+
+{% endblock middle %}
