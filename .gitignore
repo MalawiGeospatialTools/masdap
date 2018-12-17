@@ -69,3 +69,6 @@ local_settings.py
 
 # Mac
 .DS_Store
+
+# Sass
+.sass-cache
