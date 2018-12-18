@@ -1,50 +1,21 @@
+from django.core.mail import send_mail
+from django.shortcuts import render
+from django.views.generic import View
 from django.http import HttpResponse
-from masdap.forms import ContactForm
-from django.shortcuts import render, redirect
 
-from django.template.loader import get_template
-from django.core.mail import EmailMessage
-from django.template import Context
-from django.contrib import messages
+from .forms import ContactForm
 
 def contact(request):
-    form_class = ContactForm
-
     if request.method == 'POST':
-        form = form_class(data=request.POST)
-
+        form = ContactForm(request.POST)
         if form.is_valid():
-            contact_name = request.POST.get(
-                'contact_name'
-            , '')
-            contact_email = request.POST.get(
-                'contact_email'
-            , '')
-            form_content = request.POST.get('content', '')
+            sender_name = form.cleaned_data['name']
+            sender_email = form.cleaned_data['email']
 
-            # Email the profile with the
-            # contact information
-            template = get_template('contact_template.txt')
-            context = Context({
-                'contact_name': contact_name,
-                'contact_email': contact_email,
-                'form_content': form_content,
-            })
-            content = template.render(context)
+            message = "{0} has sent you a new message:\n\n{1}".format(sender_name, form.cleaned_data['message'])
+            send_mail('New Enquiry', message, sender_email, ['masdap.mw@gmail.com'])
+            return HttpResponse('Thanks for contacting us!')
+    else:
+        form = ContactForm()
 
-            email = EmailMessage(
-                "New contact form submission on MASDAP",
-                content,
-                'masdap.mw@gmail.com',
-                ['masdap.mw@gmail.com'],
-                cc=(contact_email,),
-                headers = {'Reply-To': contact_email }
-            )
-            email.send()
-            messages.success(request, 'Contact email sent')
-            return redirect('contact')
-        else:
-            messages.error(request, 'The form is not valid. Please fill it in correctly and send it again.')
-    return render(request, 'contact.html', {
-        'form': form_class,
-    })
+    return render(request, 'contact.html', {'form': form})

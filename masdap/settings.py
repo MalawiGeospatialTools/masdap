@@ -96,6 +96,7 @@ INSTALLED_APPS += (
     'django_social_share', #required by puput
 #   'taggit' is required but it is already present in GN installed apps
     'modelcluster',
+    'widget_tweaks', #for the contact form
     'puput',
     'blog',
     )
@@ -110,3 +111,11 @@ WAGTAIL_SITE_NAME = 'MASDAP Blog'
 PUPUT_AS_PLUGIN = True
 
 MIGRATION_MODULES = {'puput': 'masdap.puput_migrations'}
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'testing@example.com'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False
+EMAIL_PORT = 1025

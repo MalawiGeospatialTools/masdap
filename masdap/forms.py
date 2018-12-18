@@ -3,17 +3,15 @@ from django.conf import settings
 from django.utils.translation import ugettext as _
 
 
-# our new form
 class ContactForm(forms.Form):
-	contact_name = forms.CharField(required=True)
-	contact_email = forms.EmailField(required=True)
-	content = forms.CharField(
-		required=True,
-		widget=forms.Textarea
-	)
+	name = forms.CharField(max_length=100)
+	email = forms.EmailField()
+	message = forms.CharField(widget=forms.Textarea)
 
-	def __init__(self, *args, **kwargs):
-		super(ContactForm, self).__init__(*args, **kwargs)
-		self.fields['contact_name'].label = "Your name"
-		self.fields['contact_email'].label = "Your email"
-		self.fields['content'].label = "Your message"
+	def clean(self):
+		cleaned_data = super(ContactForm, self).clean()
+		name = cleaned_data.get('name')
+		email = cleaned_data.get('email')
+		message = cleaned_data.get('message')
+		if not name and not email and not message:
+			raise forms.ValidationError('You have to write somenthing!')
