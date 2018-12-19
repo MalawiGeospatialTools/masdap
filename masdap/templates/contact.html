@@ -14,7 +14,7 @@
 <div class="container">
 	{% block body_outer %}
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-6 col-md-offset-3">
 
       <form method="post" novalidate>
 
@@ -25,6 +25,14 @@
             {% for error in form.non_field_errors %}
               {{ error }}
             {% endfor %}
+          </div>
+        {% endif %}
+
+        {% if messages %}
+          <div class="alert alert-success" role="success">
+              {% for message in messages %}
+              {{ message }}
+              {% endfor %}
           </div>
         {% endif %}
 
