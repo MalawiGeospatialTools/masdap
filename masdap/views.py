@@ -20,7 +20,7 @@ def contact(request):
                 'masdap.mw@gmail.com',
                 ['masdap.mw@gmail.com'],
                 cc=(sender_email,),
-                headers = {'Reply-To': sender_email }
+                headers = {'Reply-To': sender_email}
             )
             email.send()
 
