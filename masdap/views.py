@@ -1,4 +1,4 @@
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.http import HttpResponse
@@ -13,9 +13,17 @@ def contact(request):
             sender_name = form.cleaned_data['name']
             sender_email = form.cleaned_data['email']
 
-            message = "{0} has sent you a new message:\n\n{1}".format(sender_name, form.cleaned_data['message'])
-            send_mail('New contact form submission on MASDAP', message, sender_email, ['masdap.mw@gmail.com'])
-            #return HttpResponse('Thanks for contacting us!')
+            sender_message = form.cleaned_data['message']
+            email = EmailMessage(
+                "New contact form submission on MASDAP",
+                sender_message,
+                'masdap.mw@gmail.com',
+                ['masdap.mw@gmail.com'],
+                cc=(sender_email,),
+                headers = {'Reply-To': sender_email }
+            )
+            email.send()
+
             messages.success(request, 'Thanks for reaching out! Your message has been sent.')
             return redirect('contact')
     else:
