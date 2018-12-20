@@ -72,6 +72,7 @@ form {
   margin-top: -70px;
   h2 {
     font-size: 28px;
+    font-weight: 400;
   }
   .btn-primary {
     border-color: white;
@@ -203,6 +204,9 @@ article.tab-pane {
 	  margin-top: -60px;
 	  padding-bottom: 0;
 	}
+  .banner {
+  	display: none;
+  }
 	.jumbotron {
 		background: linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2) ), url('../img/hero.jpg') no-repeat;
 		background-position: center;
