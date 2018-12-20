@@ -53,11 +53,11 @@
 	{% block header %}
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
-        <div class="navbar-header">
+      <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           <i class="fa fa-navicon fa-lg"></i>
         </button>
-        <a class="navbar-brand" href="{% url "home" %}">GeoNode</a>
+        <a class="navbar-brand" href="{% url "home" %}">MASDAP</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav toolbar">
@@ -162,8 +162,8 @@
                 <li><a href="{% url "help" %}">{% trans "Help" %}</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="{{SITEURL}}account/logout/">{% trans "Log out" %}</a></li>
-                </ul>
-              </li>
+              </ul>
+            </li>
           {% else %}
           <li><a href="#" data-toggle="modal" data-target="#SigninModal" role="button" >{% trans "Sign in" %} </a></li>
               {% endif %}
@@ -175,11 +175,12 @@
   <!-- End of Navbar -->
 
   <div id="wrap">
+		{% include "_status_message.html" %}
+		{% include "_announcements.html" %}
+		{% include "_messages.html" %}
+		<div class="banner"></div>
     {% block middle %}
     <div class="container">
-      {% include "_status_message.html" %}
-      {% include "_announcements.html" %}
-      {% include "_messages.html" %}
       {% block body_outer %}
       <div class="row">
         <div class="col-md-8">
