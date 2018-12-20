@@ -5,67 +5,60 @@
 
 {% block body_class %}contact{% endblock %}
 
-{% block middle %}
-<header>
-  <div class="container">
-		<h3>Contact Us</h3>
-	</div>
-</header>
-<div class="container">
-	{% block body_outer %}
-	<div class="row">
-		<div class="col-md-6 col-md-offset-3">
 
-      <form method="post" novalidate>
-
-        {% csrf_token %}
-
-        {% if form.non_field_errors %}
-          <div class="alert alert-danger" role="alert">
-            {% for error in form.non_field_errors %}
-              {{ error }}
-            {% endfor %}
-          </div>
-        {% endif %}
-
-        {% if messages %}
-          <div class="alert alert-success" role="success">
-              {% for message in messages %}
-              {{ message }}
-              {% endfor %}
-          </div>
-        {% endif %}
-
-        {% for field in form.visible_fields %}
-          <div class="form-group">
-            {{ field.label_tag }}
-
-            {% if form.is_bound %}
-              {% if field.errors %}
-                {% render_field field class="form-control is-invalid" %}
-                {% for error in field.errors %}
-                  <div class="invalid-feedback">
-                    {{ error }}
-                  </div>
-                {% endfor %}
-              {% else %}
-                {% render_field field class="form-control is-valid" %}
-              {% endif %}
-            {% else %}
-              {% render_field field class="form-control" %}
-            {% endif %}
-
-            {% if field.help_text %}
-              <small class="form-text text-muted">{{ field.help_text }}</small>
-            {% endif %}
-          </div>
-        {% endfor %}
-
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </div>
-	</div>
-	{% endblock %}
+{% block body %}
+<div class="page-header">
+  <h2 class="page-title">{% trans "Contact Us" %}</h2>
 </div>
 
-{% endblock middle %}
+
+<form method="post" novalidate>
+
+  {% csrf_token %}
+
+  {% if form.non_field_errors %}
+    <div class="alert alert-danger" role="alert">
+      {% for error in form.non_field_errors %}
+        {{ error }}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if messages %}
+    <div class="alert alert-success" role="success">
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+    </div>
+  {% endif %}
+
+  {% for field in form.visible_fields %}
+    <div class="form-group">
+      {{ field.label_tag }}
+
+      {% if form.is_bound %}
+        {% if field.errors %}
+          {% render_field field class="form-control is-invalid" %}
+          {% for error in field.errors %}
+            <div class="invalid-feedback">
+              {{ error }}
+            </div>
+          {% endfor %}
+        {% else %}
+          {% render_field field class="form-control is-valid" %}
+        {% endif %}
+      {% else %}
+        {% render_field field class="form-control" %}
+      {% endif %}
+
+      {% if field.help_text %}
+        <small class="form-text text-muted">{{ field.help_text }}</small>
+      {% endif %}
+    </div>
+  {% endfor %}
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+
+{% endblock %}
