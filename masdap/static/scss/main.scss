@@ -19,7 +19,7 @@ body {
   background: $gray-darker;
   font-family: $font-family-sans-serif;
   font-size: $font-size-base;
-  padding-top: 60px;
+  padding-top: 54px;
 }
 a {
   color: $brand-primary;
@@ -48,7 +48,7 @@ form {
     margin-right: 2.5em;
   }
   input {
-    border: 1px solid $gray-lighter;
+    border: 1px solid $gray-light;
     padding: 5px;
   }
 }
@@ -60,6 +60,23 @@ form {
   padding-bottom: 40px;
   padding-top: 10px;
   width: 100%;
+}
+.banner {
+	background: $brand-primary;
+	height: 64px;
+	width: 100%;
+}
+.page-header {
+  border: 0;
+  color: white;
+  margin-top: -70px;
+  h2 {
+    font-size: 28px;
+  }
+  .btn-primary {
+    border-color: white;
+    margin-top: -4px;
+  }
 }
 article.tab-pane {
   padding: 20px 0;
@@ -651,9 +668,9 @@ article.tab-pane {
 }
 nav.filter {
   h4 {
-    background: $gray;
+    background: $gray-dark;
     font-size: 14px;
-    font-weight: 300;
+		font-weight: 400;
     padding: 10px 0;
     text-transform: uppercase;
     border-radius: 3px;
@@ -1238,24 +1255,6 @@ form-inline {
 	display: inline-table;
 	vertical-align: middle;
 	width: auto;
-}
-.btn {
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: inherit;
-  touch-action: manipulation;
-  cursor: pointer;
-  background-image: none;
-  white-space: nowrap;
-  padding: 4px 8px;
-  line-height: 1.42857143;
-  border-radius: 4px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 .text_area {
 	visibility: hidden;
