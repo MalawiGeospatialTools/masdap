@@ -803,7 +803,11 @@ nav.filter {
 
 /* Upload Layers
 ----------------------- */
-
+.upload {
+  .banner {
+    margin-bottom: 2em;
+  }
+}
 #drop-zone {
   background: $gray-lighter;
   margin-bottom: 10px;
