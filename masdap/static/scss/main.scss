@@ -70,9 +70,12 @@ form {
   border: 0;
   color: white;
   margin-top: -70px;
+  #subheader {
+    border-bottom: 1px solid $gray-lighter;
+    color: $text-color;
+  }
   h2 {
     font-size: 28px;
-    font-weight: 400;
   }
   .btn-primary {
     border-color: white;

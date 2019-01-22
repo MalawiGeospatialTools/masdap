@@ -8260,9 +8260,11 @@ form input {
   border: 0;
   color: white;
   margin-top: -70px; }
+  .page-header #subheader {
+    border-bottom: 1px solid #eee;
+    color: #585858; }
   .page-header h2 {
-    font-size: 28px;
-    font-weight: 400; }
+    font-size: 28px; }
   .page-header .btn-primary {
     border-color: white;
     margin-top: -4px; }
