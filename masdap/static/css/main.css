@@ -8253,21 +8253,22 @@ form input {
 
 .banner {
   background: #ff3c31;
-  height: 64px;
+  padding-top: 6px;
+  padding-bottom: 6px;
   width: 100%; }
-
-.page-header {
-  border: 0;
-  color: white;
-  margin-top: -70px; }
-  .page-header #subheader {
-    border-bottom: 1px solid #eee;
-    color: #585858; }
-  .page-header h2 {
-    font-size: 28px; }
-  .page-header .btn-primary {
+  .banner .page-title {
+    border: 0;
+    color: white;
+    font-size: 28px;
+    margin-top: 16px; }
+  .banner .btn-primary {
     border-color: white;
     margin-top: -4px; }
+
+#subheader {
+  border-bottom: 1px solid #eee;
+  color: #585858;
+  margin-bottom: 1rem; }
 
 article.tab-pane {
   padding: 20px 0; }

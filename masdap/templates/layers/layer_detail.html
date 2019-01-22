@@ -27,35 +27,33 @@
 
 {% block body_class %}layers{% endblock %}
 
-{% block body_outer %}
-<div class="page-header">
-
-  <style> #paneltbar {margin-top: 1px !important;}</style>
-
-  <h2 class="page-title">{% trans "Explore Layers" %}</h2>
-  {% if online and storeType == 'remoteStore' %}<em><i class="fa fa-power-off {% if online %}text-success{% else %}text-danger{% endif %}"></i> {% trans "Service is" %} {% if online %}{% trans "online" %}{% else %}{% trans "offline" %}{% endif %} </em>{% endif %}
-
-  <section id="subheader">
-    <div class="container">
-      <div class="row">
-          <h2>{{ resource.title|default:resource.alternate }}</h2>
-          <p>
-            {{ resource.service_type }}
-				    {% if resource.category %}
-    					{% trans "in" %} <a href="{% url "search" %}?category__identifier__in={{ resource.category.identifier }}">{{ resource.category }}</a> |
-    				    {% endif %}
-    					{% if resource.date %}
-                {% if resource.date_type == 'creation' %} {% trans "Created on" %} {{ resource.date }}
-                {% elif resource.date_type == 'publication' %} {% trans "Published on" %} {{ resource.date }}
-                {% else %} {% trans "Updated on" %} {{ resource.date }}
-              {% endif %}
-            {% endif %}
-          </p>
-      </div>
-    </div>
-  </section>
-
+{% block page-title %}
+<div class="banner">
+  <div class="container">
+    <h2 class="page-title">{% trans "Explore Layers" %}</h2>
+    {% if online and storeType == 'remoteStore' %}<em><i class="fa fa-power-off {% if online %}text-success{% else %}text-danger{% endif %}"></i> {% trans "Service is" %} {% if online %}{% trans "online" %}{% else %}{% trans "offline" %}{% endif %} </em>{% endif %}
+  </div>
 </div>
+<section id="subheader">
+  <div class="container">
+    <h2>{{ resource.title|default:resource.alternate }}</h2>
+    <p>
+      {{ resource.service_type }}
+      {% if resource.category %}
+        {% trans "in" %} <a href="{% url "search" %}?category__identifier__in={{ resource.category.identifier }}">{{ resource.category }}</a> |
+          {% endif %}
+        {% if resource.date %}
+          {% if resource.date_type == 'creation' %} {% trans "Created on" %} {{ resource.date }}
+          {% elif resource.date_type == 'publication' %} {% trans "Published on" %} {{ resource.date }}
+          {% else %} {% trans "Updated on" %} {{ resource.date }}
+        {% endif %}
+      {% endif %}
+    </p>
+  </div>
+</section>
+{% endblock %}
+
+{% block body_outer %}
 
 <div class="row">
   <div class="col-md-8">
