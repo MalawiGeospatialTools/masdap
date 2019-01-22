@@ -304,10 +304,21 @@ article.tab-pane {
 		background: $gray-lighter;
 		padding: 2em 0;
 		text-align: center;
-
-		.img-responsive {
-			padding: 0 2em;
-		}
+    color: $text-color;
+    .ocha-box {
+      background: white;
+      border-radius:50%;
+      height: 16rem;
+      width:16rem;
+      margin: 2rem auto;
+      position: relative;
+      overflow: hidden;
+      img {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+    }
 	}
 
 	#showcase {
@@ -474,6 +485,7 @@ article.tab-pane {
     }
   }
 }
+
 /* Layers
 ----------------------- */
 .item-container {
