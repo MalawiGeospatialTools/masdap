@@ -1,0 +1,19 @@
+{% extends "groups/group_create.html" %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Edit Group Category" %} {{ object.name }}{% endblock %}
+
+{% block page-title %}
+<div class="banner">
+  <div class="container">
+    <h2 class="page-title">{% trans "Edit Group Category" %}</h2>
+  </div>
+</div>
+<section id="subheader">
+  <div class="container">
+    <h2>{% trans "Edit" %} {{ object.name }}</h2>
+  </div>
+</section>
+{% endblock %}
+
+{% block form_button %}{% trans "Save" %}{% endblock %}
