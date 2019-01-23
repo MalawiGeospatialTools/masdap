@@ -4,10 +4,10 @@
   <article ng-repeat="profile in results" ng-cloak class="ng-cloak">
     <div class="col-xs-6 col-sm-6 col-md-4 profile-container">
       <div class="col-xs-12 profile-avatar">
-        <div class="col-xs-4 profile-image">
-          <a href="{{ profile.profile_detail_url }}" ><img ng-src="{{ profile.avatar_100 }}"/></a>
+        <div class="col-xs-3 profile-image">
+          <a href="{{ profile.profile_detail_url }}" ><img class="img-responsive" ng-src="{{ profile.avatar_100 }}"/></a>
         </div>
-        <div class="col-xs-8 profile-details" style="height: 110px;">
+        <div class="col-xs-8 profile-details"">
           <h5>
             <a href="{{ profile.profile_detail_url }}">{{ profile.first_name != '' ? profile.first_name : profile.username }} {{ profile.last_name != '' ? profile.last_name : '' }}
             </a>
