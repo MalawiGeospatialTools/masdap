@@ -8253,6 +8253,7 @@ form input {
 
 .banner {
   background: #ff3c31;
+  margin-bottom: 2rem;
   padding-top: 6px;
   padding-bottom: 6px;
   width: 100%; }
@@ -8268,7 +8269,8 @@ form input {
 #subheader {
   border-bottom: 1px solid #eee;
   color: #585858;
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+  margin-top: -2rem; }
 
 article.tab-pane {
   padding: 20px 0; }
@@ -8684,7 +8686,7 @@ article.tab-pane {
 /* People
 ----------------------- */
 .profile-container {
-  padding: 1em; }
+  padding: 0; }
 
 .profile-avatar {
   background: white;
@@ -8828,9 +8830,6 @@ nav.filter li a {
 
 /* Upload Layers
 ----------------------- */
-.upload .banner {
-  margin-bottom: 2em; }
-
 #drop-zone {
   background: #eee;
   margin-bottom: 10px;
