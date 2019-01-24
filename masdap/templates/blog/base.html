@@ -4,10 +4,15 @@
 
 {% block body_class %}blog{% endblock %}
 
-{% block body %}
-<div class="page-header">
-  <h2>{{ blog_page.title }}</h2>
+{% block page-title %}
+<div class="banner">
+  <div class="container">
+    <h2 class="page-title">{{ blog_page.title }}</h2>
+  </div>
 </div>
+{% endblock %}
+
+{% block body %}
   {% block content %}{% endblock content %}
   {% block extra_content %}{% endblock extra_content %}
 {% endblock %}
