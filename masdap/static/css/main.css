@@ -8688,6 +8688,12 @@ article.tab-pane {
 .profile-container {
   padding: 0; }
 
+.profile-image {
+  padding: 5px; }
+  .profile-image img {
+    margin-bottom: 1rem;
+    width: 100%; }
+
 .profile-avatar {
   background: white;
   border: 1px solid #eee;
@@ -8727,13 +8733,6 @@ article.tab-pane {
       text-decoration: none; }
   .profile-avatar img {
     margin: 0;
-    width: 100%; }
-
-.profile-image {
-  padding-left: 0;
-  padding-right: 0; }
-  .profile-image img {
-    margin-bottom: 1rem;
     width: 100%; }
 
 .profile-details {

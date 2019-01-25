@@ -616,7 +616,14 @@ article.tab-pane {
 .profile-container {
   padding: 0;
 }
-
+.profile-image {
+  padding: 5px;
+  img {
+    @extend .img-circle;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+}
 .profile-avatar {
   background: white;
   border: 1px solid $gray-lighter;
@@ -668,16 +675,6 @@ article.tab-pane {
   }
   img {
     margin: 0;
-    width: 100%;
-  }
-}
-
-.profile-image {
-  padding-left: 0;
-  padding-right: 0;
-  img {
-    @extend .img-circle;
-    margin-bottom: 1rem;
     width: 100%;
   }
 }
