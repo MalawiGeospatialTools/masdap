@@ -1119,7 +1119,7 @@ img {
   max-width: 100%;
   height: auto; }
 
-.img-circle, .profile-image img {
+.img-circle, .profile-image img, .last .avatar img {
   border-radius: 50%; }
 
 hr {
@@ -8779,6 +8779,11 @@ nav.filter li a {
     color: #b9b9b9; }
   #sort .selected {
     color: #ff3c31; }
+
+.last .avatar img {
+  margin-right: 1rem; }
+.last p {
+  margin-top: -6px; }
 
 /* Groups
 ----------------------- */

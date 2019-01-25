@@ -741,6 +741,17 @@ nav.filter {
     color: $brand-primary;
   }
 }
+
+.last {
+  .avatar img {
+    @extend .img-circle;
+    margin-right: 1rem;
+  }
+  p {
+    margin-top: -6px;
+  }
+}
+
 /* Groups
 ----------------------- */
 .group-container {
