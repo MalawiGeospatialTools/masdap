@@ -676,6 +676,8 @@ article.tab-pane {
   padding-left: 0;
   padding-right: 0;
   img {
+    @extend .img-circle;
+    margin-bottom: 1rem;
     width: 100%;
   }
 }

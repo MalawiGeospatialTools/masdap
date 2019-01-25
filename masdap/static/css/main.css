@@ -1119,7 +1119,7 @@ img {
   max-width: 100%;
   height: auto; }
 
-.img-circle {
+.img-circle, .profile-image img {
   border-radius: 50%; }
 
 hr {
@@ -8733,6 +8733,7 @@ article.tab-pane {
   padding-left: 0;
   padding-right: 0; }
   .profile-image img {
+    margin-bottom: 1rem;
     width: 100%; }
 
 .profile-details {
