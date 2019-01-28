@@ -63,22 +63,29 @@ form {
 }
 .banner {
 	background: $brand-primary;
-	height: 64px;
-	width: 100%;
-}
-.page-header {
-  border: 0;
-  color: white;
-  margin-top: -70px;
-  h2 {
+  margin-bottom: 2rem;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  width: 100%;
+  .page-title {
+    border: 0;
+    color: white;
     font-size: 28px;
-    font-weight: 400;
+    margin-top: 16px;
   }
   .btn-primary {
     border-color: white;
-    margin-top: -4px;
+    margin-top: 1rem;
   }
 }
+
+#subheader {
+  border-bottom: 1px solid $gray-lighter;
+  color: $text-color;
+  margin-bottom: 1rem;
+  margin-top: -2rem;
+}
+
 article.tab-pane {
   padding: 20px 0;
 }
@@ -304,10 +311,21 @@ article.tab-pane {
 		background: $gray-lighter;
 		padding: 2em 0;
 		text-align: center;
-
-		.img-responsive {
-			padding: 0 2em;
-		}
+    color: $text-color;
+    .ocha-box {
+      background: white;
+      border-radius:50%;
+      height: 16rem;
+      width:16rem;
+      margin: 2rem auto;
+      position: relative;
+      overflow: hidden;
+      img {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+    }
 	}
 
 	#showcase {
@@ -474,6 +492,7 @@ article.tab-pane {
     }
   }
 }
+
 /* Layers
 ----------------------- */
 .item-container {
@@ -595,7 +614,15 @@ article.tab-pane {
 /* People
 ----------------------- */
 .profile-container {
-  padding: 1em;
+  padding: 0;
+}
+.profile-image {
+  padding: 5px;
+  img {
+    @extend .img-circle;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
 }
 .profile-avatar {
   background: white;
@@ -648,14 +675,6 @@ article.tab-pane {
   }
   img {
     margin: 0;
-    width: 100%;
-  }
-}
-
-.profile-image {
-  padding-left: 0;
-  padding-right: 0;
-  img {
     width: 100%;
   }
 }
@@ -722,6 +741,17 @@ nav.filter {
     color: $brand-primary;
   }
 }
+
+.last {
+  .avatar img {
+    @extend .img-circle;
+    margin-right: 1rem;
+  }
+  p {
+    margin-top: -6px;
+  }
+}
+
 /* Groups
 ----------------------- */
 .group-container {
@@ -786,7 +816,6 @@ nav.filter {
 
 /* Upload Layers
 ----------------------- */
-
 #drop-zone {
   background: $gray-lighter;
   margin-bottom: 10px;

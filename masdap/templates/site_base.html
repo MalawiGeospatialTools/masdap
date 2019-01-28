@@ -178,10 +178,10 @@
   <!-- End of Navbar -->
 
   <div id="wrap">
-		{% include "_status_message.html" %}
-		{% include "_announcements.html" %}
-		{% include "_messages.html" %}
-		<div class="banner"></div>
+    {% include "_status_message.html" %}
+    {% include "_announcements.html" %}
+    {% include "_messages.html" %}
+    {% block page-title %}{% endblock %}
     {% block middle %}
     <div class="container">
       {% block body_outer %}
