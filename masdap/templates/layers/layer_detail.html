@@ -322,19 +322,19 @@
                     {% else %}
                     <div class="tab-pane" id="download_tab2">
                     {% endif %}
-                      </br>
+                      <br>
                       {% if layer_type == "vector" %}
                         <button type="button" id = "button-toggle" class="btn btn-primary btn-circle" data-toggle="button" data-toggle="tooltip" title="Click to filter the layer">
                           {% trans "Do you want to filter it?" %}
                         </button>
                         <img src="{% static 'lib/css/geonode_icon.png' %}" class="gear pull-right loading_msg" witdth="30" height="30" style="margin-right:10px; display:none"/>
                         <div class="pull-right loading_msg" style="margin-right:10px;margin-top:5px;display:none">{% trans "Loading..." %}</div>
-                        </br></br>
+                        <br><br>
                       {% endif %}
                       <ul class="nav nav-tabs" id="tabContent" style="display: none;">
                           <li class="active"><a href="#query_builder" data-toggle="tab">{% trans "Filter by attributes" %}</a></li>
                       </ul>
-                      </br>
+                      <br>
 
                       <div class="tab-content query_builder_tab" style="display:none;">  <!--  added now-->
                         <div id="query_builder" class="tab-pane fade in active">
@@ -356,7 +356,7 @@
                             </div>
                             {% trans "of the following:" %}
                           </div>
-                          </br></br>
+                          <br><br>
                           <div class="input-group" id = "query-filter-tools">
                             <div class="input-group-btn">
                               <div class="btn-group btn-group-sm">
@@ -398,7 +398,7 @@
                               <a href="#" id="query_part" class="btn btn-primary btn-mg" data-toggle="modal" data-target="#myModal" title=""><span class="glyphicon glyphicon-plus"></span></a>
                             </div>
                           </div>
-                          </br>
+                          <br>
                           <div class="text_area">
                             <div class="form-group" id="added_rules"></div>
                             <div>
@@ -407,7 +407,7 @@
                           </div>
                           <label style="font-weight: normal;">Feature limit: </label>
                           <input type="text" id="max_features" name="filter" style="width: 50px"/>
-                          <a href='#' id="clear_filter" style="float:right;">Clear</a> </br>
+                          <a href='#' id="clear_filter" style="float:right;">Clear</a> <br>
                         </div>
                         <hr id="hr_filter_layer" />
                       </div>
@@ -877,7 +877,7 @@
               input = attribute_list + operator_list + single_value_input;
               input_id = attribute_list + single_value_input;
 
-              $("#added_rules").append( '<div class="input-group user-input-filters"><div class="input-group-btn" id="erase_query"><a href="#"  class="btn btn-primary btn-mg" data-toggle="modal" data-target="#myModal" title="" ><span class="glyphicon glyphicon-minus"></span></a></div><input type="text" class="form-control" id="' + input_id + '" placeholder="" data-toggle="tooltip" title="" value="' + input + '"readonly></br></div>');
+              $("#added_rules").append( '<div class="input-group user-input-filters"><div class="input-group-btn" id="erase_query"><a href="#"  class="btn btn-primary btn-mg" data-toggle="modal" data-target="#myModal" title="" ><span class="glyphicon glyphicon-minus"></span></a></div><input type="text" class="form-control" id="' + input_id + '" placeholder="" data-toggle="tooltip" title="" value="' + input + '"readonly><br></div>');
               // push data to array
               if (single_value_input != ''){
                   query.push(input);
