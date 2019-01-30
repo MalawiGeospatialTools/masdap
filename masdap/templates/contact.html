@@ -3,15 +3,21 @@
 
 {% block title %}Contact {{ block.super }}{% endblock %}
 
+{% block extra_head %}
+<script src='https://www.google.com/recaptcha/api.js'></script>
+{% endblock %}
+
 {% block body_class %}contact{% endblock %}
 
+{% block page-title %}
+<div class="banner">
+  <div class="container">
+    <h2 class="page-title">{% trans "Contact Us" %}</h2>
+  </div>
+</div>
+{% endblock %}
 
 {% block body %}
-<div class="page-header">
-  <h2 class="page-title">{% trans "Contact Us" %}</h2>
-</div>
-
-
 <form method="post" novalidate>
 
   {% csrf_token %}
@@ -56,7 +62,7 @@
       {% endif %}
     </div>
   {% endfor %}
-
+  <div class="g-recaptcha" data-sitekey="6LeYQHYUAAAAAC7NIcGElwSTIxok_4jI2hK8YHuF"></div>
   <button type="submit" class="btn btn-primary">Submit</button>
 
 </form>
