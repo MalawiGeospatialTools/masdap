@@ -9,13 +9,15 @@
 
 {% block body_class %}contact{% endblock %}
 
+{% block page-title %}
+<div class="banner">
+  <div class="container">
+    <h2 class="page-title">{% trans "Contact Us" %}</h2>
+  </div>
+</div>
+{% endblock %}
 
 {% block body %}
-<div class="page-header">
-  <h2 class="page-title">{% trans "Contact Us" %}</h2>
-</div>
-
-
 <form method="post" novalidate>
 
   {% csrf_token %}
