@@ -27,7 +27,7 @@ To setup your project using a local python virtual environment, follow these ins
 
     git clone https://github.com/GeoNode/geonode-project.git -b master
     mkvirtualenv my_geonode
-    pip install Django==1.11.16
+    pip install Django==1.11.20
 
     django-admin startproject --template=./geonode-project -e py,rst,json,yml,ini,env,sample -n Dockerfile my_geonode
 
@@ -78,7 +78,7 @@ You need Docker 1.12 or higher, get the latest stable official release for your 
 
     git clone https://github.com/GeoNode/geonode-project.git -b master
     mkvirtualenv my_geonode
-    pip install Django==1.11.16
+    pip install Django==1.11.20
 
     django-admin startproject --template=./geonode-project -e py,rst,json,yml,ini,env,sample -n Dockerfile my_geonode
 
@@ -86,26 +86,56 @@ You need Docker 1.12 or higher, get the latest stable official release for your 
 
 2. Run `docker-compose` to start it up (get a cup of coffee or tea while you wait)
 
-   Remember to update "wsgi.py" in case you are using "local_settings"
-   vim my_geonode/wsgi.py
-   --> os.environ.setdefault("DJANGO_SETTINGS_MODULE", "my_geonode.local_settings")
+Remember to update "wsgi.py" in case you are using "local_settings"
+vim my_geonode/wsgi.py
+--> os.environ.setdefault("DJANGO_SETTINGS_MODULE", "my_geonode.local_settings")
 
-   .. code:: bash
+  .. code:: bash
 
-     docker-compose build --no-cache
-     docker-compose up -d
-     
-   **NOTE for Windows users**: In case you're using the native Docker for Windows (on Hyper-V) you will probably be affected by an error related to mounting the /var/run/docker.sock volume. It's due to a `problem with the current version of Docker Compose <https://github.com/docker/for-win/issues/1829>`_ for Windows.
-   In this case you need to set the **COMPOSE_CONVERT_WINDOWS_PATHS** environmental variable:
-   
-   .. code-block:: none
-   
-      set COMPOSE_CONVERT_WINDOWS_PATHS=1 
-   
-   before running docker-compose up
+    docker-compose build --no-cache
+    docker-compose up -d
+
+  .. code-block:: none
+
+    set COMPOSE_CONVERT_WINDOWS_PATHS=1
+
+before running docker-compose up
 
 3. Access the site on http://localhost/
 
+If you want to run the instance for development
+-----------------------------------------------
+
+Use dedicated docker-compose files while developing
++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+.. note:: In this example we are going to keep localhost as the target IP for GeoNode
+
+.. code:: bash
+
+  docker-compose -f docker-compose.development.yml -f docker-compose.development.override.yml up
+
+How to debug
+++++++++++++
+
+.. note:: We are supposing to use IPDB for debugging which is already available as package from the container
+
+1. Stop the container for the "django" service::
+
+  .. code:: bash
+
+    docker-compose stop django
+
+2. Run the container again with the option for service ports::
+
+  .. code:: bash
+
+    docker-compose run -e DOCKER_ENV=development --rm --service-ports django python manage.py runserver --settings=my_geonode.settings 0.0.0.0:8000
+
+3. Access the site on http://localhost/
+
+If you set an IPDB debug point with ``import ipdb ; ipdb.set_trace()`` then you should be facing its console and you can see the django
+server which is restarting at any change of your code from your local machine.
 
 If you want to run the instance on a public site
 ------------------------------------------------
@@ -168,7 +198,7 @@ Hints: Configuring Requirements.txt
 
 You may want to configure your requirements.txt, if you are using additional or custom versions of python packages.  For example::
 
-    Django==1.11.16
+    Django==1.11.20
     six==1.10.0
     django-cuser==2017.3.16
     django-model-utils==3.1.1

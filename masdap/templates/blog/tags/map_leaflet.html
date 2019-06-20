@@ -16,12 +16,12 @@
         var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
         });
-        var OpenMapSurfer_Roads = L.tileLayer('http://korona.geog.uni-heidelberg.de/tiles/roads/x={x}&y={y}&z={z}', {
+        var hot = L.tileLayer('http://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
             maxZoom: 20,
-            attribution: 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/"" target="_blank">Humanitarian OpenStreetMap Team</a>'
         });
         var base_maps = {
-            "OpenMapSurfer_Roads": OpenMapSurfer_Roads,
+            "HOT": hot,
             'OpenStreetMap': osm
         };
 
@@ -42,7 +42,7 @@
         map.setZoom({{ page.map.zoom }});
 
         /* add initial base layer to the map */
-        map.addLayer(OpenMapSurfer_Roads);
+        map.addLayer(hot);
 
         /* loop over the layers used by the map */
         {% for layer in page.map.layers %}
