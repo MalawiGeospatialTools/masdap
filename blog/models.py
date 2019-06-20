@@ -38,3 +38,4 @@ class MapEntryPage(EntryPage):
         SnippetChooserPanel('map'),
     ]
 BlogPage.subpage_types.append(MapEntryPage)
+

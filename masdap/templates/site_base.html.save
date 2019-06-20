@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block extra_head %}
+      <link href="{{ STATIC_URL }}css/main.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block extra_tab %}
+<li id="nav_blog">
+ <a href="/blog/">Blog</a>
+</li>
+{% endblock %}

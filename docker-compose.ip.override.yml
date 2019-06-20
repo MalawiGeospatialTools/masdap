@@ -1,0 +1,25 @@
+version: '2.2'
+services:
+  django:
+    environment:
+      DEBUG: 'True'
+      GEONODE_LB_HOST_IP: 51.38.97.255
+      GEONODE_LB_PORT: 80
+      SITEURL: http://51.38.97.255/
+      ALLOWED_HOSTS: "['51.38.97.255']"
+      GEOSERVER_PUBLIC_LOCATION: http://51.38.97.255/gs/
+
+  celery:
+    environment:
+      DEBUG: 'True'
+      GEONODE_LB_HOST_IP: 51.38.97.255
+      GEONODE_LB_PORT: 80
+      SITEURL: http://51.38.97.255/
+      ALLOWED_HOSTS: "['51.38.97.255']"
+      GEOSERVER_PUBLIC_LOCATION: http://51.38.97.255/gs/
+
+  geoserver:
+    environment:
+      GEONODE_LB_HOST_IP: 51.38.97.255
+      GEONODE_LB_PORT: 80
+      NGINX_BASE_URL:

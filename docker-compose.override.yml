@@ -1,26 +1,27 @@
-version: '2'
+version: '2.2'
 services:
   django:
     environment:
       DEBUG: 'True'
-      GEONODE_LB_HOST_IP: localhost
+      GEONODE_LB_HOST_IP: www.masdap.mw
       GEONODE_LB_PORT: 80
-      SITEURL: http://localhost/
-      ALLOWED_HOSTS: "['localhost']"
-      GEOSERVER_PUBLIC_LOCATION: http://localhost/geoserver/
+      SITEURL: http://www.masdap.mw/
+      ALLOWED_HOSTS: "['www.masdap.mw']"
+      GEOSERVER_PUBLIC_LOCATION: http://www.masdap.mw/geoserver/
+      GEOSERVER_WEB_UI_LOCATION: http://www.masdap.mw/geoserver/
 
   celery:
     environment:
       DEBUG: 'True'
-      GEONODE_LB_HOST_IP: localhost
+      GEONODE_LB_HOST_IP: www.masdap.mw
       GEONODE_LB_PORT: 80
-      SITEURL: http://localhost/
-      ALLOWED_HOSTS: "['localhost']"
-      GEOSERVER_PUBLIC_LOCATION: http://localhost/geoserver/
+      SITEURL: http://www.masdap.mw/
+      ALLOWED_HOSTS: "['www.masdap.mw']"
+      GEOSERVER_PUBLIC_LOCATION: http://www.masdap.mw/geoserver/
+      GEOSERVER_WEB_UI_LOCATION: http://www.masdap.mw/geoserver/
 
   geoserver:
     environment:
-      GEONODE_LB_HOST_IP: localhost
+      GEONODE_LB_HOST_IP: www.masdap.mw
       GEONODE_LB_PORT: 80
       NGINX_BASE_URL:
-
