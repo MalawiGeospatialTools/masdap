@@ -72,3 +72,5 @@ local_settings.py
 
 # Sass
 .sass-cache
+
+.env
