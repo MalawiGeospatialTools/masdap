@@ -25,9 +25,9 @@ To setup your project using a local python virtual environment, follow these ins
 
   .. code:: bash
 
-    git clone https://github.com/GeoNode/geonode-project.git -b master
+    git clone https://github.com/GeoNode/geonode-project.git -b 2.10.x
     mkvirtualenv my_geonode
-    pip install Django==1.11.20
+    pip install Django==1.11.21
 
     django-admin startproject --template=./geonode-project -e py,rst,json,yml,ini,env,sample -n Dockerfile my_geonode
 
@@ -76,9 +76,9 @@ You need Docker 1.12 or higher, get the latest stable official release for your 
 
   .. code:: bash
 
-    git clone https://github.com/GeoNode/geonode-project.git -b master
+    git clone https://github.com/GeoNode/geonode-project.git -b 2.10.x
     mkvirtualenv my_geonode
-    pip install Django==1.11.20
+    pip install Django==1.11.21
 
     django-admin startproject --template=./geonode-project -e py,rst,json,yml,ini,env,sample -n Dockerfile my_geonode
 
@@ -198,7 +198,7 @@ Hints: Configuring Requirements.txt
 
 You may want to configure your requirements.txt, if you are using additional or custom versions of python packages.  For example::
 
-    Django==1.11.20
+    Django==1.11.21
     six==1.10.0
     django-cuser==2017.3.16
     django-model-utils==3.1.1

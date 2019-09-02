@@ -1,4 +1,4 @@
-FROM python:2.7.14-stretch
+FROM python:2.7.16-stretch
 MAINTAINER GeoNode development team
 
 RUN mkdir -p /usr/src/masdap
@@ -30,24 +30,20 @@ RUN pip install --upgrade pip
 # To understand the next section (the need for requirements.txt and setup.py)
 # Please read: https://packaging.python.org/requirements/
 
-# python-gdal does not seem to work, let's install manually the version that is
-# compatible with the provided libgdal-dev
-# superseded by pygdal
-#RUN pip install GDAL==2.1.3 --global-option=build_ext --global-option="-I/usr/include/gdal"
-RUN GDAL_VERSION=`gdal-config --version` \
-    && PYGDAL_VERSION="$(pip install pygdal==$GDAL_VERSION 2>&1 | grep -oP '(?<=: )(.*)(?=\))' | grep -oh $GDAL_VERSION\.[0-9])" \
-    && pip install pygdal==$PYGDAL_VERSION
-
 # fix for known bug in system-wide packages
 RUN ln -fs /usr/lib/python2.7/plat-x86_64-linux-gnu/_sysconfigdata*.py /usr/lib/python2.7/
 
 COPY . /usr/src/masdap
 
+RUN pip install --upgrade --no-cache-dir --src /usr/src -r requirements.txt
+
 RUN chmod +x /usr/src/masdap/tasks.py \
     && chmod +x /usr/src/masdap/entrypoint.sh
 
 # app-specific requirements
-RUN pip install --upgrade --no-cache-dir --src /usr/src -r requirements.txt
 RUN pip install --upgrade -e .
+
+# Install pygdal (after requirements for numpy 1.16)
+RUN pip install pygdal==$(gdal-config --version).*
 
 ENTRYPOINT ["/usr/src/masdap/entrypoint.sh"]

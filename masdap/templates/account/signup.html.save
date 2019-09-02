@@ -7,13 +7,7 @@
 {% block title %}{% trans "Sign up" %}{% endblock %}
 
 {% block extra_head %}
-<script type="text/javascript">
-  var onloadCallback = function() {
-    grecaptcha.render('recaptcha', {
-      'sitekey' : '6LcEorMUAAAAAG_GALu-f-0OBncDC-pPVYXpdOkB'
-    });
-  };
-</script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 {% endblock %}
 
 {% block page-title %}
@@ -41,11 +35,10 @@
     {% if redirect_field_value %}
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
     {% endif %}
-    <div id="recaptcha"></div>
+    <div class="g-recaptcha" data-sitekey="6LcEorMUAAAAAG_GALu-f-0OBncDC-pPVYXpdOkB"></div>
     <button type="submit" class="btn btn-primary">{% trans "Sign up" %}</button>
   </fieldset>
 </form>
-<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
 {% endblock %}
 
 {% block extra_script %}

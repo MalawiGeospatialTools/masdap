@@ -34,10 +34,6 @@ except ImportError:
 #
 PROJECT_NAME = 'masdap'
 
-# add trailing slash to site url. geoserver url will be relative to this
-if not SITEURL.endswith('/'):
-    SITEURL = '{}/'.format(SITEURL)
-
 SITENAME = os.getenv("SITENAME", 'masdap')
 
 # Defines the directory that contains the settings file as the LOCAL_ROOT

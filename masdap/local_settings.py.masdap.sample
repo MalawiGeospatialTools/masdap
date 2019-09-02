@@ -39,7 +39,7 @@ STATIC_ROOT = os.getenv('STATIC_ROOT',
 
 # SECRET_KEY = '************************'
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = os.getenv('SECRET_KEY', "2@qh9h_!53crqn&u$z7e1=q6h1c)^^mwc_-=q_*qpj%o$nn%s(")
+SECRET_KEY = os.getenv('SECRET_KEY', "*****************************************")
 
 # per-deployment settings should go here
 SITE_HOST_NAME = os.getenv('SITE_HOST_NAME', 'localhost')
@@ -77,9 +77,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'geonode',
-        'USER': 'geonode',
-        'PASSWORD': 'geonode',
-        'HOST': 'localhost',
+        'USER': '*********',
+        'PASSWORD': '**********',
+        'HOST': 'db',
         'PORT': '5432',
         'CONN_TOUT': 900,
     },
@@ -88,9 +88,9 @@ DATABASES = {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         # 'ENGINE': '', # Empty ENGINE name disables
         'NAME': 'geonode_data',
-        'USER': 'geonode',
-        'PASSWORD': 'geonode',
-        'HOST': 'localhost',
+        'USER': '***********',
+        'PASSWORD': '***********',
+        'HOST': 'db',
         'PORT': '5432',
         'CONN_TOUT': 900,
     }
@@ -391,3 +391,23 @@ GEOIP_PATH = "/usr/local/share/GeoIP"
 
 ACCOUNT_OPEN_SIGNUP = True
 ACCOUNT_APPROVAL_REQUIRED = True
+
+# Define email service on GeoNode
+EMAIL_ENABLE = True
+
+# Masdap settings
+
+INSTALLED_APPS += (
+  'widget_tweaks', #for the contact form
+)
+
+
+TIME_ZONE = "Africa/Johannesburg"
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = '***********'
+EMAIL_HOST_PASSWORD = '***********'
+EMAIL_PORT = 587
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL =  '************'

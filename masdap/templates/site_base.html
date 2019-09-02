@@ -44,6 +44,7 @@
 
   <script>
       var siteUrl = '{{ SITEURL }}'.replace(/\/?$/, '/');
+      var staticUrl = '{% static '' %}';
   </script>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -119,9 +120,11 @@
             {% endif %}
           </ul>
         </li>
+        <!--
 				<li id="nav_blog">
           <a href="/blog/">{% trans "Blog" %}</a>
         </li>
+        -->
       	{% block extra_tab %}
         {% endblock %}
       {% endblock %}
@@ -162,7 +165,7 @@
               {% if user.is_superuser or user.is_staff %}
 	              <li role="separator" class="divider"></li>
 	              <li><a href="{% url "admin:index" %}">{% trans "Admin" %}</a></li>
-								<li><a href="/cms/">{% trans "CMS" %}</a></li>
+								<!-- <li><a href="/cms/">{% trans "CMS" %}</a></li> -->
 	              {% if 'geonode.geoserver' in INSTALLED_APPS %}
 	              <li><a href="{% url "proxy" %}?url={{ OGC_SERVER.default.LOCATION }}">GeoServer</a></li>
 	              {% endif %}

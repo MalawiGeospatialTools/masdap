@@ -1,27 +1,25 @@
 version: '2.2'
 services:
-  django:
-    environment:
-      DEBUG: 'True'
-      GEONODE_LB_HOST_IP: www.masdap.mw
-      GEONODE_LB_PORT: 80
-      SITEURL: http://www.masdap.mw/
-      ALLOWED_HOSTS: "['www.masdap.mw']"
-      GEOSERVER_PUBLIC_LOCATION: http://www.masdap.mw/geoserver/
-      GEOSERVER_WEB_UI_LOCATION: http://www.masdap.mw/geoserver/
 
-  celery:
+  django:
+    build: .
+    # Loading the app is defined here to allow for
+    # autoreload on changes it is mounted on top of the
+    # old copy that docker added when creating the image
+    volumes:
+      - '.:/usr/src/masdap'
     environment:
-      DEBUG: 'True'
-      GEONODE_LB_HOST_IP: www.masdap.mw
-      GEONODE_LB_PORT: 80
-      SITEURL: http://www.masdap.mw/
-      ALLOWED_HOSTS: "['www.masdap.mw']"
-      GEOSERVER_PUBLIC_LOCATION: http://www.masdap.mw/geoserver/
-      GEOSERVER_WEB_UI_LOCATION: http://www.masdap.mw/geoserver/
+      - DEBUG=False
+      - GEONODE_LB_HOST_IP=www.masdap.mw
+      - GEONODE_LB_PORT=80
+      - SITEURL=http://www.masdap.mw/
+      - ALLOWED_HOSTS=['www.masdap.mw', ]
+      - GEOSERVER_LOCATION=http://www.masdap.mw/geoserver/
+      - GEOSERVER_PUBLIC_LOCATION=http://www.masdap.mw/geoserver/
+      - GEOSERVER_WEB_UI_LOCATION=http://www.masdap.mw/geoserver/
 
   geoserver:
     environment:
-      GEONODE_LB_HOST_IP: www.masdap.mw
-      GEONODE_LB_PORT: 80
-      NGINX_BASE_URL:
+      - GEONODE_LB_HOST_IP=www.masdap.mw
+      - GEONODE_LB_PORT=80
+  #    - NGINX_BASE_URL=

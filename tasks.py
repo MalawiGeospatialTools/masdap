@@ -36,7 +36,7 @@ def update(ctx):
     }
     if not os.environ.get('GEOSERVER_PUBLIC_LOCATION'):
         ctx.run("echo export GEOSERVER_PUBLIC_LOCATION=\
-http://{public_fqdn}/gs/ >> {override_fn}".format(**envs), pty=True)
+http://{public_fqdn}/geoserver/ >> {override_fn}".format(**envs), pty=True)
     if not os.environ.get('SITEURL'):
         ctx.run("echo export SITEURL=\
 http://{public_fqdn}/ >> {override_fn}".format(**envs), pty=True)
@@ -112,7 +112,7 @@ def fixtures(ctx):
 --settings={0}".format(_localsettings()), pty=True)
     ctx.run("python manage.py loaddata /tmp/default_oauth_apps_docker.json \
 --settings={0}".format(_localsettings()), pty=True)
-    ctx.run("python manage.py loaddata /usr/src/geonode/geonode/base/fixtures/initial_data.json \
+    ctx.run("python manage.py loaddata /usr/src/masdap/fixtures/initial_data.json \
 --settings={0}".format(_localsettings()), pty=True)
     ctx.run("python manage.py set_all_layers_alternate \
 --settings={0}".format(_localsettings()), pty=True)

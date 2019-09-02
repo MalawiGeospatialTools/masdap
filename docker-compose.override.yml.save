@@ -10,16 +10,15 @@ services:
       - '.:/usr/src/masdap'
     environment:
       - DEBUG=False
-      - GEONODE_LB_HOST_IP=www.masdap.mw
+      - GEONODE_LB_HOST_IP=localhost
       - GEONODE_LB_PORT=80
-      - SITEURL=http://www.masdap.mw/
-      - ALLOWED_HOSTS=['www.masdap.mw', ]
-      - GEOSERVER_LOCATION=http://geoserver:8080/geoserver/
-      - GEOSERVER_PUBLIC_LOCATION=http://www.masdap.mw/geoserver/
-      - GEOSERVER_WEB_UI_LOCATION=http://www.masdap.mw/geoserver/
+      - SITEURL=http://localhost/
+      - ALLOWED_HOSTS=['localhost', ]
+      - GEOSERVER_PUBLIC_LOCATION=http://localhost/geoserver/
+      - GEOSERVER_WEB_UI_LOCATION=http://localhost/geoserver/
 
   geoserver:
     environment:
-      - GEONODE_LB_HOST_IP=www.masdap.mw
+      - GEONODE_LB_HOST_IP=localhost
       - GEONODE_LB_PORT=80
   #    - NGINX_BASE_URL=
