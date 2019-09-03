@@ -392,12 +392,15 @@ GEOIP_PATH = "/usr/local/share/GeoIP"
 ACCOUNT_OPEN_SIGNUP = True
 ACCOUNT_APPROVAL_REQUIRED = True
 
+ACCOUNT_SIGNUP_FORM_CLASS = 'masdap.forms.AllauthSignupForm'
+
 # Define email service on GeoNode
 EMAIL_ENABLE = True
 
 # Masdap settings
 
 INSTALLED_APPS += (
+  'captcha',
   'widget_tweaks', #for the contact form
 )
 
@@ -411,3 +414,6 @@ EMAIL_HOST_PASSWORD = '***********'
 EMAIL_PORT = 587
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL =  '************'
+
+RECAPTCHA_PUBLIC_KEY = '************'
+RECAPTCHA_PRIVATE_KEY = '************'
