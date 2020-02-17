@@ -35,7 +35,7 @@ RUN ln -fs /usr/lib/python2.7/plat-x86_64-linux-gnu/_sysconfigdata*.py /usr/lib/
 
 COPY . /usr/src/masdap
 
-RUN pip install --upgrade --no-cache-dir --src /usr/src -r requirements.txt
+RUN pip install --src /usr/src -r requirements.txt
 
 RUN chmod +x /usr/src/masdap/tasks.py \
     && chmod +x /usr/src/masdap/entrypoint.sh
@@ -45,5 +45,8 @@ RUN pip install --upgrade -e .
 
 # Install pygdal (after requirements for numpy 1.16)
 RUN pip install pygdal==$(gdal-config --version).*
+
+RUN cd /usr/src; git clone https://github.com/GeoNode/geonode-contribs.git -b 2.10.x
+RUN cd /usr/src/geonode-contribs/geonode-logstash; pip install -e .
 
 ENTRYPOINT ["/usr/src/masdap/entrypoint.sh"]

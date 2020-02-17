@@ -17,6 +17,7 @@ services:
       - GEOSERVER_LOCATION=http://www.masdap.mw/geoserver/
       - GEOSERVER_PUBLIC_LOCATION=http://www.masdap.mw/geoserver/
       - GEOSERVER_WEB_UI_LOCATION=http://www.masdap.mw/geoserver/
+      - GEOSERVER_ADMIN_PASSWORD=lbdvFTjgzbS5HBNe
 
   geoserver:
     environment:
