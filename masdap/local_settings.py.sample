@@ -372,14 +372,18 @@ LOGGING = {
             "handlers": ["console"], "level": "INFO", },
         "geonode.qgis_server": {
             "handlers": ["console"], "level": "ERROR", },
-        "gsconfig.catalog": {
+        "geoserver-restconfig.catalog": {
             "handlers": ["console"], "level": "ERROR", },
         "owslib": {
             "handlers": ["console"], "level": "ERROR", },
         "pycsw": {
-            "handlers": ["console"], "level": "INFO", },
+            "handlers": ["console"], "level": "ERROR", },
         "celery": {
-            'handlers': ["console"], 'level': 'ERROR', },
+            "handlers": ["console"], "level": "ERROR", },
+        "mapstore2_adapter.plugins.serializers": {
+            "handlers": ["console"], "level": "DEBUG", },
+        "geonode_logstash.logstash": {
+            "handlers": ["console"], "level": "DEBUG", },
     },
 }
 
