@@ -47,6 +47,6 @@ RUN pip install --upgrade -e .
 RUN pip install pygdal==$(gdal-config --version).*
 
 RUN cd /usr/src; git clone https://github.com/GeoNode/geonode-contribs.git -b 2.10.x
-RUN cd /usr/src/geonode-contribs/geonode-logstash; pip install -e .
+RUN cd /usr/src/geonode-contribs/geonode-logstash; pip install -r requirements.txt --upgrade; pip install -e . --upgrade
 
 ENTRYPOINT ["/usr/src/masdap/entrypoint.sh"]
