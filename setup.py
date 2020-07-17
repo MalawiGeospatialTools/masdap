@@ -19,20 +19,31 @@
 #########################################################################
 
 import os
-try: # for pip >= 10
-    from pip._internal.req import parse_requirements
-    from pip._internal.download import PipSession
-except ImportError: # for pip <= 9.0.3
-    from pip.req import parse_requirements
-    from pip.download import PipSession
+try:
+    # pip >=20
+    from pip._internal.network.session import PipSession
+    try:
+        from pip._internal.req import parse_requirements
+    except ImportError:
+        # pip >=21
+        from pip._internal.req.req_file import parse_requirements
+except ImportError:
+    try:
+        # 10.0.0 <= pip <= 19.3.1
+        from pip._internal.download import PipSession
+        from pip._internal.req import parse_requirements
+    except ImportError:
+        # pip <= 9.0.3
+        from pip.download import PipSession
+        from pip.req import parse_requirements
 from distutils.core import setup
 
 from setuptools import find_packages
 
 # Parse requirements.txt to get the list of dependencies
-inst_req = parse_requirements('requirements.txt',
-                              session=PipSession())
-REQUIREMENTS = [str(r.req) for r in inst_req]
+inst_req = parse_requirements("requirements.txt", session=PipSession())
+REQUIREMENTS = [str(r.req) if hasattr(r, 'req') else r.requirement if not r.is_editable else ''
+                for r in inst_req]
 
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
