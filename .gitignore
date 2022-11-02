@@ -7,6 +7,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+# env/
 build/
 develop-eggs/
 dist/
@@ -42,12 +43,9 @@ nosetests.xml
 coverage.xml
 *,cover
 
-# Translations
-*.mo
-*.pot
-
 # Django stuff:
 *.log
+celerybeat-schedule.*
 
 # Sphinx documentation
 docs/_build/
@@ -59,15 +57,14 @@ target/
 downloaded/
 uploaded/
 static_root/
-/geoserver/
 development.db
 development.db-journal
 local_settings.py
 
 .idea/
+.vscode/
+.vagrant/
+Vagrantfile
+/.env
 
-# Mac
-.DS_Store
-
-# Sass
-.sass-cache
+/.env
