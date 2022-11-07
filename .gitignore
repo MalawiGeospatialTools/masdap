@@ -68,3 +68,4 @@ Vagrantfile
 /.env
 
 /.env
+/.env.prod
