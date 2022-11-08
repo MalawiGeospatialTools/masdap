@@ -1,0 +1,269 @@
+{% load static %}
+{% load i18n %}
+{% load client_version %}
+<!DOCTYPE html>
+<html class="msgapi">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+        <link href="{% static 'mapstore/dist/themes/geonode.css' %}?{% client_version %}" rel="stylesheet" />
+        <link href="{% static 'css/main.css' %}" rel="stylesheet" />
+        <link href="{% static 'css/main.css.map' %}" rel="stylesheet" />
+        <link href="{% static 'css/site_base.css' %}" rel="stylesheet" />
+        <title>{{ SITE_NAME }}</title>
+        <link rel="shortcut icon" href="{% static 'geonode/img/favicon.ico' %}" />
+        {% include './geonode-mapstore-client/snippets/loader_style.html' %}
+
+        {% block custom_theme %}
+            {% include './geonode-mapstore-client/snippets/custom_theme.html' %}
+        {% endblock %}
+
+        {% block extra_style %}
+        {% endblock %}
+    </head>
+    <body class="msgapi ms2" data-ms2-container="ms2">
+        <div class="gn-page-wrapper {% if request.user_agent.is_mobile %}gn-mobile{% else %}gn-desktop{% endif %}">
+            <div class="gn-theme gn-homepage">
+                {% include './geonode-mapstore-client/_geonode_config.html' %}
+                {% block header %}
+                    {% include './geonode-mapstore-client/snippets/header.html' with show_hero=True %}
+                {% endblock %}
+    
+                {% block container %}
+                    <section id="datasets">
+        <div class="container">
+            <div class="row">
+                    <div class="container text-center">
+                        <h1>{% trans "Discover the available datasets." %}</h1>
+                    <div class="col-xs-4 col-sm-2">
+                        <a href="/search/?limit=100&offset=0&category__identifier__in=boundaries&category__identifier__in=planningCadastre">
+                            <div class="category" data-toggle="tooltip" data-placement="auto"
+                                title="Political and administrative boundaries, land use maps, zoning maps, cadastral surveys, land ownership.">
+                                <i class="fa fa-flag fa-4x"></i>
+                                <h4>{% trans "Boundaries" %}</h4>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-4 col-sm-2">
+                        <a href="/search/?limit=100&offset=0&category__identifier__in=society">
+                            <div class="category" data-toggle="tooltip" data-placement="auto"
+                                title="Buildings, museums, churches, factories, housing, monuments, shops, towers. Energy, water and waste systems and communications infrastructure and services. Military bases, structures, activities.">
+                                <i class="fa fa-home fa-4x"></i>
+                                <h4>{% trans "Buildings" %}</h4>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-4 col-sm-2">
+                        <a href="/search/?limit=100&offset=0&category__identifier__in=climatologyMeteorologyAtmosphere">
+                            <div class="category" data-toggle="tooltip" data-placement="auto"
+                                title="Cloud cover, weather, climate, atmospheric conditions, climate change, precipitation">
+                                <i class="fa fa-umbrella fa-4x"></i>
+                                <h4>{% trans "Climate" %}</h4>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-4 col-sm-2">
+                        <a href="/search/?limit=100&offset=0&category__identifier__in=elevation">
+                            <div class="category" data-toggle="tooltip" data-placement="auto"
+                                title="Altitude, bathymetry, digital elevation models, slope, derived products">
+                                <i class="fa fa-level-up fa-4x"></i>
+                                <h4>{% trans "Elevation" %}</h4>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-4 col-sm-2">
+                        <a href="/search/?limit=100&offset=0&category__identifier__in=geoscientificInformation">
+                            <div class="category" data-toggle="tooltip" data-placement="auto"
+                                title="Geophysical features and processes, geology, minerals, sciences dealing with the composition, structure and origin of the earth s rocks, risks of earthquakes, volcanic activity, landslides, gravity information, soils, permafrost, hydrogeology, erosion.">
+                                <i class="fa fa-globe fa-4x"></i>
+                                <h4>{% trans "Geology" %}</h4>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-4 col-sm-2">
+                        <a href="/search/?limit=100&offset=0&category__identifier__in=health">
+                            <div class="category" data-toggle="tooltip" data-placement="auto"
+                                title="Health, health services, human ecology, and safety.">
+                                <i class="fa fa-medkit fa-4x"></i>
+                                <h4>{% trans "Health" %}</h4>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-4 col-sm-2">
+                        <a href="/search/?limit=100&offset=0&category__identifier__in=imageryBaseMapsEarthCover">
+                            <div class="category" data-toggle="tooltip" data-placement="auto"
+                                title="Land cover, topographic maps, imagery, unclassified images, annotations.">
+                                <i class="fa fa-tree fa-4x"></i>
+                                <h4>{% trans "Land Cover" %}</h4>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-4 col-sm-2">
+                        <a href="/search/?limit=100&offset=0&category__identifier__in=farming&category__identifier__in=environment">
+                            <div class="category" data-toggle="tooltip" data-placement="auto"
+                                title="Wildlife, vegetation, biological sciences, ecology, wilderness, sealife, wetlands, habitat. Environmental resources, protection and conservation. Agriculture, irrigation, aquaculture, plantations, herding, pests and diseases affecting crops and livestock">
+                                <i class="fa fa-leaf fa-4x"></i>
+                                <h4>{% trans "Nature" %}</h4>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-4 col-sm-2">
+                        <a href="/search/?limit=100&offset=0&category__identifier__in=location">
+                            <div class="category" data-toggle="tooltip" data-placement="auto"
+                                title="Addresses, geodetic networks, control points, postal zones and services, place names">
+                                <i class="fa fa-map-marker fa-4x"></i>
+                                <h4>{% trans "Places" %}</h4>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-4 col-sm-2">
+                        <a href="#">
+                            <div class="category" data-toggle="tooltip" data-placement="auto"
+                                title="Settlements, anthropology, archaeology, education, traditional beliefs, manners and customs, demographic data, recreational areas and activities, social impact assessments, crime and justice, census information. Economic activities, conditions and employment.">
+                                <i class="fa fa-male fa-4x"></i>
+                                <h4>{% trans "Population" %}</h4>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-4 col-sm-2">
+                        <a href="/search/?limit=100&offset=0&category__identifier__in=transportation">
+                            <div class="category" data-toggle="tooltip" data-placement="auto"
+                                title="Roads, airports/airstrips, shipping routes, tunnels, nautical charts, vehicle or vessel location, aeronautical charts, railways.">
+                                <i class="fa fa-road fa-4x"></i>
+                                <h4>{% trans "Transportation" %}</h4>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-4 col-sm-2">
+                        <a href="/search/?limit=100&offset=0&category__identifier__in=inlandWaters">
+                            <div class="category" data-toggle="tooltip" data-placement="auto"
+                                title="Rivers and glaciers, salt lakes, water utilization plans, dams, currents, floods, water quality, hydrographic charts, tides, tidal waves, coastal information, reefs.">
+                                <i class="fa fa-tint fa-4x"></i>
+                                <h4>{% trans "Water" %}</h4>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <section id="resiliance">
+        <div class="container">
+            <div class="row">
+                <h2>Malawi Risk and Hazards</h2>
+                <div class="col-xs-6 col-sm-3 col-sm-offset-2">
+                    <div class="ocha-box">
+                                <a href="/search/?limit=100&offset=0&keywords__slug__in=drought">
+                        <img src="/static/svg/ocha/03_disasterhazardcrisis_drought_noun_4231.svg" alt="Drought">
+                        </a>
+                    </div>
+                    <h4>Drought monitoring</h4>
+                </div>
+                <div class="col-xs-6 col-sm-3 col-sm-offset-2">
+                    <div class="ocha-box">
+                                <a href="/search/?limit=100&offset=0&keywords__slug__in=flood">
+                        <img src="/static/svg/ocha/03_disasterhazardcrisis_flood_noun_4236.svg" alt="Flood">
+                        </a>
+                    </div>
+                    <h4>Flood and heavy rain</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <section id="showcase">
+        <div class="container">
+            <div class="row">
+                <h2>Malawi Featured Datasets</h2>
+                {% verbatim %}
+                <div ng-app="featured">
+                <div ng-repeat="item in featured | limitTo:4">
+                    <div class="col-md-3">
+                        <a href="{{ item.detail_url }}"><img ng-src="{{ item.thumbnail_url }}" /></a>
+                        <h4>{{ item.title }}</h4>
+                    </div>
+                </div>
+                </div>
+                {% endverbatim %}
+            </div>
+            <p><a href="#">Explore all datasets</a></p>
+        </div>
+    </section>
+
+    <section id="osm">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-8">
+                    <h2>Daily OpenStreetMap Extracts</h2>
+                    <p>MASDAP provides with daily Malawi OpenStreetMap extracts ready to be used both online as WxS service both on your desktop downloading data in vector formats such as Shapefiles. Explore what features are available.</p>
+                    <a class="btn btn-primary btn-lg" href="/search/?limit=100&offset=0&keywords__slug__in=osm" role="button">Explore</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <section id="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h3>For more information please contact the MASDAP administrators.</h3>
+                        <h4>National Spatial Data Center</h4>
+                        <ul class="list-unstyled">
+                            <li>Department of Surveys</li>
+                            <li>13.973456 S, 33.7878122 E</li>
+                            <li>Lilongwe, Malawi</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <a href="/contact/" class="btn btn-primary btn-block">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+                {% endblock %}
+        {% if DEBUG_STATIC %}
+        <script src="{% static "lib/js/angular.js" %}"></script>
+        {% endif %}
+        <script type="text/javascript">
+            FEATURED_URL = '{% url 'api_dispatch_list' api_name='api' resource_name='featured' %}'
+            'use strict';
+            (function(){
+            var module = angular.module('featured', []);
+            module.run(function($http, $rootScope){
+                $http.get(FEATURED_URL).then(successCallback, errorCallback);
+
+                function successCallback(data) {
+                    //success code
+                $rootScope.featured = data.objects;
+                };
+
+                function errorCallback(error) {
+                    //error code
+                };
+            });
+            })();
+        </script>
+    
+                {% block footer %}
+                    {% include './geonode-mapstore-client/snippets/footer.html' %}
+                {% endblock %}
+    
+                {% block scripts %}
+                    <script src="{% static "lib/js/jquery.min.js" %}"></script>
+                    <script src="{% static "lib/js/bootstrap.min.js" %}"></script>
+                    <script type="text/javascript">
+                        // enable dropdown functionalities
+                        $('.dropdown-toggle').dropdown();
+                    </script>
+                {% endblock %}
+            </div>
+        </div>
+    </body>
+</html>
