@@ -7,18 +7,11 @@ WORKDIR /usr/src/masdap
 
 # This section is borrowed from the official Django image but adds GDAL and others
 RUN apt-get update && apt-get install -y \
-		gcc \
-		gettext \
-		postgresql-client libpq-dev \
-		sqlite3 \
-                python-gdal python-psycopg2 \
-                python-imaging python-lxml \
-                python-dev libgdal-dev \
-                python-ldap \
-                libmemcached-dev libsasl2-dev zlib1g-dev \
-                python-pylibmc \
-                uwsgi uwsgi-plugin-python \
-	--no-install-recommends && rm -rf /var/lib/apt/lists/*
+    gcc gettext postgresql-client libpq-dev sqlite3 \
+    python-gdal python-psycopg2 python-imaging python-lxml \
+    python-dev libgdal-dev python-ldap libmemcached-dev libsasl2-dev zlib1g-dev \
+    python-pylibmc uwsgi uwsgi-plugin-python \
+    --no-install-recommends && rm -rf /var/lib/apt/lists/*
 
 
 COPY wait-for-databases.sh /usr/bin/wait-for-databases
@@ -41,7 +34,7 @@ RUN chmod +x /usr/src/masdap/tasks.py \
     && chmod +x /usr/src/masdap/entrypoint.sh
 
 # app-specific requirements
-RUN pip install --upgrade -e .
+RUN pip install -e .
 
 # Install pygdal (after requirements for numpy 1.16)
 RUN pip install pygdal==$(gdal-config --version).*
