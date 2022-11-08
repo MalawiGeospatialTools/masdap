@@ -71,3 +71,5 @@ local_settings.py
 
 # Sass
 .sass-cache
+
+/_geoserver_admin_pwd.info
