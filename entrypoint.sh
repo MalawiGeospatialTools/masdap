@@ -15,7 +15,7 @@ echo GEOSERVER_PUBLIC_LOCATION=$GEOSERVER_PUBLIC_LOCATION
 echo "waitfordbs task done"
 
 echo "running migrations"
-# /usr/local/bin/invoke migrations
+/usr/local/bin/invoke migrations
 echo "migrations task done"
 
 cmd="$@"
@@ -47,7 +47,7 @@ else
         echo "initialized"
 
         echo "refresh static data"
-        # /usr/local/bin/invoke statics
+        /usr/local/bin/invoke statics
         echo "static data refreshed"
 
         cmd=$UWSGI_CMD
