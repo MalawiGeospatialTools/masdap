@@ -1,0 +1,27 @@
+{% extends "geonode-mapstore-client/snippets/custom_theme.html" %}
+{% block content %}
+<link href="{{ STATIC_URL }}css/site_base.css" rel="stylesheet"/>
+<style>
+        /* or use gn-theme to override only some css variables */
+        .msgapi .gn-theme {
+            --gn-footer-color: #ffffff;
+            --gn-footer-bg: #2e2e2e;
+            --gn-footer-link-color: #ffffff;
+            --gn-footer-link-hover-color: #ffffff;
+            --main-color: #000;
+        }
+
+        nav#gn-brand-navbar {
+            background-color: #2e2e2e;
+            color: #ffffff;
+
+            ul li a {
+                color: #ffffff;
+
+                &:hover {
+                    color: #000; 
+                }
+            }
+        }
+</style>
+{% endblock %}
