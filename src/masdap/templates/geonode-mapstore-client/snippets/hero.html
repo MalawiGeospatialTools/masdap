@@ -1,0 +1,23 @@
+{% load static %}
+<style>
+    #gn-hero {
+        background-image: url("{% static 'img/hero.jpg' %}");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-color: rgb(156, 156, 156);
+        background-blend-mode: multiply;
+    }
+</style>
+<div id="gn-hero" class="gn-hero">
+    <div class="jumbotron">
+        <div class="gn-hero-description" style="text-align: left;">
+            <h1>Malawi</h1>
+            <h1>Spatial Data Platform</h1>
+            <p>A public platform for GIS Data</p>
+            <p>to support development in Malawi</p>
+        </div>
+        <p class="gn-hero-tools">
+        </p>
+    </div>
+</div>

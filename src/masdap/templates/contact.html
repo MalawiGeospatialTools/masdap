@@ -1,4 +1,4 @@
-{% extends "site_base.html" %}
+{% extends "page.html" %}
 {% load i18n widget_tweaks %}
 
 {% block title %}Contact {{ block.super }}{% endblock %}
@@ -17,7 +17,7 @@
 </div>
 {% endblock %}
 
-{% block body %}
+{% block container %}
 <form method="post" novalidate>
 
   {% csrf_token %}
@@ -62,7 +62,6 @@
       {% endif %}
     </div>
   {% endfor %}
-  <div class="g-recaptcha" data-sitekey="6LcEorMUAAAAAG_GALu-f-0OBncDC-pPVYXpdOkB"></div>
   <button type="submit" class="btn btn-primary">Submit</button>
 
 </form>

@@ -1,0 +1,20 @@
+{% extends "geonode-mapstore-client/snippets/brand_navbar.html" %}
+{% load static %}
+{% block extra_style %}
+<style>
+    #gn-brand-navbar {
+        /* example from https://css-tricks.com/a-few-background-patterns-sites/ */
+        --stripe: #2a3034;
+        --bg: #040404;
+        background: linear-gradient(135deg, var(--bg) 25%, transparent 25%) -50px 0,
+            linear-gradient(225deg, var(--bg) 25%, transparent 25%) -50px 0,
+            linear-gradient(315deg, var(--bg) 25%, transparent 25%),
+            linear-gradient(45deg, var(--bg) 25%, transparent 25%);
+        background-size: 32px 32px;
+        background-color: var(--stripe);
+    }
+</style>
+{% endblock %}
+{% block logo_src %}
+{% static 'img/logo.png' %}
+{% endblock %}

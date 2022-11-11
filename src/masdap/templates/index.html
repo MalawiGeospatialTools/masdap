@@ -38,7 +38,7 @@
                     <div class="container text-center">
                         <h1>{% trans "Discover the available datasets." %}</h1>
                     <div class="col-xs-4 col-sm-2">
-                        <a href="/catalogue/#/search/?f=dataset&limit=100&filter{identifier.in}=boundaries&category__identifier__in=planningCadastre">
+                        <a href="/catalogue/#/search/?f=dataset&limit=100&filter{category.identifier.in}=boundaries">
                             <div class="category" data-toggle="tooltip" data-placement="auto"
                                 title="Political and administrative boundaries, land use maps, zoning maps, cadastral surveys, land ownership.">
                                 <i class="fa fa-flag fa-4x"></i>
@@ -47,7 +47,7 @@
                         </a>
                     </div>
                     <div class="col-xs-4 col-sm-2">
-                        <a href="/catalogue/#/search/?f=dataset&limit=100&filter{identifier.in}=society">
+                        <a href="/catalogue/#/search/?f=dataset&limit=100&filter{category.identifier.in}=society">
                             <div class="category" data-toggle="tooltip" data-placement="auto"
                                 title="Buildings, museums, churches, factories, housing, monuments, shops, towers. Energy, water and waste systems and communications infrastructure and services. Military bases, structures, activities.">
                                 <i class="fa fa-home fa-4x"></i>
@@ -56,7 +56,7 @@
                         </a>
                     </div>
                     <div class="col-xs-4 col-sm-2">
-                        <a href="/catalogue/#/search/?f=dataset&limit=100&filter{identifier.in}=climatologyMeteorologyAtmosphere">
+                        <a href="/catalogue/#/search/?f=dataset&limit=100&filter{category.identifier.in}=climatologyMeteorologyAtmosphere">
                             <div class="category" data-toggle="tooltip" data-placement="auto"
                                 title="Cloud cover, weather, climate, atmospheric conditions, climate change, precipitation">
                                 <i class="fa fa-umbrella fa-4x"></i>
@@ -65,7 +65,7 @@
                         </a>
                     </div>
                     <div class="col-xs-4 col-sm-2">
-                        <a href="/catalogue/#/search/?f=dataset&limit=100&filter{identifier.in}=elevation">
+                        <a href="/catalogue/#/search/?f=dataset&limit=100&filter{category.identifier.in}=elevation">
                             <div class="category" data-toggle="tooltip" data-placement="auto"
                                 title="Altitude, bathymetry, digital elevation models, slope, derived products">
                                 <i class="fa fa-level-up fa-4x"></i>
@@ -74,7 +74,7 @@
                         </a>
                     </div>
                     <div class="col-xs-4 col-sm-2">
-                        <a href="/catalogue/#/search/?f=dataset&limit=100&filter{identifier.in}=geoscientificInformation">
+                        <a href="/catalogue/#/search/?f=dataset&limit=100&filter{category.identifier.in}=geoscientificInformation">
                             <div class="category" data-toggle="tooltip" data-placement="auto"
                                 title="Geophysical features and processes, geology, minerals, sciences dealing with the composition, structure and origin of the earth s rocks, risks of earthquakes, volcanic activity, landslides, gravity information, soils, permafrost, hydrogeology, erosion.">
                                 <i class="fa fa-globe fa-4x"></i>
@@ -83,7 +83,7 @@
                         </a>
                     </div>
                     <div class="col-xs-4 col-sm-2">
-                        <a href="/catalogue/#/search/?f=dataset&limit=100&filter{identifier.in}=health">
+                        <a href="/catalogue/#/search/?f=dataset&limit=100&filter{category.identifier.in}=health">
                             <div class="category" data-toggle="tooltip" data-placement="auto"
                                 title="Health, health services, human ecology, and safety.">
                                 <i class="fa fa-medkit fa-4x"></i>
@@ -92,7 +92,7 @@
                         </a>
                     </div>
                     <div class="col-xs-4 col-sm-2">
-                        <a href="/catalogue/#/search/?f=dataset&limit=100&filter{identifier.in}=imageryBaseMapsEarthCover">
+                        <a href="/catalogue/#/search/?f=dataset&limit=100&filter{category.identifier.in}=imageryBaseMapsEarthCover">
                             <div class="category" data-toggle="tooltip" data-placement="auto"
                                 title="Land cover, topographic maps, imagery, unclassified images, annotations.">
                                 <i class="fa fa-tree fa-4x"></i>
@@ -101,7 +101,7 @@
                         </a>
                     </div>
                     <div class="col-xs-4 col-sm-2">
-                        <a href="/catalogue/#/search/?f=dataset&limit=100&filter{identifier.in}=farming&category__identifier__in=environment">
+                        <a href="/catalogue/#/search/?f=dataset&limit=100&filter{category.identifier.in}=farming">
                             <div class="category" data-toggle="tooltip" data-placement="auto"
                                 title="Wildlife, vegetation, biological sciences, ecology, wilderness, sealife, wetlands, habitat. Environmental resources, protection and conservation. Agriculture, irrigation, aquaculture, plantations, herding, pests and diseases affecting crops and livestock">
                                 <i class="fa fa-leaf fa-4x"></i>
@@ -110,7 +110,7 @@
                         </a>
                     </div>
                     <div class="col-xs-4 col-sm-2">
-                        <a href="/catalogue/#/search/?f=dataset&limit=100&filter{identifier.in}=location">
+                        <a href="/catalogue/#/search/?f=dataset&limit=100&filter{category.identifier.in}=location">
                             <div class="category" data-toggle="tooltip" data-placement="auto"
                                 title="Addresses, geodetic networks, control points, postal zones and services, place names">
                                 <i class="fa fa-map-marker fa-4x"></i>
@@ -128,7 +128,7 @@
                         </a>
                     </div>
                     <div class="col-xs-4 col-sm-2">
-                        <a href="/catalogue/#/search/?f=dataset&limit=100&filter{identifier.in}=transportation">
+                        <a href="/catalogue/#/search/?f=dataset&limit=100&filter{category.identifier.in}=transportation">
                             <div class="category" data-toggle="tooltip" data-placement="auto"
                                 title="Roads, airports/airstrips, shipping routes, tunnels, nautical charts, vehicle or vessel location, aeronautical charts, railways.">
                                 <i class="fa fa-road fa-4x"></i>
@@ -137,7 +137,7 @@
                         </a>
                     </div>
                     <div class="col-xs-4 col-sm-2">
-                        <a href="/catalogue/#/search/?f=dataset&limit=100&filter{identifier.in}=inlandWaters">
+                        <a href="/catalogue/#/search/?f=dataset&limit=100&filter{category.identifier.in}=inlandWaters">
                             <div class="category" data-toggle="tooltip" data-placement="auto"
                                 title="Rivers and glaciers, salt lakes, water utilization plans, dams, currents, floods, water quality, hydrographic charts, tides, tidal waves, coastal information, reefs.">
                                 <i class="fa fa-tint fa-4x"></i>
@@ -156,7 +156,7 @@
                 <h2>Malawi Risk and Hazards</h2>
                 <div class="col-xs-6 col-sm-3 col-sm-offset-2">
                     <div class="ocha-box">
-                                <a href="/catalogue/#/search/?f=dataset&limit=100&filter{keywords.slug.in}=drought">
+                                <a href="/catalogue/#/search/filter/?filter{keywords.slug.in}=drought">
                         <img src="/static/svg/ocha/03_disasterhazardcrisis_drought_noun_4231.svg" alt="Drought">
                         </a>
                     </div>
@@ -164,7 +164,7 @@
                 </div>
                 <div class="col-xs-6 col-sm-3 col-sm-offset-2">
                     <div class="ocha-box">
-                                <a href="/catalogue/#/search/?f=dataset&limit=100&filter{keywords.slug.in}==flood">
+                                <a href="/catalogue/#/search/filter/?filter{keywords.slug.in}==flood">
                         <img src="/static/svg/ocha/03_disasterhazardcrisis_flood_noun_4236.svg" alt="Flood">
                         </a>
                     </div>
@@ -201,7 +201,7 @@
                 <div class="col-md-8">
                     <h2>Daily OpenStreetMap Extracts</h2>
                     <p>MASDAP provides with daily Malawi OpenStreetMap extracts ready to be used both online as WxS service both on your desktop downloading data in vector formats such as Shapefiles. Explore what features are available.</p>
-                    <a class="btn btn-primary btn-lg" href="/catalogue/#/search/?f=dataset&limit=100&filter{keywords.slug.in}=osm" role="button">Explore</a>
+                    <a class="btn btn-primary btn-lg" href="/catalogue/#/search/filter/?filter{keywords.slug.in}=osm" role="button">Explore</a>
                 </div>
             </div>
         </div>
