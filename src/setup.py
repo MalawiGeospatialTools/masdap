@@ -39,7 +39,7 @@ setup(
     classifiers=[
         'Development Status :: 1 - Planning',
     ],
-    license="BSD",
+    license="GPL",
     keywords="masdap geonode django",
     url='https://github.com/masdap/masdap',
     packages=find_packages(),
