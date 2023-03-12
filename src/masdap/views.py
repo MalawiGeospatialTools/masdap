@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from django.core.mail import EmailMessage
 from django.shortcuts import render, redirect
 from django.views.generic import View
@@ -18,8 +20,8 @@ def contact(request):
             email = EmailMessage(
                 "New contact form submission on MASDAP",
                 sender_message,
-                'masdap.mw@gmail.com',
-                ['masdap.mw@gmail.com'],
+                settings.EMAIL_HOST_USER,
+                [settings.EMAIL_HOST_USER],
                 cc=(sender_email,),
                 headers = {'Reply-To': sender_email}
             )
