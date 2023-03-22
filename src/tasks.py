@@ -372,8 +372,10 @@ def _localsettings():
 
 def _rest_api_availability(url):
     import requests
+    from requests.auth import HTTPBasicAuth
     try:
-        r = requests.request('get', url, verify=False)
+        auth = HTTPBasicAuth(os.getenv('GEOSERVER_ADMIN_USER'),os.getenv('GEOSERVER_ADMIN_PASSWORD'))
+        r = requests.request('get', url, verify=False, auth=auth)
         r.raise_for_status()  # Raises a HTTPError if the status is 4xx, 5xxx
     except (requests.exceptions.ConnectionError, requests.exceptions.Timeout) as e:
         logger.error(f"GeoServer connection error is {e}")
